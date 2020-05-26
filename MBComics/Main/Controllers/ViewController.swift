@@ -8,14 +8,21 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.view.backgroundColor = .green
+        
+        setUpViews()
     }
 
-
+    func setUpViews() {
+        view.backgroundColor = .white
+        title = "MBComics"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationItem.largeTitleDisplayMode = .never
+    }
+    
 }
 
