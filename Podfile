@@ -11,6 +11,11 @@ target 'MBComics' do
   pod 'MBProgressHUD'
   pod 'SnapKit'
   pod 'Kingfisher'
+  
+  # Firebase
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
 
   # Model, API
   pod 'SwiftyJSON'

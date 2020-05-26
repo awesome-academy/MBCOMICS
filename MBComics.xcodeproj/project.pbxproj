@@ -27,6 +27,7 @@
 		40568F5A247B5C1600304422 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40568F42247B5C1500304422 /* UITextField+.swift */; };
 		40568F5C247B5C1600304422 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40568F44247B5C1500304422 /* UIImage+.swift */; };
 		40568F5E247B5C1600304422 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40568F46247B5C1500304422 /* UIColor+.swift */; };
+		40E282D1247B712E00B2D6F8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40E282D0247B712E00B2D6F8 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		40568F42247B5C1500304422 /* UITextField+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		40568F44247B5C1500304422 /* UIImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		40568F46247B5C1500304422 /* UIColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		40E282D0247B712E00B2D6F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FD281564BE5235F186E59208 /* Pods-MBComics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MBComics.release.xcconfig"; path = "Target Support Files/Pods-MBComics/Pods-MBComics.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,7 +93,6 @@
 			children = (
 				40568F1B247B5A0800304422 /* Main */,
 				40568F1A247B59FF00304422 /* Base */,
-				40568F0F247B51DB00304422 /* Assets.xcassets */,
 				40568F14247B51DB00304422 /* Info.plist */,
 			);
 			path = MBComics;
@@ -129,6 +130,8 @@
 		40568F1D247B5A3200304422 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				40E282D0247B712E00B2D6F8 /* GoogleService-Info.plist */,
+				40568F0F247B51DB00304422 /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40E282D1247B712E00B2D6F8 /* GoogleService-Info.plist in Resources */,
 				40568F13247B51DB00304422 /* LaunchScreen.storyboard in Resources */,
 				40568F10247B51DB00304422 /* Assets.xcassets in Resources */,
 			);
