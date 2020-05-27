@@ -18,6 +18,27 @@ final class Application {
     func initApplication(with window: UIWindow?) {
         guard let window = window else { return }
         window.makeKeyAndVisible()
-        window.rootViewController = UINavigationController(rootViewController: ViewController())
+        window.rootViewController = createTabbar()
+    }
+    
+    private func createTabbar() -> UITabBarController {
+        let tabbar = UITabBarController()
+        
+        let createNav = { (vc: UIViewController) in
+            return UINavigationController(rootViewController: vc)
+        }
+        
+        let homeVC = HomeViewController()
+        homeVC.tabBarItem = UITabBarItem(tabBarSystemItem: .mostViewed, tag: 0)
+        
+        let searchVC = SearchViewController()
+        searchVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 1)
+        
+        let userVC = UserViewController()
+        userVC.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 2)
+        
+        tabbar.viewControllers = [createNav(homeVC), createNav(searchVC), createNav(userVC)]
+        
+        return tabbar
     }
 }

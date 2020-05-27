@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		165E4901A06CA2F453E0D92F /* Pods_MBComics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20A9D9AB5BA8FA0713CF26E8 /* Pods_MBComics.framework */; };
 		40568F07247B51D600304422 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40568F06247B51D600304422 /* AppDelegate.swift */; };
-		40568F0B247B51D600304422 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40568F0A247B51D600304422 /* ViewController.swift */; };
+		40568F0B247B51D600304422 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40568F0A247B51D600304422 /* HomeViewController.swift */; };
 		40568F10247B51DB00304422 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40568F0F247B51DB00304422 /* Assets.xcassets */; };
 		40568F13247B51DB00304422 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40568F11247B51DB00304422 /* LaunchScreen.storyboard */; };
 		40568F20247B5A6800304422 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40568F1F247B5A6800304422 /* Application.swift */; };
@@ -27,6 +27,8 @@
 		40568F5A247B5C1600304422 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40568F42247B5C1500304422 /* UITextField+.swift */; };
 		40568F5C247B5C1600304422 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40568F44247B5C1500304422 /* UIImage+.swift */; };
 		40568F5E247B5C1600304422 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40568F46247B5C1500304422 /* UIColor+.swift */; };
+		407122D5247E3787000F8F2D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407122D4247E3787000F8F2D /* SearchViewController.swift */; };
+		407122D7247E3793000F8F2D /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407122D6247E3793000F8F2D /* UserViewController.swift */; };
 		40E282D1247B712E00B2D6F8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40E282D0247B712E00B2D6F8 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -35,7 +37,7 @@
 		20A9D9AB5BA8FA0713CF26E8 /* Pods_MBComics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MBComics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40568F03247B51D600304422 /* MBComics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MBComics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40568F06247B51D600304422 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		40568F0A247B51D600304422 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		40568F0A247B51D600304422 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		40568F0F247B51DB00304422 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		40568F12247B51DB00304422 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		40568F14247B51DB00304422 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -54,6 +56,8 @@
 		40568F42247B5C1500304422 /* UITextField+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		40568F44247B5C1500304422 /* UIImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		40568F46247B5C1500304422 /* UIColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		407122D4247E3787000F8F2D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		407122D6247E3793000F8F2D /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		40E282D0247B712E00B2D6F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FD281564BE5235F186E59208 /* Pods-MBComics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MBComics.release.xcconfig"; path = "Target Support Files/Pods-MBComics/Pods-MBComics.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -139,7 +143,9 @@
 		40568F1E247B5A3E00304422 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				40568F0A247B51D600304422 /* ViewController.swift */,
+				40568F0A247B51D600304422 /* HomeViewController.swift */,
+				407122D4247E3787000F8F2D /* SearchViewController.swift */,
+				407122D6247E3793000F8F2D /* UserViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -369,7 +375,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				40568F20247B5A6800304422 /* Application.swift in Sources */,
-				40568F0B247B51D600304422 /* ViewController.swift in Sources */,
+				40568F0B247B51D600304422 /* HomeViewController.swift in Sources */,
 				40568F4D247B5C1600304422 /* BaseViewController.swift in Sources */,
 				40568F07247B51D600304422 /* AppDelegate.swift in Sources */,
 				40568F57247B5C1600304422 /* String+.swift in Sources */,
@@ -380,11 +386,13 @@
 				40568F59247B5C1600304422 /* UIViewController+.swift in Sources */,
 				40568F54247B5C1600304422 /* BaseCustomNibView.swift in Sources */,
 				40568F55247B5C1600304422 /* Array+.swift in Sources */,
+				407122D5247E3787000F8F2D /* SearchViewController.swift in Sources */,
 				40568F4A247B5C1600304422 /* ApiDefine.swift in Sources */,
 				40568F5C247B5C1600304422 /* UIImage+.swift in Sources */,
 				40568F5E247B5C1600304422 /* UIColor+.swift in Sources */,
 				40568F4B247B5C1600304422 /* ApiBase.swift in Sources */,
 				40568F5A247B5C1600304422 /* UITextField+.swift in Sources */,
+				407122D7247E3793000F8F2D /* UserViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
