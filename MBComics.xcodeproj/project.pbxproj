@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		165E4901A06CA2F453E0D92F /* Pods_MBComics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20A9D9AB5BA8FA0713CF26E8 /* Pods_MBComics.framework */; };
+		40420616247E53B9001BA2F8 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40420615247E53B9001BA2F8 /* API.swift */; };
+		40420618247E57B7001BA2F8 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40420617247E57B7001BA2F8 /* ErrorResponse.swift */; };
 		40568F07247B51D600304422 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40568F06247B51D600304422 /* AppDelegate.swift */; };
 		40568F0B247B51D600304422 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40568F0A247B51D600304422 /* HomeViewController.swift */; };
 		40568F10247B51DB00304422 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40568F0F247B51DB00304422 /* Assets.xcassets */; };
@@ -35,6 +37,8 @@
 /* Begin PBXFileReference section */
 		0137C9950E9ADF0BB4450F5C /* Pods-MBComics.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MBComics.debug.xcconfig"; path = "Target Support Files/Pods-MBComics/Pods-MBComics.debug.xcconfig"; sourceTree = "<group>"; };
 		20A9D9AB5BA8FA0713CF26E8 /* Pods_MBComics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MBComics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		40420615247E53B9001BA2F8 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		40420617247E57B7001BA2F8 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		40568F03247B51D600304422 /* MBComics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MBComics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40568F06247B51D600304422 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40568F0A247B51D600304422 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +78,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		40420610247E5320001BA2F8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				40420612247E533F001BA2F8 /* Entities */,
+				40420611247E5339001BA2F8 /* API */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		40420611247E5339001BA2F8 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				40420615247E53B9001BA2F8 /* API.swift */,
+				40420617247E57B7001BA2F8 /* ErrorResponse.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		40420612247E533F001BA2F8 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		40420619247E5C95001BA2F8 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		40568EFA247B51D600304422 = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +150,8 @@
 		40568F1B247B5A0800304422 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				40420619247E5C95001BA2F8 /* Constants */,
+				40420610247E5320001BA2F8 /* Models */,
 				40568F1E247B5A3E00304422 /* Controllers */,
 				40568F1D247B5A3200304422 /* Resources */,
 				40568F1C247B5A2300304422 /* App */,
@@ -380,6 +418,7 @@
 				40568F07247B51D600304422 /* AppDelegate.swift in Sources */,
 				40568F57247B5C1600304422 /* String+.swift in Sources */,
 				40568F56247B5C1600304422 /* UIView+.swift in Sources */,
+				40420616247E53B9001BA2F8 /* API.swift in Sources */,
 				40568F50247B5C1600304422 /* BaseTBCell.swift in Sources */,
 				40568F4C247B5C1600304422 /* DLog.swift in Sources */,
 				40568F51247B5C1600304422 /* BaseCLCell.swift in Sources */,
@@ -391,6 +430,7 @@
 				40568F5C247B5C1600304422 /* UIImage+.swift in Sources */,
 				40568F5E247B5C1600304422 /* UIColor+.swift in Sources */,
 				40568F4B247B5C1600304422 /* ApiBase.swift in Sources */,
+				40420618247E57B7001BA2F8 /* ErrorResponse.swift in Sources */,
 				40568F5A247B5C1600304422 /* UITextField+.swift in Sources */,
 				407122D7247E3793000F8F2D /* UserViewController.swift in Sources */,
 			);
