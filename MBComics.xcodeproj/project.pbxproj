@@ -31,6 +31,18 @@
 		40568F5E247B5C1600304422 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40568F46247B5C1500304422 /* UIColor+.swift */; };
 		407122D5247E3787000F8F2D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407122D4247E3787000F8F2D /* SearchViewController.swift */; };
 		407122D7247E3793000F8F2D /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407122D6247E3793000F8F2D /* UserViewController.swift */; };
+		40AC023E248099E100AF3DEF /* HomeComic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AC023D248099E100AF3DEF /* HomeComic.swift */; };
+		40AC024024809A5600AF3DEF /* SearchComic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AC023F24809A5600AF3DEF /* SearchComic.swift */; };
+		40AC024224809D2E00AF3DEF /* DetailComic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AC024124809D2E00AF3DEF /* DetailComic.swift */; };
+		40AC024424809DB100AF3DEF /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AC024324809DB100AF3DEF /* Issue.swift */; };
+		40AC024624809DBE00AF3DEF /* RelatedComic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AC024524809DBE00AF3DEF /* RelatedComic.swift */; };
+		40AC024824809DD200AF3DEF /* ReviewComic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AC024724809DD200AF3DEF /* ReviewComic.swift */; };
+		40AC024A24809E0B00AF3DEF /* FavoriteComic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AC024924809E0B00AF3DEF /* FavoriteComic.swift */; };
+		40AC024C24809E9A00AF3DEF /* ComicStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AC024B24809E9A00AF3DEF /* ComicStatus.swift */; };
+		40AC024E2480A93400AF3DEF /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AC024D2480A93400AF3DEF /* UserInfo.swift */; };
+		40AC02512480AE0700AF3DEF /* DataRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AC02502480AE0700AF3DEF /* DataRepresentable.swift */; };
+		40AC02532480AF3600AF3DEF /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AC02522480AF3600AF3DEF /* Date+.swift */; };
+		40AC02552480B45D00AF3DEF /* Comic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AC02542480B45D00AF3DEF /* Comic.swift */; };
 		40E282D1247B712E00B2D6F8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40E282D0247B712E00B2D6F8 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +74,18 @@
 		40568F46247B5C1500304422 /* UIColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		407122D4247E3787000F8F2D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		407122D6247E3793000F8F2D /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		40AC023D248099E100AF3DEF /* HomeComic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeComic.swift; sourceTree = "<group>"; };
+		40AC023F24809A5600AF3DEF /* SearchComic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchComic.swift; sourceTree = "<group>"; };
+		40AC024124809D2E00AF3DEF /* DetailComic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailComic.swift; sourceTree = "<group>"; };
+		40AC024324809DB100AF3DEF /* Issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
+		40AC024524809DBE00AF3DEF /* RelatedComic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedComic.swift; sourceTree = "<group>"; };
+		40AC024724809DD200AF3DEF /* ReviewComic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewComic.swift; sourceTree = "<group>"; };
+		40AC024924809E0B00AF3DEF /* FavoriteComic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteComic.swift; sourceTree = "<group>"; };
+		40AC024B24809E9A00AF3DEF /* ComicStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicStatus.swift; sourceTree = "<group>"; };
+		40AC024D2480A93400AF3DEF /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		40AC02502480AE0700AF3DEF /* DataRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepresentable.swift; sourceTree = "<group>"; };
+		40AC02522480AF3600AF3DEF /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		40AC02542480B45D00AF3DEF /* Comic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comic.swift; sourceTree = "<group>"; };
 		40E282D0247B712E00B2D6F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FD281564BE5235F186E59208 /* Pods-MBComics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MBComics.release.xcconfig"; path = "Target Support Files/Pods-MBComics/Pods-MBComics.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -99,6 +123,17 @@
 		40420612247E533F001BA2F8 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				40AC02542480B45D00AF3DEF /* Comic.swift */,
+				40AC02502480AE0700AF3DEF /* DataRepresentable.swift */,
+				40AC024B24809E9A00AF3DEF /* ComicStatus.swift */,
+				40AC023D248099E100AF3DEF /* HomeComic.swift */,
+				40AC023F24809A5600AF3DEF /* SearchComic.swift */,
+				40AC024124809D2E00AF3DEF /* DetailComic.swift */,
+				40AC024324809DB100AF3DEF /* Issue.swift */,
+				40AC024524809DBE00AF3DEF /* RelatedComic.swift */,
+				40AC024724809DD200AF3DEF /* ReviewComic.swift */,
+				40AC024924809E0B00AF3DEF /* FavoriteComic.swift */,
+				40AC024D2480A93400AF3DEF /* UserInfo.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -276,6 +311,7 @@
 				40568F42247B5C1500304422 /* UITextField+.swift */,
 				40568F44247B5C1500304422 /* UIImage+.swift */,
 				40568F46247B5C1500304422 /* UIColor+.swift */,
+				40AC02522480AF3600AF3DEF /* Date+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -412,8 +448,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40AC024424809DB100AF3DEF /* Issue.swift in Sources */,
 				40568F20247B5A6800304422 /* Application.swift in Sources */,
+				40AC024024809A5600AF3DEF /* SearchComic.swift in Sources */,
+				40AC024624809DBE00AF3DEF /* RelatedComic.swift in Sources */,
+				40AC024824809DD200AF3DEF /* ReviewComic.swift in Sources */,
+				40AC024224809D2E00AF3DEF /* DetailComic.swift in Sources */,
 				40568F0B247B51D600304422 /* HomeViewController.swift in Sources */,
+				40AC02552480B45D00AF3DEF /* Comic.swift in Sources */,
 				40568F4D247B5C1600304422 /* BaseViewController.swift in Sources */,
 				40568F07247B51D600304422 /* AppDelegate.swift in Sources */,
 				40568F57247B5C1600304422 /* String+.swift in Sources */,
@@ -421,9 +463,13 @@
 				40420616247E53B9001BA2F8 /* API.swift in Sources */,
 				40568F50247B5C1600304422 /* BaseTBCell.swift in Sources */,
 				40568F4C247B5C1600304422 /* DLog.swift in Sources */,
+				40AC024C24809E9A00AF3DEF /* ComicStatus.swift in Sources */,
+				40AC02532480AF3600AF3DEF /* Date+.swift in Sources */,
 				40568F51247B5C1600304422 /* BaseCLCell.swift in Sources */,
+				40AC023E248099E100AF3DEF /* HomeComic.swift in Sources */,
 				40568F59247B5C1600304422 /* UIViewController+.swift in Sources */,
 				40568F54247B5C1600304422 /* BaseCustomNibView.swift in Sources */,
+				40AC02512480AE0700AF3DEF /* DataRepresentable.swift in Sources */,
 				40568F55247B5C1600304422 /* Array+.swift in Sources */,
 				407122D5247E3787000F8F2D /* SearchViewController.swift in Sources */,
 				40568F4A247B5C1600304422 /* ApiDefine.swift in Sources */,
@@ -431,7 +477,9 @@
 				40568F5E247B5C1600304422 /* UIColor+.swift in Sources */,
 				40568F4B247B5C1600304422 /* ApiBase.swift in Sources */,
 				40420618247E57B7001BA2F8 /* ErrorResponse.swift in Sources */,
+				40AC024A24809E0B00AF3DEF /* FavoriteComic.swift in Sources */,
 				40568F5A247B5C1600304422 /* UITextField+.swift in Sources */,
+				40AC024E2480A93400AF3DEF /* UserInfo.swift in Sources */,
 				407122D7247E3793000F8F2D /* UserViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
