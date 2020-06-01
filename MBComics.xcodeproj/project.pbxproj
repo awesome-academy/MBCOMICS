@@ -31,6 +31,7 @@
 		40568F5E247B5C1600304422 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40568F46247B5C1500304422 /* UIColor+.swift */; };
 		407122D5247E3787000F8F2D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407122D4247E3787000F8F2D /* SearchViewController.swift */; };
 		407122D7247E3793000F8F2D /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407122D6247E3793000F8F2D /* UserViewController.swift */; };
+		407A600D2484883C0090D90C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A600C2484883C0090D90C /* LoginViewController.swift */; };
 		40AC023E248099E100AF3DEF /* HomeComic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AC023D248099E100AF3DEF /* HomeComic.swift */; };
 		40AC024024809A5600AF3DEF /* SearchComic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AC023F24809A5600AF3DEF /* SearchComic.swift */; };
 		40AC024224809D2E00AF3DEF /* DetailComic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AC024124809D2E00AF3DEF /* DetailComic.swift */; };
@@ -74,6 +75,7 @@
 		40568F46247B5C1500304422 /* UIColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		407122D4247E3787000F8F2D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		407122D6247E3793000F8F2D /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		407A600C2484883C0090D90C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		40AC023D248099E100AF3DEF /* HomeComic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeComic.swift; sourceTree = "<group>"; };
 		40AC023F24809A5600AF3DEF /* SearchComic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchComic.swift; sourceTree = "<group>"; };
 		40AC024124809D2E00AF3DEF /* DetailComic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailComic.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				40568F0A247B51D600304422 /* HomeViewController.swift */,
 				407122D4247E3787000F8F2D /* SearchViewController.swift */,
 				407122D6247E3793000F8F2D /* UserViewController.swift */,
+				407A600C2484883C0090D90C /* LoginViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				40568F00247B51D600304422 /* Frameworks */,
 				40568F01247B51D600304422 /* Resources */,
 				3D6B751CE95106233069BBCA /* [CP] Embed Pods Frameworks */,
+				93A2771A9D8343F4DA58A490 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -441,6 +445,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MBComics/Pods-MBComics-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		93A2771A9D8343F4DA58A490 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MBComics/Pods-MBComics-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MBComics/Pods-MBComics-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MBComics/Pods-MBComics-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -478,6 +499,7 @@
 				40568F4B247B5C1600304422 /* ApiBase.swift in Sources */,
 				40420618247E57B7001BA2F8 /* ErrorResponse.swift in Sources */,
 				40AC024A24809E0B00AF3DEF /* FavoriteComic.swift in Sources */,
+				407A600D2484883C0090D90C /* LoginViewController.swift in Sources */,
 				40568F5A247B5C1600304422 /* UITextField+.swift in Sources */,
 				40AC024E2480A93400AF3DEF /* UserInfo.swift in Sources */,
 				407122D7247E3793000F8F2D /* UserViewController.swift in Sources */,

@@ -18,7 +18,7 @@ final class Application {
     func initApplication(with window: UIWindow?) {
         guard let window = window else { return }
         window.makeKeyAndVisible()
-        window.rootViewController = createTabbar()
+        window.rootViewController = LoginViewController()
     }
     
     private func createTabbar() -> UITabBarController {
