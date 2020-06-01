@@ -16,11 +16,16 @@ target 'MBComics' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  
+  # Login
+  pod 'FBSDKLoginKit'
+  pod 'GoogleSignIn'
 
   # Model, API
   pod 'SwiftyJSON'
 
   # Convention
   pod 'SwiftLint'
+  pod 'Then'
 
 end
