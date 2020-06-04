@@ -12,7 +12,7 @@ import FBSDKCoreKit
 import GoogleSignIn
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         FirebaseApp.configure()
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-        GIDSignIn.sharedInstance().delegate = self
         
         window = UIWindow()
         Application.shared.initApplication(with: window)
@@ -38,15 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                                                              sourceApplication: options[.sourceApplication] as? String,
                                                              annotation: options[.annotation])
         return handled || GIDSignIn.sharedInstance().handle(url)
-    }
-
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
-      // TODO
-    }
-
-    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        // Perform any operations when the user disconnects from app here.
-        // TODO
     }
 }
 

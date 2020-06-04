@@ -55,6 +55,8 @@ class LoginViewController: UIViewController {
     
     // MARK: - Layouts
     func setUpViews() {
+        self.navigationController?.isNavigationBarHidden = true
+        
         view.do {
             $0.addSubview(backgroundView)
             $0.addSubview(logoImageView)
@@ -65,6 +67,9 @@ class LoginViewController: UIViewController {
         backgroundView.addSubview(blurView)
         
         GIDSignIn.sharedInstance()?.presentingViewController = self
+        GIDSignIn.sharedInstance()?.delegate = self
+        
+        facebookButton.delegate = self
     }
     
     func setUpConstraints() {
@@ -96,5 +101,51 @@ class LoginViewController: UIViewController {
             make.centerX.equalToSuperview()
         }
     }
+}
+
+extension LoginViewController: GIDSignInDelegate, LoginButtonDelegate {
+    func handleLoginResult(_ error: Error?) {
+        if let error = error {
+            showAlert(title: "Error", message: error.localizedDescription)
+        } else {
+            showAlert(title: "Success", message: "Login Successful.") { [weak self] in
+                let tabbarController = Application.shared.createTabbar()
+                self?.navigationController?.changeRootViewController(tabbarController)
+            }
+        }
+    }
     
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            showAlert(title: "Error", message: error.localizedDescription)
+            return
+        }
+        guard let auth = user.authentication else { return }
+        let credential = GoogleAuthProvider.credential(withIDToken: auth.idToken, accessToken: auth.accessToken)
+        
+        API.shared.login(with: credential) { [weak self] (error) in
+            DispatchQueue.main.async {
+                self?.handleLoginResult(error)
+            }
+        }
+    }
+    
+    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+        if let error = error {
+            showAlert(title: "Error", message: error.localizedDescription)
+            return
+        }
+        guard let accessToken = AccessToken.current else { return }
+        let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
+        
+        API.shared.login(with: credential) { [weak self] (error) in
+            DispatchQueue.main.async {
+                self?.handleLoginResult(error)
+            }
+        }
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+        // TODO
+    }
 }
