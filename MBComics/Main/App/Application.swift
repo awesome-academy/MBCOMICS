@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 final class Application {
     static let shared = Application()
@@ -18,10 +19,14 @@ final class Application {
     func initApplication(with window: UIWindow?) {
         guard let window = window else { return }
         window.makeKeyAndVisible()
-        window.rootViewController = LoginViewController()
+        if Auth.auth().currentUser == nil {
+            window.rootViewController = UINavigationController(rootViewController: LoginViewController())
+        } else {
+            window.rootViewController = createTabbar()
+        }
     }
     
-    private func createTabbar() -> UITabBarController {
+    func createTabbar() -> UITabBarController {
         let tabbar = UITabBarController()
         
         let createNav = { (vc: UIViewController) in

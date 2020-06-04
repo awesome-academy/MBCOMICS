@@ -7,6 +7,7 @@
 //
 
 import SwiftyJSON
+import FirebaseAuth
 
 typealias FullCompletion = (_ status: Bool, _ error: ErrorResponse?, _ json: JSON?) -> Void
 
@@ -47,6 +48,15 @@ class API {
             } else {
                 completion?(status, nil, json)
             }
+        }
+    }
+}
+
+// MARK: - Login
+extension API {
+    func login(with credential: AuthCredential, completion: @escaping (Error?) -> Void) {
+        Auth.auth().signIn(with: credential) { (authResult, error) in
+            completion(error)
         }
     }
 }
