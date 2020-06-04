@@ -43,7 +43,6 @@ class LoginViewController: UIViewController {
     
     // MARK: - Values
 
-    
     // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,15 +72,15 @@ class LoginViewController: UIViewController {
     }
     
     func setUpConstraints() {
-        backgroundView.snp.makeConstraints { (make) in
+        backgroundView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
-        blurView.snp.makeConstraints { (make) in
+        blurView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
-        logoImageView.snp.makeConstraints { (make) in
+        logoImageView.snp.makeConstraints { make in
             make.width.equalTo(logoImageView.snp.height)
             make.centerX.equalToSuperview()
             let width = min(view.width*0.3, 150)
@@ -90,13 +89,13 @@ class LoginViewController: UIViewController {
         }
         logoImageView.applyCornerRadius(radius: 24)
         
-        googleButton.snp.makeConstraints { (make) in
+        googleButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview().offset(view.height/8)
             make.centerX.equalToSuperview()
             make.bottom.equalTo(facebookButton.snp.top).offset(-16)
         }
         
-        facebookButton.snp.makeConstraints { (make) in
+        facebookButton.snp.makeConstraints { make in
             make.width.height.equalTo(googleButton).inset(3)
             make.centerX.equalToSuperview()
         }

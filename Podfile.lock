@@ -4,6 +4,7 @@ PODS:
     - AppAuth/ExternalUserAgent (= 1.3.1)
   - AppAuth/Core (1.3.1)
   - AppAuth/ExternalUserAgent (1.3.1)
+  - Cosmos (22.1.0)
   - FBSDKCoreKit (7.0.0):
     - FBSDKCoreKit/Basics (= 7.0.0)
     - FBSDKCoreKit/Core (= 7.0.0)
@@ -122,6 +123,7 @@ PODS:
   - Then (2.6.0)
 
 DEPENDENCIES:
+  - Cosmos
   - FBSDKLoginKit
   - Firebase/Analytics
   - Firebase/Auth
@@ -137,6 +139,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AppAuth
+    - Cosmos
     - FBSDKCoreKit
     - FBSDKLoginKit
     - Firebase
@@ -167,6 +170,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AppAuth: 8803ba1aec6d00d9afd30093f82e600307eaa6ea
+  Cosmos: 2795b36ad4bbea1af3050d6d65576ed63875f86a
   FBSDKCoreKit: 8ad31cd09f793d1d7e84cf20fd6cebfe80ad318d
   FBSDKLoginKit: 5d1e321dc45ab1fa09198b77fc17c32a06f008c0
   Firebase: 5719b4f965f76643241a1bb8244483ff6117db39
@@ -195,6 +199,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   Then: 90cd104fd951cec1980a03f57704ad8f784d4d79
 
-PODFILE CHECKSUM: 883fa77dc2c550372d21ee982827a5c187ec3eca
+PODFILE CHECKSUM: 40c698d133ccb342159bb1e54138a4c9973a1d8b
 
 COCOAPODS: 1.9.0
