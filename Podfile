@@ -11,6 +11,7 @@ target 'MBComics' do
   pod 'MBProgressHUD'
   pod 'SnapKit'
   pod 'Kingfisher'
+  pod 'Cosmos'
   
   # Firebase
   pod 'Firebase/Analytics'

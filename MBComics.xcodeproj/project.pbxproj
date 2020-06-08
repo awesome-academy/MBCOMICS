@@ -10,6 +10,13 @@
 		165E4901A06CA2F453E0D92F /* Pods_MBComics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20A9D9AB5BA8FA0713CF26E8 /* Pods_MBComics.framework */; };
 		40420616247E53B9001BA2F8 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40420615247E53B9001BA2F8 /* API.swift */; };
 		40420618247E57B7001BA2F8 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40420617247E57B7001BA2F8 /* ErrorResponse.swift */; };
+		4043DFA52488833A007A407F /* HomeTBViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4043DFA42488833A007A407F /* HomeTBViewCell.swift */; };
+		4043DFA724888565007A407F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4043DFA624888565007A407F /* Constants.swift */; };
+		4043DFA924888829007A407F /* HomeCLViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4043DFA824888829007A407F /* HomeCLViewCell.swift */; };
+		4043DFAB24888AA3007A407F /* CellComicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4043DFAA24888AA3007A407F /* CellComicView.swift */; };
+		4043DFAD24889862007A407F /* AllComicTBViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4043DFAC24889862007A407F /* AllComicTBViewCell.swift */; };
+		4043DFAF24889934007A407F /* AllComicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4043DFAE24889934007A407F /* AllComicViewController.swift */; };
+		4043DFB12488B0BC007A407F /* ComicDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4043DFB02488B0BC007A407F /* ComicDetailViewController.swift */; };
 		40568F07247B51D600304422 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40568F06247B51D600304422 /* AppDelegate.swift */; };
 		40568F0B247B51D600304422 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40568F0A247B51D600304422 /* HomeViewController.swift */; };
 		40568F10247B51DB00304422 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40568F0F247B51DB00304422 /* Assets.xcassets */; };
@@ -52,6 +59,13 @@
 		20A9D9AB5BA8FA0713CF26E8 /* Pods_MBComics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MBComics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40420615247E53B9001BA2F8 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		40420617247E57B7001BA2F8 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		4043DFA42488833A007A407F /* HomeTBViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTBViewCell.swift; sourceTree = "<group>"; };
+		4043DFA624888565007A407F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4043DFA824888829007A407F /* HomeCLViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCLViewCell.swift; sourceTree = "<group>"; };
+		4043DFAA24888AA3007A407F /* CellComicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellComicView.swift; sourceTree = "<group>"; };
+		4043DFAC24889862007A407F /* AllComicTBViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllComicTBViewCell.swift; sourceTree = "<group>"; };
+		4043DFAE24889934007A407F /* AllComicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllComicViewController.swift; sourceTree = "<group>"; };
+		4043DFB02488B0BC007A407F /* ComicDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicDetailViewController.swift; sourceTree = "<group>"; };
 		40568F03247B51D600304422 /* MBComics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MBComics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40568F06247B51D600304422 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40568F0A247B51D600304422 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -143,8 +157,20 @@
 		40420619247E5C95001BA2F8 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				4043DFA624888565007A407F /* Constants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		4043DFA32488831B007A407F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4043DFA42488833A007A407F /* HomeTBViewCell.swift */,
+				4043DFA824888829007A407F /* HomeCLViewCell.swift */,
+				4043DFAA24888AA3007A407F /* CellComicView.swift */,
+				4043DFAC24889862007A407F /* AllComicTBViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		40568EFA247B51D600304422 = {
@@ -187,6 +213,7 @@
 		40568F1B247B5A0800304422 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				4043DFA32488831B007A407F /* Views */,
 				40420619247E5C95001BA2F8 /* Constants */,
 				40420610247E5320001BA2F8 /* Models */,
 				40568F1E247B5A3E00304422 /* Controllers */,
@@ -222,6 +249,8 @@
 				407122D4247E3787000F8F2D /* SearchViewController.swift */,
 				407122D6247E3793000F8F2D /* UserViewController.swift */,
 				407A600C2484883C0090D90C /* LoginViewController.swift */,
+				4043DFAE24889934007A407F /* AllComicViewController.swift */,
+				4043DFB02488B0BC007A407F /* ComicDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -349,6 +378,7 @@
 				40568F01247B51D600304422 /* Resources */,
 				3D6B751CE95106233069BBCA /* [CP] Embed Pods Frameworks */,
 				93A2771A9D8343F4DA58A490 /* [CP] Copy Pods Resources */,
+				4043DFB22488B1AB007A407F /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -445,6 +475,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MBComics/Pods-MBComics-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		4043DFB22488B1AB007A407F /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# \"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
 		93A2771A9D8343F4DA58A490 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -477,7 +525,9 @@
 				40AC024224809D2E00AF3DEF /* DetailComic.swift in Sources */,
 				40568F0B247B51D600304422 /* HomeViewController.swift in Sources */,
 				40AC02552480B45D00AF3DEF /* Comic.swift in Sources */,
+				4043DFAB24888AA3007A407F /* CellComicView.swift in Sources */,
 				40568F4D247B5C1600304422 /* BaseViewController.swift in Sources */,
+				4043DFAF24889934007A407F /* AllComicViewController.swift in Sources */,
 				40568F07247B51D600304422 /* AppDelegate.swift in Sources */,
 				40568F57247B5C1600304422 /* String+.swift in Sources */,
 				40568F56247B5C1600304422 /* UIView+.swift in Sources */,
@@ -486,7 +536,9 @@
 				40568F4C247B5C1600304422 /* DLog.swift in Sources */,
 				40AC024C24809E9A00AF3DEF /* ComicStatus.swift in Sources */,
 				40AC02532480AF3600AF3DEF /* Date+.swift in Sources */,
+				4043DFAD24889862007A407F /* AllComicTBViewCell.swift in Sources */,
 				40568F51247B5C1600304422 /* BaseCLCell.swift in Sources */,
+				4043DFA52488833A007A407F /* HomeTBViewCell.swift in Sources */,
 				40AC023E248099E100AF3DEF /* HomeComic.swift in Sources */,
 				40568F59247B5C1600304422 /* UIViewController+.swift in Sources */,
 				40568F54247B5C1600304422 /* BaseCustomNibView.swift in Sources */,
@@ -496,6 +548,8 @@
 				40568F4A247B5C1600304422 /* ApiDefine.swift in Sources */,
 				40568F5C247B5C1600304422 /* UIImage+.swift in Sources */,
 				40568F5E247B5C1600304422 /* UIColor+.swift in Sources */,
+				4043DFA924888829007A407F /* HomeCLViewCell.swift in Sources */,
+				4043DFB12488B0BC007A407F /* ComicDetailViewController.swift in Sources */,
 				40568F4B247B5C1600304422 /* ApiBase.swift in Sources */,
 				40420618247E57B7001BA2F8 /* ErrorResponse.swift in Sources */,
 				40AC024A24809E0B00AF3DEF /* FavoriteComic.swift in Sources */,
@@ -503,6 +557,7 @@
 				40568F5A247B5C1600304422 /* UITextField+.swift in Sources */,
 				40AC024E2480A93400AF3DEF /* UserInfo.swift in Sources */,
 				407122D7247E3793000F8F2D /* UserViewController.swift in Sources */,
+				4043DFA724888565007A407F /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
