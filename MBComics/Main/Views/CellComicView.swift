@@ -69,6 +69,7 @@ class CellComicView: UIView {
     var comicId = 0
     
     var favoriteState = true
+    var onTapFavorite: ((Int, Bool) -> Void)?
     
     // MARK: - Life Cycles
     override init(frame: CGRect) {
@@ -107,14 +108,19 @@ class CellComicView: UIView {
         setRatingCountLayout()
         setRatingPointLayout()
         setFavoriteBtnLayout()
+        
+        addGestures()
     }
     
     func updateFavoriteBtn() {
-        if favoriteState {
-            favoriteBtn.backgroundColor = .systemBlue
-        } else {
-            favoriteBtn.backgroundColor = .darkGray
+        favoriteBtn.do {
+            $0.backgroundColor = favoriteState ? .systemBlue : .darkGray
+            $0.text = favoriteState ? "LIKED" : "LIKE"
         }
+    }
+    
+    func addGestures() {
+        favoriteBtn.addTapGesture(target: self, action: #selector(tapFavoriteBtn))
     }
     
     // MARK: set Sub-Layout
@@ -175,6 +181,10 @@ class CellComicView: UIView {
         }
     }
     
-    // TODO: Add Actions
     // MARK: - Actions
+    @objc func tapFavoriteBtn() {
+        favoriteState = !favoriteState
+        updateFavoriteBtn()
+        onTapFavorite?(comicId, favoriteState)
+    }
 }

@@ -25,8 +25,9 @@ class HomeCLViewCell: BaseCLCell {
     }
     
     // MARK: - Layouts
-    func initData(imgHeight: Int, comic: HomeComic) {
+    func initData(imgHeight: Int, comic: HomeComic, onTapFavorite: ((Int, Bool) -> Void)?) {
         cellComicView.initData(imgHeight: imgHeight, comic: comic)
+        cellComicView.onTapFavorite = onTapFavorite
         setUpConstraints()
     }
     
