@@ -67,6 +67,8 @@ class HomeViewController: UIViewController {
         
         tableView.reloadData()
     }
+    
+    // TODO: Add API
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
@@ -87,6 +89,26 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             break
         }
         
+        cell.delegate = self
+        
         return cell
+    }
+}
+
+extension HomeViewController: HomeTBCellDelegate {
+    func pushVCToComic(comicId: Int) {
+        let detailVC = ComicDetailViewController()
+        detailVC.setData(comicId: comicId)
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
+    
+    func pushVCToAllComic(title: String?, comics: [HomeComic]) {
+        let allComicsVC = AllComicViewController()
+        allComicsVC.initData(title: title, comics: comics)
+        navigationController?.pushViewController(allComicsVC, animated: true)
+    }
+    
+    func tapFavoriteComic(comicId: Int, state: Bool) {
+        // TODO: Add API
     }
 }

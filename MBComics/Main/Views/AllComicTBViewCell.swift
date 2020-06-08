@@ -24,14 +24,16 @@ class AllComicTBViewCell: BaseTBCell {
     }
     
     // MARK: - Layouts
-    func initData(imgHeight: Int, comic: HomeComic) {
+    func initData(imgHeight: Int, comic: HomeComic, onTapFavorite: ((Int, Bool) -> Void)?) {
         cellComicView.initData(imgHeight: imgHeight, comic: comic)
+        cellComicView.onTapFavorite = onTapFavorite
         setUpConstraints()
     }
 
     func setUpConstraints() {
         cellComicView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.left.top.equalTo(20)
+            make.right.bottom.equalTo(-20)
         }
     }
 }

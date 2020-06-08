@@ -10,6 +10,9 @@ import UIKit
 
 class ComicDetailViewController: UIViewController {
     // MARK: - Outlets
+    
+    // MARK: - Values
+    var comicId = 0
 
     // MARK: - LifeCycles
     override func viewDidLoad() {
@@ -17,6 +20,10 @@ class ComicDetailViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         setUpViews()
+    }
+    
+    func setData(comicId: Int) {
+        self.comicId = comicId
     }
     
     // MARK: - Layouts

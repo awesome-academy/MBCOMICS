@@ -134,6 +134,15 @@ extension UIView {
     }
 }
 
+// MARK: Gesture
+extension UIView {
+    func addTapGesture(target: Any?, action: Selector?) {
+        let gesture = UITapGestureRecognizer(target: target, action: action)
+        addGestureRecognizer(gesture)
+        isUserInteractionEnabled = true
+    }
+}
+
 //MARK: SHADOW
 extension UIView {
     enum ShadowDirection: Int {

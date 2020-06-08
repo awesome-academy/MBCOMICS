@@ -53,12 +53,18 @@ class AllComicViewController: UIViewController {
             make.bottom.equalTo(0)
         }
     }
+    
+    func tapFavoriteComic(comicId: Int, state: Bool) {
+        // TODO: Add API
+    }
 }
 
 extension AllComicViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = AllComicTBViewCell.loadCell(tableView) as? AllComicTBViewCell else { return BaseTBCell() }
-        cell.initData(imgHeight: kCLCellHeight2, comic: comics[indexPath.row])
+        cell.initData(imgHeight: kCLCellHeight2,
+                      comic: comics[indexPath.row],
+                      onTapFavorite: tapFavoriteComic)
         
         if indexPath.row == comics.count {
             cell.separatorInset = UIEdgeInsets(top: 0, left: kScreenWidth, bottom: 0, right: 0)
@@ -70,7 +76,9 @@ extension AllComicViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: Add Action
+        let detailVC = ComicDetailViewController()
+        detailVC.setData(comicId: comics[indexPath.row].id)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
     
 }

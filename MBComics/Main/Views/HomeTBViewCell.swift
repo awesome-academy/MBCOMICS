@@ -11,6 +11,7 @@ import UIKit
 protocol HomeTBCellDelegate {
     func pushVCToComic(comicId: Int)
     func pushVCToAllComic(title: String?, comics: [HomeComic])
+    func tapFavoriteComic(comicId: Int, state: Bool)
 }
 
 class HomeTBViewCell: BaseTBCell {
@@ -34,6 +35,7 @@ class HomeTBViewCell: BaseTBCell {
         $0.textColor = .systemBlue
         $0.font = .systemFont(ofSize: 14)
         $0.text = "See All"
+        $0.addTapGesture(target: self, action: #selector(tapSeeAll))
     }
     
     var titleLabel = UILabel().then {
@@ -41,6 +43,7 @@ class HomeTBViewCell: BaseTBCell {
     }
     
     // MARK: - Values
+    var delegate: HomeTBCellDelegate?
     var cellIndexPath = 0
     var imgHeight = 0
     var comics = [HomeComic]() {
@@ -129,6 +132,9 @@ class HomeTBViewCell: BaseTBCell {
     }
     
     // TODO: Add actions
+    @objc func tapSeeAll() {
+        delegate?.pushVCToAllComic(title: titleLabel.text, comics: comics)
+    }
 }
 
 // MARK: - Collection View
@@ -144,7 +150,9 @@ extension HomeTBViewCell: UICollectionViewDataSource, UICollectionViewDelegateFl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = HomeCLViewCell.loadCell(collectionView, path: indexPath) as? HomeCLViewCell
         else { return BaseCLCell() }
-        cell.initData(imgHeight: imgHeight, comic: comics[indexPath.row])
+        cell.initData(imgHeight: imgHeight,
+                      comic: comics[indexPath.row],
+                      onTapFavorite: delegate?.tapFavoriteComic)
         return cell
     }
     
@@ -157,6 +165,6 @@ extension HomeTBViewCell: UICollectionViewDataSource, UICollectionViewDelegateFl
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // TODO: Actions
+        delegate?.pushVCToComic(comicId: comics[indexPath.row].id)
     }
 }
