@@ -18,6 +18,9 @@ public let kCLCellWidth = 140
 public let kCLCellHeight = 180
 public let kCLCellHeight2 = 150
 
+// Userdefaults keys
+public let kUserInfo = "kUserInfo"
+
 // Kingfisher Request Modifyer
 public let kKfModifier = AnyModifier { request in
     var r = request
@@ -27,9 +30,17 @@ public let kKfModifier = AnyModifier { request in
 }
 
 // Home View Controller Indexpaths
-public let kPopularIndexPath = 0
-public let kNewestIndexPath = 1
-public let kNumberHomeSections = 2
+enum HomeCellIndex: Int, CaseIterable {
+    case popularIndex = 0
+    case newestIndex = 1
+}
+
+// Message
+enum ErrorMessage {
+    static let defaultTitle = "Error"
+    static let noInternet = "No internet connection"
+    static let defaultError = "Something failed, please try again!"
+}
 
 // Fake data (will remove later)
 public let kComicJson = """

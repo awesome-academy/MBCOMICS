@@ -42,6 +42,7 @@ class LoginViewController: UIViewController {
     }
     
     // MARK: - Values
+    private let userRepository = UserRepository(api: APIService.shared)
 
     // MARK: - Life Cycles
     override func viewDidLoad() {
@@ -104,9 +105,11 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: GIDSignInDelegate, LoginButtonDelegate {
     func handleLoginResult(_ error: Error?) {
+        hidePopupLoading()
         if let error = error {
             showAlert(title: "Error", message: error.localizedDescription)
         } else {
+            userRepository.setUpCurrentUser()
             showAlert(title: "Success", message: "Login Successful.") { [weak self] in
                 let tabbarController = Application.shared.createTabbar()
                 self?.navigationController?.changeRootViewController(tabbarController)
@@ -121,8 +124,8 @@ extension LoginViewController: GIDSignInDelegate, LoginButtonDelegate {
         }
         guard let auth = user.authentication else { return }
         let credential = GoogleAuthProvider.credential(withIDToken: auth.idToken, accessToken: auth.accessToken)
-        
-        API.shared.login(with: credential) { [weak self] (error) in
+        showPopupLoading()
+        userRepository.login(with: credential) { [weak self] (error) in
             DispatchQueue.main.async {
                 self?.handleLoginResult(error)
             }
@@ -136,8 +139,8 @@ extension LoginViewController: GIDSignInDelegate, LoginButtonDelegate {
         }
         guard let accessToken = AccessToken.current else { return }
         let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
-        
-        API.shared.login(with: credential) { [weak self] (error) in
+        showPopupLoading()
+        userRepository.login(with: credential) { [weak self] (error) in
             DispatchQueue.main.async {
                 self?.handleLoginResult(error)
             }

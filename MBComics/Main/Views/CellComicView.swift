@@ -68,7 +68,7 @@ class CellComicView: UIView {
     var imgHeight = 0
     var comicId = 0
     
-    var favoriteState = true
+    var favoriteState = false
     var onTapFavorite: ((Int, Bool) -> Void)?
     
     // MARK: - Life Cycles
@@ -93,6 +93,9 @@ class CellComicView: UIView {
         titleLabel.text = comic.title
         subTitleLabel.text = comic.issueName
         comicId = comic.id
+        if let currentUser = AppInfo.currentUser {
+            favoriteState = (currentUser.favoriteComics.map { $0.id }).contains(comicId)
+        }
 
         updateFavoriteBtn()
         initLayout()

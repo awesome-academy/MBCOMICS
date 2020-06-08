@@ -12,6 +12,7 @@ target 'MBComics' do
   pod 'SnapKit'
   pod 'Kingfisher'
   pod 'Cosmos'
+  pod 'SSPlaceHolderTableView'
   
   # Firebase
   pod 'Firebase/Analytics'

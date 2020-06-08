@@ -36,3 +36,34 @@ struct UserInfo {
         }
     }
 }
+
+extension UserInfo: Codable {
+    enum CodingKeys: String, CodingKey {
+        case displayName = "display_name"
+        case favoriteComics = "favorite_comics"
+        case uid = "uid"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        displayName = try values.decode(String.self, forKey: .displayName)
+        favoriteComics = try values.decode([FavoriteComic].self, forKey: .favoriteComics)
+        uid = try values.decode(String.self, forKey: .uid)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(uid, forKey: .uid)
+        try container.encode(displayName, forKey: .displayName)
+        try container.encode(favoriteComics, forKey: .favoriteComics)
+    }
+}
+
+extension UserInfo: DatabaseRepresentable {
+    var representation: [String : Any] {
+        var comics = [String: Any]()
+        favoriteComics.forEach { comics["\($0.id)"] = $0.representation }
+        return ["display_name": displayName,
+                "favorite_comics": comics]
+    }
+}
