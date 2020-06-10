@@ -13,6 +13,7 @@ target 'MBComics' do
   pod 'Kingfisher'
   pod 'Cosmos'
   pod 'SSPlaceHolderTableView'
+  pod 'FontAwesome.swift'
   
   # Firebase
   pod 'Firebase/Analytics'

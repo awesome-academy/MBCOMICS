@@ -15,7 +15,7 @@ struct DetailComic: Comic {
     var title: String
     var publisher: String
     var year: String
-    var status: String
+    var status: ComicStatus
     var summary: String
     var poster: String
     var numberIssues: Int
@@ -30,7 +30,7 @@ struct DetailComic: Comic {
         numberIssues = json["number_issues"].intValue
         publisher = json["publisher"].stringValue
         title = json["title"].stringValue
-        status = json["status"].stringValue
+        status = ComicStatus(rawValue: json["status"].stringValue) ?? .onGoing
         year = json["year"].stringValue
         summary = json["summary"].stringValue
         issues = json["issues"].arrayValue.map { Issue($0) }

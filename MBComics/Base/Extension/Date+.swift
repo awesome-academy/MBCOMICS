@@ -15,4 +15,20 @@ extension Date {
         
         return dateFormatter.string(from: self)
     }
+    
+    func toReviewDateString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        dateFormatter.locale = Locale(identifier: "en_US")
+        
+        return dateFormatter.string(from: self)
+    }
+    
+    func toDateString(format: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        
+        return dateFormatter.string(from: self)
+    }
 }

@@ -133,7 +133,6 @@ class HomeTBViewCell: BaseTBCell {
         }
     }
     
-    // TODO: Add actions
     @objc func tapSeeAll() {
         delegate?.pushVCToAllComic(title: titleLabel.text, comics: comics)
     }
