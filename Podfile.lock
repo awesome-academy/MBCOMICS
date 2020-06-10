@@ -118,6 +118,7 @@ PODS:
   - nanopb/encode (1.30905.0)
   - PromisesObjC (1.2.8)
   - SnapKit (5.0.1)
+  - SSPlaceHolderTableView (2.0.0)
   - SwiftLint (0.39.2)
   - SwiftyJSON (5.0.0)
   - Then (2.6.0)
@@ -132,6 +133,7 @@ DEPENDENCIES:
   - Kingfisher
   - MBProgressHUD
   - SnapKit
+  - SSPlaceHolderTableView
   - SwiftLint
   - SwiftyJSON
   - Then
@@ -164,6 +166,7 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - SnapKit
+    - SSPlaceHolderTableView
     - SwiftLint
     - SwiftyJSON
     - Then
@@ -195,10 +198,11 @@ SPEC CHECKSUMS:
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SSPlaceHolderTableView: 231634776b66184fc19eb0a675a42e001b23968d
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   Then: 90cd104fd951cec1980a03f57704ad8f784d4d79
 
-PODFILE CHECKSUM: 40c698d133ccb342159bb1e54138a4c9973a1d8b
+PODFILE CHECKSUM: e7f5a13afbba46d7f2574a5bce45ceb23f3d2079
 
 COCOAPODS: 1.9.0

@@ -7,15 +7,25 @@
 //
 
 import SwiftyJSON
+import Then
 
-struct ErrorResponse: Error {
-    var name: String?
-    var message: String?
+enum ErrorType {
+    case noInternet, dataUnavailable
+}
+
+struct ErrorResponse: Error, Then {
+    var name: String
+    var message: String
+    var type = ErrorType.dataUnavailable
     
-    init() { }
+    init (name: String, message: String, type: ErrorType) {
+        self.name = name
+        self.message = message
+        self.type = type
+    }
     
     init(_ json: JSON) {
-        self.name = json["name"].string
-        self.message = json["message"].string
+        self.name = json["name"].string ?? ErrorMessage.defaultTitle
+        self.message = json["message"].string ?? ErrorMessage.defaultError
     }
 }
