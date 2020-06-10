@@ -36,9 +36,10 @@ enum HomeCellIndex: Int, CaseIterable {
 }
 
 // User View Controller Indexpaths
-public let kUserInfoIndexPath = 0
-public let kFavoriteIndexPath = 1
-public let kSignOutIndexPath = 2
+enum UserCellIndex: Int, CaseIterable {
+    case userInfoIndex = 0
+    case favoriteIndex = 1
+}
 
 // Message
 enum ErrorMessage {

@@ -9,7 +9,7 @@
 import UIKit
 
 class AllComicViewController: UIViewController {
-    var comics = [HomeComic]() {
+    var comics = [Comic]() {
         didSet {
             tableView.reloadData()
         }
@@ -36,7 +36,7 @@ class AllComicViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
     }
     
-    func initData(title: String?, comics: [HomeComic]) {
+    func initData(title: String?, comics: [Comic]) {
         self.title = title
         self.comics = comics
     }

@@ -10,7 +10,7 @@ import UIKit
 
 protocol HomeTBCellDelegate: class {
     func pushVCToComic(comicId: Int)
-    func pushVCToAllComic(title: String?, comics: [HomeComic])
+    func pushVCToAllComic(title: String?, comics: [Comic])
     func tapFavoriteComic(comicId: Int, state: Bool)
 }
 
@@ -46,8 +46,9 @@ class HomeTBViewCell: BaseTBCell {
     weak var delegate: HomeTBCellDelegate?
     var cellIndexPath = 0
     var imgHeight = 0
-    var comics = [HomeComic]() {
+    var comics = [Comic]() {
         didSet {
+            seeAllLabel.isHidden = comics.count <= numberCells
             collectionView.reloadData()
         }
     }
@@ -68,7 +69,7 @@ class HomeTBViewCell: BaseTBCell {
     }
     
     // MARK: - Layouts
-    func initData(imgHeight: Int, title: String, comics: [HomeComic]) {
+    func initData(imgHeight: Int, title: String, comics: [Comic]) {
         titleLabel.text = title
         self.imgHeight = imgHeight
         self.comics = comics
@@ -76,6 +77,7 @@ class HomeTBViewCell: BaseTBCell {
     }
     
     func setUpViews() {
+        selectionStyle = .none
         contentView.addSubview(titleLabel)
         contentView.addSubview(collectionView)
         contentView.addSubview(seeAllLabel)
