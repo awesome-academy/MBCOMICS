@@ -29,8 +29,8 @@ final class Application {
     func createTabbar() -> UITabBarController {
         let tabbar = UITabBarController()
         
-        let createNav = { (vc: UIViewController) in
-            return UINavigationController(rootViewController: vc)
+        let createNav = { (viewController: UIViewController) in
+            return UINavigationController(rootViewController: viewController)
         }
         
         let homeVC = HomeViewController()

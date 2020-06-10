@@ -23,10 +23,10 @@ public let kUserInfo = "kUserInfo"
 
 // Kingfisher Request Modifyer
 public let kKfModifier = AnyModifier { request in
-    var r = request
+    var result = request
     // replace "Access-Token" with the field name you need, it's just an example
-    r.setValue("https://readcomicsonline.me", forHTTPHeaderField: "comicpunch.net")
-    return r
+    result.setValue("https://readcomicsonline.me", forHTTPHeaderField: "comicpunch.net")
+    return result
 }
 
 // Home View Controller Indexpaths
@@ -34,6 +34,11 @@ enum HomeCellIndex: Int, CaseIterable {
     case popularIndex = 0
     case newestIndex = 1
 }
+
+// User View Controller Indexpaths
+public let kUserInfoIndexPath = 0
+public let kFavoriteIndexPath = 1
+public let kSignOutIndexPath = 2
 
 // Message
 enum ErrorMessage {

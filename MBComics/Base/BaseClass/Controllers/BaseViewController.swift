@@ -9,6 +9,9 @@
 import UIKit
 
 class BaseViewController: UIViewController {
+    
+    var isNavigationBarHidden = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         layoutTopContraint()
@@ -17,6 +20,8 @@ class BaseViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        navigationController?.isNavigationBarHidden = isNavigationBarHidden
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
@@ -24,11 +29,13 @@ class BaseViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        navigationController?.isNavigationBarHidden = false
+        
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    /// Layout các view bám vào top của superview cách top ra 1 khoảng bằng status bar height (Dành cho các os <= 10.x)
+    // Layout các view bám vào top của superview cách top ra 1 khoảng bằng status bar height (Dành cho các os <= 10.x)
     // Bằng các set tag của nó = 1
     func layoutTopContraint() {
         for constraint in self.view.constraints {

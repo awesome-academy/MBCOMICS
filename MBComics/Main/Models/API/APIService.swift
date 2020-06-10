@@ -32,7 +32,7 @@ struct APIService {
                                httpMethod: httpMethod,
                                header: header,
                                param: param,
-                               body: body) { (status, code, json) in
+                               body: body) { (status, _, json) in
             var error: ErrorResponse?
             if !status {
                 if let json = json {

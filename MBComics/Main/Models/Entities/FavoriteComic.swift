@@ -24,16 +24,16 @@ struct FavoriteComic: Comic {
     init?(_ snapshot: DataSnapshot) {
         guard let dict = snapshot.value as? [String: Any] else { return nil }
         
-        guard let _comicId = Int(snapshot.key),
-              let _title = dict["title"] as? String,
-              let _poster = dict["poster"] as? String,
-              let _numberIssues = dict["number_issues"] as? Int
+        guard let comicId = Int(snapshot.key),
+              let title = dict["title"] as? String,
+              let poster = dict["poster"] as? String,
+              let numberIssues = dict["number_issues"] as? Int
         else { return nil }
         
-        id = _comicId
-        poster = _poster
-        title = _title
-        numberIssues = _numberIssues
+        id = comicId
+        self.poster = poster
+        self.title = title
+        self.numberIssues = numberIssues
     }
 }
 
@@ -63,7 +63,7 @@ extension FavoriteComic: Codable {
 }
 
 extension FavoriteComic: DatabaseRepresentable {
-    var representation: [String : Any] {
+    var representation: [String: Any] {
         return [ "title": title,
                  "poster": poster,
                  "number_issues": numberIssues]

@@ -21,7 +21,7 @@ extension UITextField {
     ///   - image: Image
     ///   - margin: Khoảng cách với các view xung quanh
     ///   - padding: Khoảng cách vào bên trong image (Làm image nhỏ đi)
-    func withImage(direction: ImageDirection, image: UIImage?, margin: CGFloat, padding: CGFloat = 5){
+    func withImage(direction: ImageDirection, image: UIImage?, margin: CGFloat, padding: CGFloat = 5) {
         
         let width = self.height + margin
         let height = self.height
@@ -35,7 +35,7 @@ extension UITextField {
         imageView.contentMode = .scaleAspectFit
         view.addSubview(imageView)
         
-        if(ImageDirection.left == direction){ // image left
+        if ImageDirection.left == direction { // image left
             imageView.frame = CGRect(x: padding,
                                      y: padding,
                                      width: height - padding * 2,

@@ -21,12 +21,12 @@ struct UserInfo {
     init?(_ snapshot: DataSnapshot) {
         guard let dict = snapshot.value as? [String: Any] else { return nil }
         
-        guard let _displayName = dict["display_name"] as? String else { return nil }
+        guard let displayName = dict["display_name"] as? String else { return nil }
         
         let favComics = snapshot.childSnapshot(forPath: "favorite_comics")
         
         uid = snapshot.key
-        displayName = _displayName
+        self.displayName = displayName
         favComics.children.forEach {
             guard let snap = $0 as? DataSnapshot,
                   let comic = FavoriteComic(snap)
@@ -60,9 +60,10 @@ extension UserInfo: Codable {
 }
 
 extension UserInfo: DatabaseRepresentable {
-    var representation: [String : Any] {
+    var representation: [String: Any] {
         var comics = [String: Any]()
         favoriteComics.forEach { comics["\($0.id)"] = $0.representation }
+        
         return ["display_name": displayName,
                 "favorite_comics": comics]
     }

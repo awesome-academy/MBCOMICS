@@ -20,7 +20,7 @@ struct ComicRepository: ComicRepositoryType {
                     httpMethod: .get,
                     header: nil,
                     param: nil,
-                    body: nil) { (status, error, json) in
+                    body: nil) { (_, error, json) in
             if let json = json {
                 let popularComics = json["popular"].arrayValue.map { HomeComic($0) }
                 let newestComics = json["newest"].arrayValue.map { HomeComic($0) }
