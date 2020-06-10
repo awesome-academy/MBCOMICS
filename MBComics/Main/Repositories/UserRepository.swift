@@ -13,6 +13,8 @@ protocol UserRepositoryType {
     func login(with credential: AuthCredential,
                completion: @escaping (Error?) -> Void)
     
+    func signOut(completion: @escaping (Error?) -> Void)
+    
     func setUpCurrentUser()
     
     func addFavoriteComic(comic: FavoriteComic)
@@ -29,6 +31,15 @@ struct UserRepository: UserRepositoryType {
         }
     }
     
+    func signOut(completion: @escaping (Error?) -> Void) {
+        do {
+            try Auth.auth().signOut()
+            completion(nil)
+        } catch let signOutError {
+            completion(signOutError)
+        }
+    }
+
     func setUpCurrentUser() {
         guard let user = Auth.auth().currentUser else { return }
         let userInfo = AppInfo.currentUser ?? UserInfo(uid: user.uid,

@@ -36,7 +36,10 @@ class UserViewController: BaseViewController {
     
     // MARK: - Values
     private let userRepository = UserRepository(api: APIService.shared)
-
+    
+    private let favoriteIndexPath = IndexPath(item: UserCellIndex.favoriteIndex.rawValue,
+                                              section: 0)
+    
     // MARK: - LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +52,7 @@ class UserViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tableView.reloadData()
+        tableView.reloadRows(at: [favoriteIndexPath], with: .automatic)
     }
     
     // MARK: - Layouts
@@ -88,9 +91,19 @@ class UserViewController: BaseViewController {
         })
     }
     
-    // TODO: Add API
     func onSignOutConfirm() {
-        
+        showPopupLoading()
+        userRepository.signOut { [weak self] (error) in
+            DispatchQueue.main.async {
+                self?.hidePopupLoading()
+                if let error = error {
+                    self?.showAlert(title: "Error", message: error.localizedDescription)
+                } else {
+                    let loginVC = LoginViewController()
+                    self?.tabBarController?.navigationController?.changeRootViewController(loginVC)
+                }
+            }
+        }
     }
 }
 
@@ -134,6 +147,13 @@ extension UserViewController: HomeTBCellDelegate {
     }
     
     func tapFavoriteComic(comicId: Int, state: Bool) {
-        // TODO: Add API
+        guard let user = AppInfo.currentUser,
+              let comic = user.favoriteComics.first(where: { $0.id == comicId })
+              else { return }
+        if state {
+            userRepository.addFavoriteComic(comic: comic)
+        } else {
+            userRepository.removeFavoriteComic(comic: comic)
+        }
     }
 }
