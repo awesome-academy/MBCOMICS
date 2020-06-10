@@ -21,44 +21,43 @@ extension UIColor {
         self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: alpha)
     }
     
-    convenience init(hex:Int) {
+    convenience init(hex: Int) {
         self.init((hex >> 16) & 0xff, (hex >> 8) & 0xff, hex & 0xff)
     }
     
-    convenience init(hexString:String) {
-        var cString:String = hexString.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+    convenience init(hexString: String) {
+        var cString: String = hexString.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         
-        if (cString.hasPrefix("#")) {
+        if cString.hasPrefix("#") {
             cString.remove(at: cString.startIndex)
         }
         
-        if ((cString.count) != 6) {
+        if (cString.count) != 6 {
             self.init(0, 0, 0)
-        }
-        else {
-            var rgbValue:UInt32 = 0
+        } else {
+            var rgbValue: UInt32 = 0
             Scanner(string: cString).scanHexInt32(&rgbValue)
             
             self.init(hex: Int(rgbValue))
         }
     }
 
-    static func rgb(r: CGFloat, g: CGFloat, b: CGFloat) -> UIColor {
-        return UIColor(red: r/255, green: g/255, blue: b/255, alpha: 1)
+    static func rgb(red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {
+        return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: 1)
     }
     
-    class func colorFromHexString(hex:String) -> UIColor {
-        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+    class func colorFromHexString(hex: String) -> UIColor {
+        var cString: String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         
-        if (cString.hasPrefix("#")) {
+        if cString.hasPrefix("#") {
             cString.remove(at: cString.startIndex)
         }
         
-        if ((cString.count) != 6) {
+        if (cString.count) != 6 {
             return UIColor.gray
         }
         
-        var rgbValue:UInt32 = 0
+        var rgbValue: UInt32 = 0
         Scanner(string: cString).scanHexInt32(&rgbValue)
         
         return UIColor(
@@ -69,18 +68,18 @@ extension UIColor {
         )
     }
     
-    class func colorFromHexStringWithAlpha(hex:String, alpha: Float) -> UIColor {
-        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+    class func colorFromHexStringWithAlpha(hex: String, alpha: Float) -> UIColor {
+        var cString: String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         
-        if (cString.hasPrefix("#")) {
+        if cString.hasPrefix("#") {
             cString.remove(at: cString.startIndex)
         }
         
-        if ((cString.count) != 6) {
+        if (cString.count) != 6 {
             return UIColor.gray
         }
         
-        var rgbValue:UInt32 = 0
+        var rgbValue: UInt32 = 0
         Scanner(string: cString).scanHexInt32(&rgbValue)
         
         return UIColor(

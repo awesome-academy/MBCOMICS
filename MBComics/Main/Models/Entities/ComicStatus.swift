@@ -15,13 +15,11 @@ enum ComicStatus: String {
 
 extension ComicStatus {
     var stringValue: String {
-        get {
-            switch self {
-            case .completed:
-                return "Completed"
-            default:
-                return "On Going"
-            }
+        switch self {
+        case .completed:
+            return "Completed"
+        default:
+            return "On Going"
         }
     }
 }

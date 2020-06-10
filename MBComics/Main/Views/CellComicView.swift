@@ -9,10 +9,6 @@
 import UIKit
 import Cosmos
 
-protocol ReloadTBVCellDelegate {
-    func reloadCLVCell()
-}
-
 class CellComicView: UIView {
     // MARK: - Outlets
     var img = UIImageView().then {

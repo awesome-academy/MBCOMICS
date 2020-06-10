@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ app: UIApplication,
                      open url: URL,
-                     options:[UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+                     options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         let handled = ApplicationDelegate.shared.application(app,
                                                              open: url,
                                                              sourceApplication: options[.sourceApplication] as? String,
@@ -39,4 +39,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return handled || GIDSignIn.sharedInstance().handle(url)
     }
 }
-

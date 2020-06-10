@@ -15,7 +15,7 @@ struct HomeComic: Comic {
     var issueName: String
     var url: String
     var issueUrl: String
-    var id :Int
+    var id: Int
     var numberIssues = 0
 
     init(_ json: JSON) {

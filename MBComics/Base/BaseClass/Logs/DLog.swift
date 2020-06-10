@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum DLogTag : String {
+enum DLogTag: String {
     case debug = "💜[DEBUG]"
     case info = "💚[INFO]"
     case warning = "💛[WARNING]"
@@ -24,12 +24,12 @@ enum DLogTag : String {
 ///   - line: Dòng câu lệnh log được viết
 ///   - fileName: File chứa câu lệnh log
 ///   - column: Kí tự bắt đầu của câu lệnh log
-fileprivate func dLog(_ tag: DLogTag,
-                      _ logMessage: Any,
-                      functionName: String = #function,
-                      line: Int = #line,
-                      fileName: String = #file,
-                      column: Int = #column) {
+private func dLog(_ tag: DLogTag,
+                  _ logMessage: Any,
+                  functionName: String = #function,
+                  line: Int = #line,
+                  fileName: String = #file,
+                  column: Int = #column) {
     #if RELEASE
     #else
     let tag = tag.rawValue

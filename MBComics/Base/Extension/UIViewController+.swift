@@ -30,7 +30,6 @@ extension UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    
     /// Hiển thị alert với 2 nút ấn (OK và Cancel)
     ///
     /// - Parameters:
@@ -41,11 +40,11 @@ extension UIViewController {
     ///   - cancelTitle: Text hiển thị của nút Cancel
     ///   - cancelHandler: Xử lý khi ấn vào nút Cancel (Mặc định là Cancel)
     func showAlertConfirm(title: String?,
-                   message: String?,
-                   confirmTitle: String = "OK",
-                   confirmHandler: (() -> Void)? = nil,
-                   cancelTitle: String = "Cancel",
-                   cancelHandler: (() -> Void)? = nil) {
+                          message: String?,
+                          confirmTitle: String = "OK",
+                          confirmHandler: (() -> Void)? = nil,
+                          cancelTitle: String = "Cancel",
+                          cancelHandler: (() -> Void)? = nil) {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
@@ -57,8 +56,7 @@ extension UIViewController {
         
         present(alert, animated: true, completion: nil)
     }
-    
-    
+        
     /// Hiển thị alert với nhiều nút ấn
     ///
     /// - Parameters:
@@ -77,7 +75,6 @@ extension UIViewController {
         present(alert, animated: true, completion: nil)
     }
 }
-
 
 extension UIViewController {
     func showPopupLoading(animated: Bool = false) {
@@ -124,7 +121,6 @@ extension UIViewController {
             let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: view, action: #selector(UIView.endEditing))
             items.append(contentsOf: [spacer, doneButton])
             
-            
             toolbar.setItems(items, animated: false)
             textField.inputAccessoryView = toolbar
         }
@@ -137,10 +133,12 @@ extension UINavigationController {
      
      - parameter vc: root view controller to set a new
      */
-    func changeRootViewController(_ vc: UIViewController, transitionType type: CATransitionType = .fade, duration: CFTimeInterval = 0.3) {
+    func changeRootViewController(_ viewController: UIViewController,
+                                  transitionType type: CATransitionType = .fade,
+                                  duration: CFTimeInterval = 0.3) {
         addTransition(transitionType: type, duration: duration)
         viewControllers.removeAll()
-        pushViewController(vc, animated: false)
+        pushViewController(viewController, animated: false)
         popToRootViewController(animated: false)
     }
     

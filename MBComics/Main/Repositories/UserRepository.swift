@@ -24,7 +24,7 @@ struct UserRepository: UserRepositoryType {
     let api: APIService
     
     func login(with credential: AuthCredential, completion: @escaping (Error?) -> Void) {
-        Auth.auth().signIn(with: credential) { (authResult, error) in
+        Auth.auth().signIn(with: credential) { (_, error) in
             completion(error)
         }
     }

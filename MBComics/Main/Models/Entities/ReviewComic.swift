@@ -20,26 +20,27 @@ struct ReviewComic {
     init?(_ snapshot: DataSnapshot) {
         guard let dict = snapshot.value as? [String: Any] else { return nil }
         
-        guard let _comicId = dict["comic_id"] as? Int,
-              let _userId = dict["user_id"] as? String,
-              let _userDisplayName = dict["user_name"] as? String,
-              let _content = dict["content"] as? String,
-              let _reviewScore = dict["score"] as? Int,
-              let _dateString = dict["review_at"] as? String,
-              let _reviewAt = _dateString.toFirebaseDate()
+        guard let comicId = dict["comic_id"] as? Int,
+              let userId = dict["user_id"] as? String,
+              let userDisplayName = dict["user_name"] as? String,
+              let content = dict["content"] as? String,
+              let reviewScore = dict["score"] as? Int,
+              let dateString = dict["review_at"] as? String,
+              let reviewAt = dateString.toFirebaseDate()
         else { return nil }
         
         reviewId = snapshot.key
-        comicId = _comicId
-        user = UserInfo(uid: _userId, displayName: _userDisplayName)
-        content = _content
-        reviewScore = _reviewScore
-        reviewAt = _reviewAt
+        user = UserInfo(uid: userId, displayName: userDisplayName)
+        
+        self.comicId = comicId
+        self.content = content
+        self.reviewScore = reviewScore
+        self.reviewAt = reviewAt
     }
 }
 
 extension ReviewComic: DatabaseRepresentable {
-    var representation: [String : Any] {
+    var representation: [String: Any] {
         return ["review_id": reviewId,
                 "comic_id": comicId,
                 "user_id": user.uid,

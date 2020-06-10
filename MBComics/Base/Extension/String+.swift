@@ -16,25 +16,25 @@ extension String {
     func isValidEmail() -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: self)
     }
     
     func isValidPhone() -> Bool {
         let emailRegEx = "^(\\+84|0)[0-9]{9,10}$"
         
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: self)
     }
     
-    func createAttributeText(withFont font : UIFont) -> NSMutableAttributedString{
+    func createAttributeText(withFont font: UIFont) -> NSMutableAttributedString {
         let style = NSMutableParagraphStyle()
         style.alignment = .center
         style.lineBreakMode = .byWordWrapping
         let dict = [
-            NSAttributedString.Key.font : font,
-            NSAttributedString.Key.foregroundColor : UIColor.white,
-            NSAttributedString.Key.paragraphStyle : style
+            NSAttributedString.Key.font: font,
+            NSAttributedString.Key.foregroundColor: UIColor.white,
+            NSAttributedString.Key.paragraphStyle: style
         ]
         
         let attString = NSMutableAttributedString()
@@ -46,7 +46,10 @@ extension String {
     var htmlToAttributedString: NSMutableAttributedString? {
         guard let data = data(using: .utf8) else { return NSMutableAttributedString() }
         do {
-            return try NSMutableAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding:String.Encoding.utf8.rawValue], documentAttributes: nil)
+            return try NSMutableAttributedString(data: data,
+                                                 options: [.documentType: NSAttributedString.DocumentType.html,
+                                                           .characterEncoding: String.Encoding.utf8.rawValue],
+                                                 documentAttributes: nil)
         } catch {
             return NSMutableAttributedString()
         }

@@ -29,12 +29,12 @@ class ApiBase {
 
     // Create request, call and response (code, data)
     private func baseRequest(baseUrl: String,
-                 urlString: String? = nil,
-                 httpMethod: HTTPMethod,
-                 header: [String: String]?,
-                 param: [String: Any]?,
-                 body: [String: Any]?,
-                 completion: DataCompletion?) {
+                             urlString: String? = nil,
+                             httpMethod: HTTPMethod,
+                             header: [String: String]?,
+                             param: [String: Any]?,
+                             body: [String: Any]?,
+                             completion: DataCompletion?) {
         // Create url
         var urlComponents: URLComponents?
         if let urlString = urlString {
@@ -151,7 +151,7 @@ class ApiBase {
                     httpMethod: httpMethod,
                     header: header,
                     param: param,
-                    body: body) { (code, data) in
+                    body: body) { (_, data) in
                         if let data = data {
                             guard let contents = String(data: data, encoding: .utf8) else {
                                 completion?(nil)

@@ -11,10 +11,10 @@ import SwiftyJSON
 import Kingfisher
 
 // Completion closure
-typealias DataCompletion = (_ code: Int?, _ data: Data?) -> ()
-typealias JSONCompletion = (_ code: Int?, _ json: JSON?) -> ()
-typealias Completion = (_ status: Bool, _ code: Int?, _ json: JSON?) -> ()
-typealias HTMLStringCompletion = (_ stringHTML: String?) -> ()
+typealias DataCompletion = (_ code: Int?, _ data: Data?) -> Void
+typealias JSONCompletion = (_ code: Int?, _ json: JSON?) -> Void
+typealias Completion = (_ status: Bool, _ code: Int?, _ json: JSON?) -> Void
+typealias HTMLStringCompletion = (_ stringHTML: String?) -> Void
 
 // HTTP method
 enum HTTPMethod: String {

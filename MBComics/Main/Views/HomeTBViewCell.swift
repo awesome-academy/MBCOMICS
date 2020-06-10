@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol HomeTBCellDelegate {
+protocol HomeTBCellDelegate: class {
     func pushVCToComic(comicId: Int)
     func pushVCToAllComic(title: String?, comics: [HomeComic])
     func tapFavoriteComic(comicId: Int, state: Bool)
@@ -43,7 +43,7 @@ class HomeTBViewCell: BaseTBCell {
     }
     
     // MARK: - Values
-    var delegate: HomeTBCellDelegate?
+    weak var delegate: HomeTBCellDelegate?
     var cellIndexPath = 0
     var imgHeight = 0
     var comics = [HomeComic]() {

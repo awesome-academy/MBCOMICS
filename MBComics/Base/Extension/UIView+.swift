@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 extension UIView {
     var width: CGFloat {
@@ -45,7 +46,7 @@ extension UIView {
         }
     }
 
-    var x: CGFloat {
+    var originX: CGFloat {
         get { return self.frame.origin.x }
         set {
             var frame = self.frame
@@ -54,7 +55,7 @@ extension UIView {
         }
     }
 
-    var y: CGFloat {
+    var originY: CGFloat {
         get { return self.frame.origin.y }
         set {
             var frame = self.frame
@@ -112,6 +113,17 @@ extension UIView {
             self.frame = frame
         }
     }
+    
+    var safeArea: ConstraintBasicAttributesDSL {
+        #if swift(>=3.2)
+            if #available(iOS 11.0, *) {
+                return self.safeAreaLayoutGuide.snp
+            }
+            return self.snp
+        #else
+            return self.snp
+        #endif
+    }
 }
 
 // MARK: Corner radius
@@ -143,7 +155,7 @@ extension UIView {
     }
 }
 
-//MARK: SHADOW
+// MARK: Shadow
 extension UIView {
     enum ShadowDirection: Int {
         case top, left, bottom, right
@@ -171,7 +183,6 @@ extension UIView {
             sizeOffset = CGSize(width: 0, height: shadowSpace)
         case .right:
             sizeOffset = CGSize(width: shadowSpace, height: 0)
-
 
         case .topLeft:
             sizeOffset = CGSize(width: -shadowSpace, height: -shadowSpace)
@@ -266,10 +277,10 @@ extension UIView {
         switch position {
         case .top:
             self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[lineView(width)]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: views))
-            break
+
         case .bottom:
             self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[lineView(width)]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: metrics, views: views))
-            break
+
         }
     }
 }
@@ -306,9 +317,8 @@ extension UIView {
         }
     }
 }
-
+// MARK: - Rotate
 extension UIView {
-    //MARK:- ROTATE
     func rotate(angle: CGFloat) {
         let radians = angle / 180.0 * .pi
         self.transform = self.transform.rotated(by: radians)

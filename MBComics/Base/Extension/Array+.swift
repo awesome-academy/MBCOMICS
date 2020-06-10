@@ -8,9 +8,9 @@
 
 import Foundation
 
-extension Array where Element : Equatable {
+extension Array where Element: Equatable {
     // Remove first collection element that is equal to the given `object`:
-    mutating func removeObject(_ object : Element) {
+    mutating func removeObject(_ object: Element) {
         if let index = self.firstIndex(of: object) {
             self.remove(at: index)
         }
