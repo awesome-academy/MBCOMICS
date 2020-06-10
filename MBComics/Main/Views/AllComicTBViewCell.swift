@@ -24,7 +24,7 @@ class AllComicTBViewCell: BaseTBCell {
     }
     
     // MARK: - Layouts
-    func initData(imgHeight: Int, comic: HomeComic, onTapFavorite: ((Int, Bool) -> Void)?) {
+    func initData(imgHeight: Int, comic: Comic, onTapFavorite: ((Int, Bool) -> Void)?) {
         cellComicView.initData(imgHeight: imgHeight, comic: comic)
         cellComicView.onTapFavorite = onTapFavorite
         setUpConstraints()

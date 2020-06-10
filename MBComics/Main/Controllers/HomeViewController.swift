@@ -146,7 +146,7 @@ extension HomeViewController: HomeTBCellDelegate {
         navigationController?.pushViewController(detailVC, animated: true)
     }
     
-    func pushVCToAllComic(title: String?, comics: [HomeComic]) {
+    func pushVCToAllComic(title: String?, comics: [Comic]) {
         let allComicsVC = AllComicViewController()
         allComicsVC.initData(title: title, comics: comics)
         navigationController?.pushViewController(allComicsVC, animated: true)

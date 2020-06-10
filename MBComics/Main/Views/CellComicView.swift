@@ -83,11 +83,13 @@ class CellComicView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func initData(imgHeight: Int, comic: HomeComic) {
+    func initData(imgHeight: Int, comic: Comic) {
         self.imgHeight = imgHeight
         img.kf.setImage(with: URL(string: comic.poster), options: [.requestModifier(kKfModifier)])
         titleLabel.text = comic.title
-        subTitleLabel.text = comic.issueName
+        if let homeComic = comic as? HomeComic {
+            subTitleLabel.text = homeComic.issueName
+        }
         comicId = comic.id
         if let currentUser = AppInfo.currentUser {
             favoriteState = (currentUser.favoriteComics.map { $0.id }).contains(comicId)

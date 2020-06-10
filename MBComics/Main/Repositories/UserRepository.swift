@@ -35,10 +35,11 @@ struct UserRepository: UserRepositoryType {
                                                        displayName: user.displayName ?? user.providerID)
         let ref = Database.database().reference()
         let userRef = ref.child("users").child(user.uid)
-        userRef.updateChildValues(userInfo.representation)
         userRef.observe(.value) { snapshot in
             if let info = UserInfo(snapshot) {
                 AppInfo.currentUser = info
+            } else {
+                userRef.updateChildValues(userInfo.representation)
             }
         }
     }

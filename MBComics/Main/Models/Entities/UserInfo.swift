@@ -11,21 +11,26 @@ import FirebaseDatabase
 struct UserInfo {
     var uid: String
     var displayName: String
+    var avatarColor: UIColor
     var favoriteComics = [FavoriteComic]()
     
     init(uid: String, displayName: String) {
         self.uid = uid
         self.displayName = displayName
+        avatarColor = UIColor.random
     }
     
     init?(_ snapshot: DataSnapshot) {
         guard let dict = snapshot.value as? [String: Any] else { return nil }
         
-        guard let displayName = dict["display_name"] as? String else { return nil }
+        guard let displayName = dict["display_name"] as? String,
+              let color = dict["avatar_color"] as? String
+              else { return nil }
         
         let favComics = snapshot.childSnapshot(forPath: "favorite_comics")
         
         uid = snapshot.key
+        avatarColor = UIColor(hexString: color)
         self.displayName = displayName
         favComics.children.forEach {
             guard let snap = $0 as? DataSnapshot,
@@ -42,6 +47,7 @@ extension UserInfo: Codable {
         case displayName = "display_name"
         case favoriteComics = "favorite_comics"
         case uid = "uid"
+        case avatarColor = "avatar_color"
     }
     
     init(from decoder: Decoder) throws {
@@ -49,6 +55,8 @@ extension UserInfo: Codable {
         displayName = try values.decode(String.self, forKey: .displayName)
         favoriteComics = try values.decode([FavoriteComic].self, forKey: .favoriteComics)
         uid = try values.decode(String.self, forKey: .uid)
+        let color = try values.decode(String.self, forKey: .avatarColor)
+        avatarColor = UIColor(hexString: color)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -56,6 +64,7 @@ extension UserInfo: Codable {
         try container.encode(uid, forKey: .uid)
         try container.encode(displayName, forKey: .displayName)
         try container.encode(favoriteComics, forKey: .favoriteComics)
+        try container.encode(avatarColor.hexString, forKey: .avatarColor)
     }
 }
 
@@ -65,6 +74,7 @@ extension UserInfo: DatabaseRepresentable {
         favoriteComics.forEach { comics["\($0.id)"] = $0.representation }
         
         return ["display_name": displayName,
-                "favorite_comics": comics]
+                "favorite_comics": comics,
+                "avatar_color": avatarColor.hexString]
     }
 }
