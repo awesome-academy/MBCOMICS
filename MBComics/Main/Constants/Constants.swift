@@ -41,6 +41,15 @@ enum UserCellIndex: Int, CaseIterable {
     case favoriteIndex = 1
 }
 
+// Detail Comic
+enum DetailCellIndex: Int, CaseIterable {
+    case headerIndex = 0
+    case summaryIndex = 1
+    case reviewIndex = 2
+    case infoIndex = 3
+    case relatedIndex = 4
+}
+
 // Message
 enum ErrorMessage {
     static let defaultTitle = "Error"
@@ -48,14 +57,14 @@ enum ErrorMessage {
     static let defaultError = "Something failed, please try again!"
 }
 
-// Fake data (will remove later)
-public let kComicJson = """
-{
-    "title": "Action Comics",
-    "url": "/action-comics-2016",
-    "img": "https://comicpunch.net/pics/gwkeem-001.jpg",
-    "issue_url": "https://comicpunch.net/reader/Action-Comics-2016/Action-Comics-2016-Issue-1022",
-    "issue_name": "Issue # 1022",
-    "id": 974
+// Comic Info
+enum ComicInfo {
+    static let author = "Author"
+    static let category = "Category"
+    static let publisher = "Publisher"
+    static let year = "Year"
+    static let status = "Status"
+    static let numberIssues = "Number of chapter"
+    static let contactUs = "Contact Us"
+    static let email = "hoapq.4398@gmail.com"
 }
-"""

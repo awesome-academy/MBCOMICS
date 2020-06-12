@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		165E4901A06CA2F453E0D92F /* Pods_MBComics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20A9D9AB5BA8FA0713CF26E8 /* Pods_MBComics.framework */; };
+		402D951E24931BB9002E686B /* LineInfoComic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D951D24931BB9002E686B /* LineInfoComic.swift */; };
 		404075B3248FD1C300060AE0 /* UIImage+Letter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404075B2248FD1C300060AE0 /* UIImage+Letter.swift */; };
 		40420616247E53B9001BA2F8 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40420615247E53B9001BA2F8 /* APIService.swift */; };
 		40420618247E57B7001BA2F8 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40420617247E57B7001BA2F8 /* ErrorResponse.swift */; };
@@ -40,6 +41,15 @@
 		407122D5247E3787000F8F2D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407122D4247E3787000F8F2D /* SearchViewController.swift */; };
 		407122D7247E3793000F8F2D /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407122D6247E3793000F8F2D /* UserViewController.swift */; };
 		407A600D2484883C0090D90C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A600C2484883C0090D90C /* LoginViewController.swift */; };
+		408FD59D24909C3C00511C5D /* HeaderComicTBViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408FD59C24909C3C00511C5D /* HeaderComicTBViewCell.swift */; };
+		408FD59F2490BE2900511C5D /* Number+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408FD59E2490BE2900511C5D /* Number+.swift */; };
+		408FD5A12490C0C700511C5D /* SumaryComicTBViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408FD5A02490C0C700511C5D /* SumaryComicTBViewCell.swift */; };
+		408FD5A32490C36400511C5D /* InfoComicTBViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408FD5A22490C36400511C5D /* InfoComicTBViewCell.swift */; };
+		408FD5A52490C80600511C5D /* LineInfoComicTBViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408FD5A42490C80600511C5D /* LineInfoComicTBViewCell.swift */; };
+		408FD5AA2490D9E000511C5D /* ReviewContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408FD5A62490D9E000511C5D /* ReviewContentCell.swift */; };
+		408FD5AB2490D9E000511C5D /* ReviewTBViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408FD5A72490D9E000511C5D /* ReviewTBViewCell.swift */; };
+		408FD5AC2490D9E000511C5D /* ReviewCLViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408FD5A82490D9E000511C5D /* ReviewCLViewCell.swift */; };
+		408FD5AD2490D9E000511C5D /* EmptyReviewCLViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408FD5A92490D9E000511C5D /* EmptyReviewCLViewCell.swift */; };
 		40AC023E248099E100AF3DEF /* HomeComic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AC023D248099E100AF3DEF /* HomeComic.swift */; };
 		40AC024024809A5600AF3DEF /* SearchComic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AC023F24809A5600AF3DEF /* SearchComic.swift */; };
 		40AC024224809D2E00AF3DEF /* DetailComic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AC024124809D2E00AF3DEF /* DetailComic.swift */; };
@@ -63,6 +73,7 @@
 /* Begin PBXFileReference section */
 		0137C9950E9ADF0BB4450F5C /* Pods-MBComics.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MBComics.debug.xcconfig"; path = "Target Support Files/Pods-MBComics/Pods-MBComics.debug.xcconfig"; sourceTree = "<group>"; };
 		20A9D9AB5BA8FA0713CF26E8 /* Pods_MBComics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MBComics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		402D951D24931BB9002E686B /* LineInfoComic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineInfoComic.swift; sourceTree = "<group>"; };
 		404075B2248FD1C300060AE0 /* UIImage+Letter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Letter.swift"; sourceTree = "<group>"; };
 		40420615247E53B9001BA2F8 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		40420617247E57B7001BA2F8 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
@@ -97,6 +108,15 @@
 		407122D4247E3787000F8F2D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		407122D6247E3793000F8F2D /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		407A600C2484883C0090D90C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		408FD59C24909C3C00511C5D /* HeaderComicTBViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderComicTBViewCell.swift; sourceTree = "<group>"; };
+		408FD59E2490BE2900511C5D /* Number+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Number+.swift"; sourceTree = "<group>"; };
+		408FD5A02490C0C700511C5D /* SumaryComicTBViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumaryComicTBViewCell.swift; sourceTree = "<group>"; };
+		408FD5A22490C36400511C5D /* InfoComicTBViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoComicTBViewCell.swift; sourceTree = "<group>"; };
+		408FD5A42490C80600511C5D /* LineInfoComicTBViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineInfoComicTBViewCell.swift; sourceTree = "<group>"; };
+		408FD5A62490D9E000511C5D /* ReviewContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewContentCell.swift; sourceTree = "<group>"; };
+		408FD5A72490D9E000511C5D /* ReviewTBViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewTBViewCell.swift; sourceTree = "<group>"; };
+		408FD5A82490D9E000511C5D /* ReviewCLViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewCLViewCell.swift; sourceTree = "<group>"; };
+		408FD5A92490D9E000511C5D /* EmptyReviewCLViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyReviewCLViewCell.swift; sourceTree = "<group>"; };
 		40AC023D248099E100AF3DEF /* HomeComic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeComic.swift; sourceTree = "<group>"; };
 		40AC023F24809A5600AF3DEF /* SearchComic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchComic.swift; sourceTree = "<group>"; };
 		40AC024124809D2E00AF3DEF /* DetailComic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailComic.swift; sourceTree = "<group>"; };
@@ -170,6 +190,7 @@
 				40AC024724809DD200AF3DEF /* ReviewComic.swift */,
 				40AC024924809E0B00AF3DEF /* FavoriteComic.swift */,
 				40AC024D2480A93400AF3DEF /* UserInfo.swift */,
+				402D951D24931BB9002E686B /* LineInfoComic.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -192,6 +213,14 @@
 				4043DFAA24888AA3007A407F /* CellComicView.swift */,
 				4043DFAC24889862007A407F /* AllComicTBViewCell.swift */,
 				40C3EA09248E38EE002C94DE /* UserInfoTBViewCell.swift */,
+				408FD59C24909C3C00511C5D /* HeaderComicTBViewCell.swift */,
+				408FD5A02490C0C700511C5D /* SumaryComicTBViewCell.swift */,
+				408FD5A22490C36400511C5D /* InfoComicTBViewCell.swift */,
+				408FD5A42490C80600511C5D /* LineInfoComicTBViewCell.swift */,
+				408FD5A92490D9E000511C5D /* EmptyReviewCLViewCell.swift */,
+				408FD5A82490D9E000511C5D /* ReviewCLViewCell.swift */,
+				408FD5A62490D9E000511C5D /* ReviewContentCell.swift */,
+				408FD5A72490D9E000511C5D /* ReviewTBViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -369,6 +398,7 @@
 				40568F44247B5C1500304422 /* UIImage+.swift */,
 				40568F46247B5C1500304422 /* UIColor+.swift */,
 				40AC02522480AF3600AF3DEF /* Date+.swift */,
+				408FD59E2490BE2900511C5D /* Number+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -554,11 +584,13 @@
 				40AC024424809DB100AF3DEF /* Issue.swift in Sources */,
 				40568F20247B5A6800304422 /* Application.swift in Sources */,
 				40AC024024809A5600AF3DEF /* SearchComic.swift in Sources */,
+				408FD5A12490C0C700511C5D /* SumaryComicTBViewCell.swift in Sources */,
 				40C3EA0A248E38EE002C94DE /* UserInfoTBViewCell.swift in Sources */,
 				40AC024624809DBE00AF3DEF /* RelatedComic.swift in Sources */,
 				40AC024824809DD200AF3DEF /* ReviewComic.swift in Sources */,
 				40AC024224809D2E00AF3DEF /* DetailComic.swift in Sources */,
 				40568F0B247B51D600304422 /* HomeViewController.swift in Sources */,
+				408FD5AD2490D9E000511C5D /* EmptyReviewCLViewCell.swift in Sources */,
 				40AC02552480B45D00AF3DEF /* Comic.swift in Sources */,
 				4043DFAB24888AA3007A407F /* CellComicView.swift in Sources */,
 				40C3EA0C248E3FEE002C94DE /* Urls.swift in Sources */,
@@ -566,18 +598,24 @@
 				4043DFAF24889934007A407F /* AllComicViewController.swift in Sources */,
 				40568F07247B51D600304422 /* AppDelegate.swift in Sources */,
 				40568F57247B5C1600304422 /* String+.swift in Sources */,
+				408FD59F2490BE2900511C5D /* Number+.swift in Sources */,
 				40568F56247B5C1600304422 /* UIView+.swift in Sources */,
+				408FD5AB2490D9E000511C5D /* ReviewTBViewCell.swift in Sources */,
 				40420616247E53B9001BA2F8 /* APIService.swift in Sources */,
 				40568F50247B5C1600304422 /* BaseTBCell.swift in Sources */,
 				40568F4C247B5C1600304422 /* DLog.swift in Sources */,
 				40AC024C24809E9A00AF3DEF /* ComicStatus.swift in Sources */,
 				40AC02532480AF3600AF3DEF /* Date+.swift in Sources */,
 				4043DFAD24889862007A407F /* AllComicTBViewCell.swift in Sources */,
+				408FD5A32490C36400511C5D /* InfoComicTBViewCell.swift in Sources */,
 				40568F51247B5C1600304422 /* BaseCLCell.swift in Sources */,
 				4043DFA52488833A007A407F /* HomeTBViewCell.swift in Sources */,
 				40AC023E248099E100AF3DEF /* HomeComic.swift in Sources */,
+				402D951E24931BB9002E686B /* LineInfoComic.swift in Sources */,
+				408FD5AC2490D9E000511C5D /* ReviewCLViewCell.swift in Sources */,
 				40568F59247B5C1600304422 /* UIViewController+.swift in Sources */,
 				40568F54247B5C1600304422 /* BaseCustomNibView.swift in Sources */,
+				408FD5AA2490D9E000511C5D /* ReviewContentCell.swift in Sources */,
 				40AC02512480AE0700AF3DEF /* DataRepresentable.swift in Sources */,
 				40568F55247B5C1600304422 /* Array+.swift in Sources */,
 				407122D5247E3787000F8F2D /* SearchViewController.swift in Sources */,
@@ -592,8 +630,10 @@
 				40C3EA08248E2D46002C94DE /* ComicRepository.swift in Sources */,
 				40420618247E57B7001BA2F8 /* ErrorResponse.swift in Sources */,
 				40AC024A24809E0B00AF3DEF /* FavoriteComic.swift in Sources */,
+				408FD5A52490C80600511C5D /* LineInfoComicTBViewCell.swift in Sources */,
 				407A600D2484883C0090D90C /* LoginViewController.swift in Sources */,
 				40568F5A247B5C1600304422 /* UITextField+.swift in Sources */,
+				408FD59D24909C3C00511C5D /* HeaderComicTBViewCell.swift in Sources */,
 				40AC024E2480A93400AF3DEF /* UserInfo.swift in Sources */,
 				407122D7247E3793000F8F2D /* UserViewController.swift in Sources */,
 				4043DFA724888565007A407F /* Constants.swift in Sources */,

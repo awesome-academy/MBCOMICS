@@ -31,4 +31,24 @@ struct ComicRepository: ComicRepositoryType {
             }
         }
     }
+    
+    func getInfoTBData(comic: DetailComic) -> [LineInfoComic] {
+        let infoTBData = [LineInfoComic]().with {
+            $0.append(LineInfoComic(title: ComicInfo.author,
+                                    detail: (comic.authors.sentence)))
+            $0.append(LineInfoComic(title: ComicInfo.category,
+                                    detail: (comic.genres.sentence)))
+            $0.append(LineInfoComic(title: ComicInfo.publisher,
+                                    detail: (comic.publisher)))
+            $0.append(LineInfoComic(title: ComicInfo.year,
+                                    detail: (comic.year)))
+            $0.append(LineInfoComic(title: ComicInfo.status,
+                                    detail: (comic.status.stringValue)))
+            $0.append(LineInfoComic(title: ComicInfo.numberIssues,
+                                    detail: "\((comic.numberIssues) - 1)"))
+            $0.append(LineInfoComic(title: ComicInfo.contactUs,
+                                    detail: ComicInfo.email))
+        }
+        return infoTBData
+    }
 }

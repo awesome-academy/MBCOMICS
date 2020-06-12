@@ -124,6 +124,12 @@ extension UIView {
             return self.snp
         #endif
     }
+    
+    func addSubviews(_ subviews: [UIView]) {
+        subviews.forEach {
+            addSubview($0)
+        }
+    }
 }
 
 // MARK: Corner radius
