@@ -94,7 +94,11 @@ class ReviewTBViewCell: BaseTBCell {
     var cellIndexPath = 0
     var isInRecently = false
     var cellHeight = 0
-    var reviews = [ReviewComic]()
+    var reviews = [ReviewComic]() {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     private let cellSpacing: CGFloat = 10
     

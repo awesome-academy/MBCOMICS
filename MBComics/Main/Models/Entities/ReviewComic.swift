@@ -14,7 +14,7 @@ struct ReviewComic {
     var comicId: Int
     var user: UserInfo
     var content: String
-    var reviewScore: Int
+    var ratePoint: Int
     var reviewAt: Date
 
     init?(_ snapshot: DataSnapshot) {
@@ -34,19 +34,28 @@ struct ReviewComic {
         
         self.comicId = comicId
         self.content = content
-        self.reviewScore = reviewScore
+        self.ratePoint = reviewScore
         self.reviewAt = reviewAt
+    }
+    
+    init (comicId: Int, content: String, ratePoint: Int, user: UserInfo) {
+        self.comicId = comicId
+        self.content = content
+        self.ratePoint = ratePoint
+        self.user = user
+        
+        reviewId = "\(comicId)_\(user.uid)"
+        reviewAt = Date()
     }
 }
 
 extension ReviewComic: DatabaseRepresentable {
     var representation: [String: Any] {
-        return ["review_id": reviewId,
-                "comic_id": comicId,
+        return ["comic_id": comicId,
                 "user_id": user.uid,
                 "user_name": user.displayName,
                 "content": content,
-                "score": reviewScore,
+                "score": ratePoint,
                 "review_at": reviewAt.toFirebaseDateString()]
     }
 }
