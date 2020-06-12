@@ -10,6 +10,7 @@ import Foundation
 
 protocol ComicRepositoryType {
     func getHomeComics(completion: @escaping (ErrorResponse?, [HomeComic], [HomeComic]) -> Void)
+    func getDetailComic(comicId: Int, completion: @escaping (ErrorResponse?, DetailComic?) -> Void)
 }
 
 struct ComicRepository: ComicRepositoryType {
@@ -49,6 +50,22 @@ struct ComicRepository: ComicRepositoryType {
             $0.append(LineInfoComic(title: ComicInfo.contactUs,
                                     detail: ComicInfo.email))
         }
+        
         return infoTBData
+    }
+    
+    func getDetailComic(comicId: Int, completion: @escaping (ErrorResponse?, DetailComic?) -> Void) {
+        api.request(urlString: AppUrl.comicUrl,
+                    httpMethod: .get,
+                    header: nil,
+                    param: ["id": comicId],
+                    body: nil) { (status, error, json) in
+            if let json = json {
+                let detailComic = DetailComic(json)
+                completion(nil, detailComic)
+            } else {
+                completion(error, nil)
+            }
+        }
     }
 }
