@@ -13,7 +13,7 @@ import SSPlaceHolderTableView
 class HomeViewController: UIViewController {
     
     // MARK: - Outlets
-    private var refreshControl = UIRefreshControl().then {
+    private let refreshControl = UIRefreshControl().then {
         $0.attributedTitle = NSAttributedString(string: "Pull to refresh")
     }
     
@@ -100,7 +100,7 @@ class HomeViewController: UIViewController {
             let message = NSAttributedString(string: error.message)
             if error.type == .noInternet {
                 tableView.setState(.checkInternetAvaibility(noInternetImg: nil,
-                                                            noInternetLabelTitle: message))
+                                                            noInternetLabelTitle: nil))
             } else {
                 tableView.setState(.noDataAvailable(noDataImg: nil,
                                                     noDataLabelTitle: message))
@@ -153,7 +153,6 @@ extension HomeViewController: HomeTBCellDelegate {
     }
     
     func tapFavoriteComic(comicId: Int, state: Bool) {
-        // TODO: Add API
         if let comic = ((newestComics + popularComics).filter { $0.id == comicId }).first {
             let favoriteComic = FavoriteComic(id: comic.id,
                                               title: comic.title,

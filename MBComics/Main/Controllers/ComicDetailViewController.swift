@@ -7,17 +7,16 @@
 //
 
 import UIKit
-import Then
-import SwiftyJSON
+import SSPlaceHolderTableView
 
 class ComicDetailViewController: BaseViewController {
     // MARK: - Outlets
-    lazy var tableView = UITableView().then {
+    lazy var tableView = TableView().then {
         $0.estimatedRowHeight = UITableView.automaticDimension
         $0.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         $0.tableFooterView = UIView(frame: .zero)
         $0.showsVerticalScrollIndicator = false
-        
+        $0.refreshControl = refreshControl
         $0.delegate = self
         $0.dataSource = self
         
@@ -26,6 +25,10 @@ class ComicDetailViewController: BaseViewController {
         InfoComicTBViewCell.registerCellByClass($0)
         HomeTBViewCell.registerCellByClass($0)
         ReviewTBViewCell.registerCellByClass($0)
+    }
+    
+    private let refreshControl = UIRefreshControl().then {
+        $0.attributedTitle = NSAttributedString(string: "Pull to refresh")
     }
     
     // MARK: - Values
@@ -46,7 +49,9 @@ class ComicDetailViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        getData()
+        if comic == nil {
+            getData()
+        }
     }
     
     func setData(comicId: Int) {
@@ -59,6 +64,10 @@ class ComicDetailViewController: BaseViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
         
         view.addSubview(tableView)
+        tableView.networkUnReachableBlock = { [weak self] in
+            self?.getData()
+        }
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
     }
     
     func setUpConstraints() {
@@ -68,8 +77,42 @@ class ComicDetailViewController: BaseViewController {
     }
     
     // MARK: - Actions
-    func getData() {
-        // TODO: API
+    @objc func refreshData() {
+        getData(type: .refresh)
+    }
+    
+    func getData(type: APIType = .normal) {
+        if type == .normal {
+            tableView.isHidden = true
+            showPopupLoading()
+        }
+        comicRepository.getDetailComic(comicId: comicId) { [weak self] (error, comic) in
+            DispatchQueue.main.async {
+                self?.hidePopupLoading()
+                self?.handleComicData(error: error,
+                                      comic: comic)
+            }
+        }
+    }
+    
+    func handleComicData(error: ErrorResponse?, comic: DetailComic?) {
+        tableView.isHidden = false
+        refreshControl.endRefreshing()
+        
+        if let error = error {
+            let message = NSAttributedString(string: error.message)
+            if error.type == .noInternet {
+                tableView.setState(.checkInternetAvaibility(noInternetImg: nil,
+                                                            noInternetLabelTitle: nil))
+            } else {
+                tableView.setState(.noDataAvailable(noDataImg: nil,
+                                                    noDataLabelTitle: message))
+            }
+        } else {
+            self.comic = comic
+            tableView.setState(.dataAvailable(viewController: self))
+            tableView.reloadData()
+        }
     }
 }
 
@@ -96,7 +139,10 @@ extension ComicDetailViewController: UITableViewDelegate, UITableViewDataSource 
         
         case .reviewIndex:
             guard let cell = ReviewTBViewCell.loadCell(tableView) as? ReviewTBViewCell else { return BaseTBCell() }
-            
+            cell.initData(comicId: comicId,
+                          cellHeight: kCLCellHeight2,
+                          title: "Reviews",
+                          reviews: [])
             return cell
             
         case .infoIndex:
