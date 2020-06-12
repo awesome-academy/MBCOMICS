@@ -55,7 +55,7 @@ class ReviewContentCell: UIView {
     }
     
     func initData(review: ReviewComic) {
-        ratingView.rating = Double(review.reviewScore)
+        ratingView.rating = Double(review.ratePoint)
         commentLabel.text = review.content
         
         let date = review.reviewAt.toReviewDateString()

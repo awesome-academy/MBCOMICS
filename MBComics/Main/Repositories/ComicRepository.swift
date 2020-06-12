@@ -7,10 +7,13 @@
 //
 
 import Foundation
+import FirebaseDatabase
 
 protocol ComicRepositoryType {
     func getHomeComics(completion: @escaping (ErrorResponse?, [HomeComic], [HomeComic]) -> Void)
     func getDetailComic(comicId: Int, completion: @escaping (ErrorResponse?, DetailComic?) -> Void)
+    func getReviews(of comicId: Int, completion: @escaping (Error?, [ReviewComic]) -> Void)
+    func writeReview(for comicId: Int, content: String, ratePoint: Int, user: UserInfo, completion: @escaping (Error?) -> Void)
 }
 
 struct ComicRepository: ComicRepositoryType {
@@ -59,13 +62,39 @@ struct ComicRepository: ComicRepositoryType {
                     httpMethod: .get,
                     header: nil,
                     param: ["id": comicId],
-                    body: nil) { (status, error, json) in
+                    body: nil) { (_, error, json) in
             if let json = json {
                 let detailComic = DetailComic(json)
                 completion(nil, detailComic)
             } else {
                 completion(error, nil)
             }
+        }
+    }
+    
+    func getReviews(of comicId: Int, completion: @escaping (Error?, [ReviewComic]) -> Void) {
+        let ref = Database.database().reference().child("Reviews")
+
+        ref.queryOrdered(byChild: "comic_id").queryEqual(toValue: comicId)
+           .observeSingleEvent(of: .value) { snapshot in
+                var reviews = [ReviewComic]()
+                snapshot.children.forEach {
+                    guard let snap = $0 as? DataSnapshot,
+                          let review = ReviewComic(snap) else { return }
+                    reviews.append(review)
+                }
+                completion(nil, reviews)
+        }
+    }
+    
+    func writeReview(for comicId: Int, content: String, ratePoint: Int, user: UserInfo, completion: @escaping (Error?) -> Void) {
+        let review = ReviewComic(comicId: comicId,
+                                 content: content,
+                                 ratePoint: ratePoint,
+                                 user: user)
+        let ref = Database.database().reference(withPath: "Reviews")
+        ref.child(review.reviewId).updateChildValues(review.representation) { (error, _) in
+            completion(error)
         }
     }
 }

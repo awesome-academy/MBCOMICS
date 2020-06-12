@@ -35,7 +35,10 @@ class ComicDetailViewController: BaseViewController {
     private let comicRepository = ComicRepository(api: APIService.shared)
     
     var comicId = 0
-    var comic: DetailComic?
+    private var comic: DetailComic?
+    private var reviews = [ReviewComic]()
+    private var ratingPoint: Double = 0
+    private var ratingCount: Int = 0
 
     // MARK: - LifeCycles
     override func viewDidLoad() {
@@ -96,10 +99,10 @@ class ComicDetailViewController: BaseViewController {
     }
     
     func handleComicData(error: ErrorResponse?, comic: DetailComic?) {
-        tableView.isHidden = false
-        refreshControl.endRefreshing()
-        
         if let error = error {
+            tableView.isHidden = false
+            refreshControl.endRefreshing()
+            
             let message = NSAttributedString(string: error.message)
             if error.type == .noInternet {
                 tableView.setState(.checkInternetAvaibility(noInternetImg: nil,
@@ -111,6 +114,24 @@ class ComicDetailViewController: BaseViewController {
         } else {
             self.comic = comic
             tableView.setState(.dataAvailable(viewController: self))
+            comicRepository.getReviews(of: comicId) { [weak self] (error, reviews) in
+                self?.handleReviewsApi(error: error, reviews: reviews)
+            }
+        }
+    }
+    
+    func handleReviewsApi(error: Error?, reviews: [ReviewComic]) {
+        tableView.isHidden = false
+        refreshControl.endRefreshing()
+        
+        if let error = error {
+            showAlert(title: ErrorMessage.defaultTitle, message: error.localizedDescription)
+        } else {
+            self.reviews = reviews
+            
+            ratingCount = reviews.count
+            ratingPoint = Double(reviews.reduce(0, { $0 + $1.ratePoint })) / Double(ratingCount)
+            
             tableView.reloadData()
         }
     }
@@ -142,7 +163,9 @@ extension ComicDetailViewController: UITableViewDelegate, UITableViewDataSource 
             cell.initData(comicId: comicId,
                           cellHeight: kCLCellHeight2,
                           title: "Reviews",
-                          reviews: [])
+                          reviews: reviews)
+            cell.delegate = self
+            
             return cell
             
         case .infoIndex:
@@ -163,5 +186,15 @@ extension ComicDetailViewController: UITableViewDelegate, UITableViewDataSource 
                                                right: 0)
             return cell
         }
+    }
+}
+
+extension ComicDetailViewController: ReviewTBCellDelegate {
+    func pushVCToListReview() {
+        
+    }
+    
+    func pushVCToWriteReView() {
+        
     }
 }
