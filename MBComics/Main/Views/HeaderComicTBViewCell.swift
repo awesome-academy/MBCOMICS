@@ -11,7 +11,7 @@ import Cosmos
 import FontAwesome_swift
 
 protocol HeaderComicTBCellDelegate: class {
-    func pushToListIssue()
+    func pushToListIssues()
     func tapFavorite(state: Bool)
 }
 
@@ -85,7 +85,7 @@ class HeaderComicTBViewCell: BaseTBCell {
     // MARK: - Values
     weak var delegate: HeaderComicTBCellDelegate?
     
-    var favoriteState = true {
+    var favoriteState = false {
         didSet {
             updateFavoriteBtn()
         }
@@ -120,22 +120,24 @@ class HeaderComicTBViewCell: BaseTBCell {
                                  favoriteButton,
                                  readButton,
                                  yearLabel])
+        
+        initLayout(imgHeight: kCLCellHeight)
     }
     
-    func initData(imgHeight: Int, comic: DetailComic) {
+    func initData(imgHeight: Int, comic: DetailComic, ratingCount: Int, ratePoint: Double) {
+        initLayout(imgHeight: imgHeight)
         posterView.kf.setImage(with: URL(string: comic.poster),
                                options: [.requestModifier(kKfModifier)])
         titleLabel.text = comic.title
         subTitleLabel.text = comic.publisher
         yearLabel.attributedText = setAttText(num: comic.status.stringValue, str: "Status")
-        
-        // TODO: Review
-        let totalRating = Int.random(in: 0..<10)
-        let ratePoint = Double.random(in: 1..<5).roundToPlaces(1)
-        
+
         ratingView.rating = ratePoint
+        if let currentUser = AppInfo.currentUser {
+            favoriteState = (currentUser.favoriteComics.map { $0.id }).contains(comic.id)
+        }
         
-        switch totalRating {
+        switch ratingCount {
         case zeroStar:
             ratingCountLabel.text = "Not Enough Ratings"
             ratingPointLabel.text = "0"
@@ -145,11 +147,18 @@ class HeaderComicTBViewCell: BaseTBCell {
             ratingCountLabel.text = "1 Rating"
         default:
             ratingPointLabel.text = String(ratePoint)
-            ratingCountLabel.text = String(format: "%d Ratings", totalRating)
+            ratingCountLabel.text = String(format: "%d Ratings", ratingCount)
         }
         
         updateFavoriteBtn()
-        self.initLayout(imgHeight: imgHeight)
+        updateImageHeight(imgHeight: imgHeight)
+    }
+    
+    func updateImageHeight(imgHeight: Int) {
+        posterView.snp.updateConstraints {
+            $0.width.equalTo(imgHeight*3/4)
+            $0.height.equalTo(imgHeight)
+        }
     }
     
     // MARK: - Layouts
@@ -253,7 +262,7 @@ class HeaderComicTBViewCell: BaseTBCell {
     }
     
     @objc func tapRead() {
-        delegate?.pushToListIssue()
+        delegate?.pushToListIssues()
     }
     
     private func setAttText(num: String, str: String) -> NSAttributedString {

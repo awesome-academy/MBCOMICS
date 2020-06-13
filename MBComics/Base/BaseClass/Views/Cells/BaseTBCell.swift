@@ -42,3 +42,10 @@ class BaseTBCell: UITableViewCell {
         return cell
     }
 }
+
+extension BaseTBCell {
+    func initData(title: String?, detail: String?) {
+        textLabel?.text = title
+        detailTextLabel?.text = detail
+    }
+}

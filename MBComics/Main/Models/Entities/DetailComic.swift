@@ -34,6 +34,8 @@ struct DetailComic: Comic {
         year = json["year"].stringValue
         summary = json["summary"].stringValue
         issues = json["issues"].arrayValue.map { Issue($0) }
-        relatedComics = json["similar"].arrayValue.map { RelatedComic($0) }
+        relatedComics = json["similar"].arrayValue
+                                       .map { RelatedComic($0) }
+                                       .filter { $0.id != id }
     }
 }

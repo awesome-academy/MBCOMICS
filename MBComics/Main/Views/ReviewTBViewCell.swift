@@ -57,8 +57,8 @@ class ReviewTBViewCell: BaseTBCell {
         
         $0.settings = options
         $0.rating = 0
-        $0.didFinishTouchingCosmos = { (ratingPoint) in
-            // TODO: Add Action
+        $0.didFinishTouchingCosmos = { [weak self] (ratingPoint) in
+            self?.delegate?.pushVCToWriteReView()
         }
     }
     
