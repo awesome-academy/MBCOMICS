@@ -11,28 +11,28 @@ import Cosmos
 
 class CellComicView: UIView {
     // MARK: - Outlets
-    var img = UIImageView().then {
+    private let img = UIImageView().then {
         $0.layer.masksToBounds = true
         $0.layer.cornerRadius = 10
         $0.contentMode = .scaleToFill
     }
     
-    lazy var titleLabel = UILabel().then {
+    private lazy var titleLabel = UILabel().then {
         $0.numberOfLines = 0
         $0.font = UIFont.boldSystemFont(ofSize: 20)
     }
     
-    var subTitleLabel = UILabel().then {
+    private var subTitleLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.textColor = .darkGray
     }
     
-    var ratingPoint = UILabel().then {
+    private var ratingPoint = UILabel().then {
         $0.textColor = .darkGray
         $0.font = UIFont.boldSystemFont(ofSize: 20)
     }
     
-    var rating = CosmosView().then {
+    private var rating = CosmosView().then {
         var options = CosmosSettings()
         options.updateOnTouch = false
         options.starSize = 20
@@ -45,12 +45,12 @@ class CellComicView: UIView {
         $0.settings = options
     }
     
-    var ratingCount = UILabel().then {
+    private var ratingCount = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.textColor = .darkGray
     }
     
-    var favoriteBtn = UILabel().then {
+    private var favoriteBtn = UILabel().then {
         $0.textAlignment = .center
         $0.layer.masksToBounds = true
         $0.layer.cornerRadius = 15
@@ -61,11 +61,13 @@ class CellComicView: UIView {
     }
     
     // MARK: - Values
-    var imgHeight = 0
-    var comicId = 0
+    private var imgHeight = 0
+    private var comicId = 0
+    private let zeroStar = 0, oneStar = 1
     
-    var favoriteState = false
+    private var favoriteState = false
     var onTapFavorite: ((Int, Bool) -> Void)?
+    var onRatingLoaded: ((ComicRateInfo) -> Void)?
     
     // MARK: - Life Cycles
     override init(frame: CGRect) {
@@ -90,6 +92,21 @@ class CellComicView: UIView {
         if let homeComic = comic as? HomeComic {
             subTitleLabel.text = homeComic.issueName
         }
+        
+        [rating, ratingCount, ratingPoint].forEach { $0.isHidden = comic is FavoriteComic }
+        rating.rating = comic.ratingInfo.ratePoint
+        switch comic.ratingInfo.rateCount {
+        case zeroStar:
+            ratingCount.text = "Not Enough Ratings"
+            ratingPoint.text = "0"
+        case oneStar:
+            ratingPoint.text = String(comic.ratingInfo.ratePoint)
+            ratingCount.text = "1 Rating"
+        default:
+            ratingPoint.text = String(comic.ratingInfo.ratePoint)
+            ratingCount.text = String(format: "%d Ratings", comic.ratingInfo.rateCount)
+        }
+        
         comicId = comic.id
         if let currentUser = AppInfo.currentUser {
             favoriteState = (currentUser.favoriteComics.map { $0.id }).contains(comicId)
@@ -99,7 +116,7 @@ class CellComicView: UIView {
         initLayout()
     }
 
-    func initLayout() {
+    private func initLayout() {
         setImgLayout()
         setTitleLayout()
         if let text = subTitleLabel.text, !text.isEmpty {
@@ -113,19 +130,19 @@ class CellComicView: UIView {
         addGestures()
     }
     
-    func updateFavoriteBtn() {
+    private func updateFavoriteBtn() {
         favoriteBtn.do {
             $0.backgroundColor = favoriteState ? .systemBlue : .darkGray
             $0.text = favoriteState ? "LIKED" : "LIKE"
         }
     }
     
-    func addGestures() {
+    private func addGestures() {
         favoriteBtn.addTapGesture(target: self, action: #selector(tapFavoriteBtn))
     }
     
     // MARK: set Sub-Layout
-    func setImgLayout() {
+    private func setImgLayout() {
         img.snp.makeConstraints { make in
             make.left.equalTo(self)
             make.top.equalTo(self)
@@ -135,7 +152,7 @@ class CellComicView: UIView {
         }
     }
     
-    func setTitleLayout() {
+    private func setTitleLayout() {
         titleLabel.snp.makeConstraints { make in
             make.left.equalTo(img.snp.right).offset(10)
             make.right.equalTo(self)
@@ -143,7 +160,7 @@ class CellComicView: UIView {
         }
     }
     
-    func setSubTitleLayout() {
+    private func setSubTitleLayout() {
         subTitleLabel.snp.makeConstraints { make in
             make.left.equalTo(img.snp.right).offset(10)
             make.right.equalTo(self)
@@ -151,20 +168,20 @@ class CellComicView: UIView {
         }
     }
     
-    func setRatingPointLayout() {
+    private func setRatingPointLayout() {
         ratingPoint.snp.makeConstraints { make in
             make.left.equalTo(img.snp.right).offset(10)
         }
     }
     
-    func setRatingCountLayout() {
+    private func setRatingCountLayout() {
         ratingCount.snp.makeConstraints { make in
             make.left.equalTo(img.snp.right).offset(10)
             make.top.equalTo(rating.snp.bottom).offset(1)
         }
     }
     
-    func setFavoriteBtnLayout() {
+    private func setFavoriteBtnLayout() {
         favoriteBtn.snp.makeConstraints { make in
             make.left.equalTo(img.snp.right).offset(10)
             make.bottom.equalTo(img.snp.bottom)
@@ -174,7 +191,7 @@ class CellComicView: UIView {
         }
     }
     
-    func setRatingLayout() {
+    private func setRatingLayout() {
         rating.snp.makeConstraints { make in
             make.left.equalTo(ratingPoint.snp.right).offset(1)
             make.centerY.equalTo(ratingPoint).offset(1)
@@ -183,7 +200,7 @@ class CellComicView: UIView {
     }
     
     // MARK: - Actions
-    @objc func tapFavoriteBtn() {
+    @objc private func tapFavoriteBtn() {
         favoriteState = !favoriteState
         updateFavoriteBtn()
         onTapFavorite?(comicId, favoriteState)

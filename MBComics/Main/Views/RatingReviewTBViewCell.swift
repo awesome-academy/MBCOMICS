@@ -57,7 +57,7 @@ class RatingReviewTBViewCell: BaseTBCell, FormCellType {
     func initData(title: String, initialRating: Int = 0) {
         rating.rating = Double(initialRating)
         self.title = title
-        onUpdateValue?(title, initialRating)
+        onTapRating(value: Double(initialRating))
     }
     
     private func initLayout() {

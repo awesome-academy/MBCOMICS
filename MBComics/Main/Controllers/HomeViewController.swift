@@ -51,6 +51,7 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
         
         getData()
     }
@@ -94,8 +95,6 @@ class HomeViewController: UIViewController {
     func handleHomeApi(error: ErrorResponse?,
                        popularComics: [HomeComic],
                        newestComics: [HomeComic]) {
-        tableView.isHidden = false
-        refreshControl.endRefreshing()
         if let error = error {
             let message = NSAttributedString(string: error.message)
             if error.type == .noInternet {
@@ -108,9 +107,52 @@ class HomeViewController: UIViewController {
         } else {
             self.newestComics = newestComics
             self.popularComics = popularComics
-            tableView.setState(.dataAvailable(viewController: self))
-            tableView.reloadData()
+            self.getRatingInfos { [weak self] in
+                self?.updateData()
+            }
         }
+    }
+    
+    private func getRatingInfos(completion: @escaping () -> Void) {
+        let group = DispatchGroup()
+        let tmpPopular = popularComics
+        popularComics.removeAll()
+        tmpPopular.forEach {
+            var comic = $0
+            group.enter()
+            comicsRepository.getReviewInfo(of: comic.id) { [weak self] (info) in
+                if let info = info {
+                    comic.ratingInfo = info
+                }
+                self?.popularComics.append(comic)
+                group.leave()
+            }
+        }
+        
+        let tmpNewsest = newestComics
+        newestComics.removeAll()
+        tmpNewsest.forEach {
+            var comic = $0
+            group.enter()
+            comicsRepository.getReviewInfo(of: comic.id) { (info) in
+                if let info = info {
+                    comic.ratingInfo = info
+                }
+                self.newestComics.append(comic)
+                group.leave()
+            }
+        }
+        
+        group.notify(queue: .main) {
+            completion()
+        }
+    }
+    
+    private func updateData() {
+        tableView.isHidden = false
+        refreshControl.endRefreshing()
+        tableView.setState(.dataAvailable(viewController: self))
+        tableView.reloadData()
     }
 }
 

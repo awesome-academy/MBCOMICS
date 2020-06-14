@@ -21,6 +21,7 @@ struct DetailComic: Comic {
     var numberIssues: Int
     var issues = [Issue]()
     var relatedComics = [Comic]()
+    var ratingInfo: ComicRateInfo
     
     init(_ json: JSON) {
         authors = json["author"].arrayObject as? [String] ?? []
@@ -34,6 +35,7 @@ struct DetailComic: Comic {
         year = json["year"].stringValue
         summary = json["summary"].stringValue
         issues = json["issues"].arrayValue.map { Issue($0) }
+        ratingInfo = ComicRateInfo(id, 0, 0)
         relatedComics = json["similar"].arrayValue
                                        .map { RelatedComic($0) }
                                        .filter { $0.id != id }

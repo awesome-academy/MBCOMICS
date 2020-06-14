@@ -13,11 +13,13 @@ struct RelatedComic: Comic {
     var title: String
     var poster: String
     var numberIssues: Int
+    var ratingInfo: ComicRateInfo
     
     init(_ json: JSON) {
         id = json["_id"].intValue
         title = json["title"].stringValue
         poster = json["cover"].stringValue
         numberIssues = 0
+        ratingInfo = ComicRateInfo(id, 0, 0)
     }
 }
