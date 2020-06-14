@@ -11,8 +11,9 @@ import SSPlaceHolderTableView
 
 class ComicDetailViewController: BaseViewController {
     // MARK: - Outlets
-    lazy var tableView = TableView().then {
+    private lazy var tableView = TableView().then {
         $0.estimatedRowHeight = UITableView.automaticDimension
+        $0.allowsSelection = false
         $0.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         $0.tableFooterView = UIView(frame: .zero)
         $0.showsVerticalScrollIndicator = false
@@ -63,7 +64,7 @@ class ComicDetailViewController: BaseViewController {
     }
     
     // MARK: - Layouts
-    func setUpViews() {
+    private func setUpViews() {
         view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = false
         
@@ -74,18 +75,18 @@ class ComicDetailViewController: BaseViewController {
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
     }
     
-    func setUpConstraints() {
+    private func setUpConstraints() {
         tableView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide.snp.margins)
         }
     }
     
     // MARK: - Actions
-    @objc func refreshData() {
+    @objc private func refreshData() {
         getData(type: .refresh)
     }
     
-    func getData(type: APIType = .normal) {
+    private func getData(type: APIType = .normal) {
         if type == .normal {
             tableView.isHidden = true
             showPopupLoading()
@@ -99,7 +100,7 @@ class ComicDetailViewController: BaseViewController {
         }
     }
     
-    func handleComicData(error: ErrorResponse?, comic: DetailComic?) {
+    private func handleComicData(error: ErrorResponse?, comic: DetailComic?) {
         if let error = error {
             tableView.isHidden = false
             refreshControl.endRefreshing()
@@ -121,7 +122,7 @@ class ComicDetailViewController: BaseViewController {
         }
     }
     
-    func handleReviewsApi(error: Error?, reviews: [ReviewComic]) {
+    private func handleReviewsApi(error: Error?, reviews: [ReviewComic]) {
         tableView.isHidden = false
         refreshControl.endRefreshing()
         
@@ -201,14 +202,17 @@ extension ComicDetailViewController: UITableViewDelegate, UITableViewDataSource 
 extension ComicDetailViewController: ReviewTBCellDelegate {
     func pushVCToListReview() {
         let listReviewsVC = ListReviewsViewController()
+        listReviewsVC.initData(reviews: reviews)
         
         navigationController?.pushViewController(listReviewsVC, animated: true)
     }
     
-    func pushVCToWriteReView() {
-        let writeReviewVC = UINavigationController(rootViewController: WriteReviewViewController())
-        
-        present(writeReviewVC, animated: true, completion: nil)
+    func pushVCToWriteReView(initialRating: Int = 0) {
+        guard let comic = comic else { return }
+        let writeReviewVC = WriteReviewViewController()
+        writeReviewVC.initData(comicId: comic.id, initialRating: initialRating)
+        let navController = UINavigationController(rootViewController: writeReviewVC)
+        present(navController, animated: true, completion: nil)
     }
 }
 
