@@ -33,6 +33,7 @@ class ComicDetailViewController: BaseViewController {
     
     // MARK: - Values
     private let comicRepository = ComicRepository(api: APIService.shared)
+    private let userRepository = UserRepository(api: APIService.shared)
     
     var comicId = 0
     private var comic: DetailComic?
@@ -130,7 +131,9 @@ class ComicDetailViewController: BaseViewController {
             self.reviews = reviews
             
             ratingCount = reviews.count
-            ratingPoint = Double(reviews.reduce(0, { $0 + $1.ratePoint })) / Double(ratingCount)
+            if ratingCount > 0 {
+                ratingPoint = Double(reviews.reduce(0, { $0 + $1.ratePoint })) / Double(ratingCount)
+            }
             
             tableView.reloadData()
         }
@@ -148,7 +151,11 @@ extension ComicDetailViewController: UITableViewDelegate, UITableViewDataSource 
         switch DetailCellIndex(rawValue: indexPath.item) ?? .headerIndex {
         case .headerIndex:
             guard let cell = HeaderComicTBViewCell.loadCell(tableView) as? HeaderComicTBViewCell else { return BaseTBCell() }
-            cell.initData(imgHeight: kCLCellHeight, comic: comic)
+            cell.initData(imgHeight: kCLCellHeight,
+                          comic: comic,
+                          ratingCount: ratingCount,
+                          ratePoint: ratingPoint)
+            cell.delegate = self
             
             return cell
             
@@ -184,6 +191,8 @@ extension ComicDetailViewController: UITableViewDelegate, UITableViewDataSource 
                                                left: kScreenWidth,
                                                bottom: 0,
                                                right: 0)
+            cell.delegate = self
+            
             return cell
         }
     }
@@ -191,10 +200,63 @@ extension ComicDetailViewController: UITableViewDelegate, UITableViewDataSource 
 
 extension ComicDetailViewController: ReviewTBCellDelegate {
     func pushVCToListReview() {
+        let listReviewsVC = ListReviewsViewController()
         
+        navigationController?.pushViewController(listReviewsVC, animated: true)
     }
     
     func pushVCToWriteReView() {
+        let writeReviewVC = UINavigationController(rootViewController: WriteReviewViewController())
         
+        present(writeReviewVC, animated: true, completion: nil)
+    }
+}
+
+extension ComicDetailViewController: HeaderComicTBCellDelegate {
+    func pushToListIssues() {
+        guard let comic = comic else { return }
+        let listIssuesVC = ListIssuesViewController()
+        listIssuesVC.setData(comicTitle: comic.title, issues: comic.issues)
+        
+        navigationController?.pushViewController(listIssuesVC, animated: true)
+    }
+    
+    func tapFavorite(state: Bool) {
+        guard let comic = comic else { return }
+        let favoriteComic = FavoriteComic(id: comic.id,
+                                          title: comic.title,
+                                          poster: comic.poster)
+        if state {
+            userRepository.addFavoriteComic(comic: favoriteComic)
+        } else {
+            userRepository.removeFavoriteComic(comic: favoriteComic)
+        }
+    }
+}
+
+extension ComicDetailViewController: HomeTBCellDelegate {
+    func pushVCToComic(comicId: Int) {
+        let detailVC = ComicDetailViewController()
+        detailVC.setData(comicId: comicId)
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
+    
+    func pushVCToAllComic(title: String?, comics: [Comic]) {
+        let allComicsVC = AllComicViewController()
+        allComicsVC.initData(title: title, comics: comics)
+        navigationController?.pushViewController(allComicsVC, animated: true)
+    }
+    
+    func tapFavoriteComic(comicId: Int, state: Bool) {
+        if let comic = (comic?.relatedComics.filter { $0.id == comicId })?.first {
+            let favoriteComic = FavoriteComic(id: comic.id,
+                                              title: comic.title,
+                                              poster: comic.poster)
+            if state {
+                userRepository.addFavoriteComic(comic: favoriteComic)
+            } else {
+                userRepository.removeFavoriteComic(comic: favoriteComic)
+            }
+        }
     }
 }
