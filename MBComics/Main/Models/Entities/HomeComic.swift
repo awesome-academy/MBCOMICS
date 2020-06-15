@@ -17,6 +17,7 @@ struct HomeComic: Comic {
     var issueUrl: String
     var id: Int
     var numberIssues = 0
+    var ratingInfo: ComicRateInfo
 
     init(_ json: JSON) {
         poster = json["img"].stringValue
@@ -25,5 +26,6 @@ struct HomeComic: Comic {
         url = json["url"].stringValue
         issueUrl = json["issue_url"].stringValue
         id = json["id"].intValue
+        ratingInfo = ComicRateInfo(id, 0, 0)
     }
 }

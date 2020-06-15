@@ -24,8 +24,11 @@ class WriteReviewViewController: UIViewController {
     
     // MARK: - Values
     private var formValues = [String: Any?]()
-    private var comicId: Int!
+    private var comicId: Int?
     private var initialRating = 0
+    private let comicRepository = ComicRepository(api: APIService.shared)
+    
+    var onSuccess: (() -> Void)?
     
     // MARK: - Life Cycles
     override func viewDidLoad() {
@@ -70,7 +73,26 @@ class WriteReviewViewController: UIViewController {
     
     // MARK: Actions
     @objc private func submitReview() {
-        
+        guard let comicId = comicId,
+              let user = AppInfo.currentUser,
+              let ratePoint = formValues[ReviewField.ratePoint] as? Double,
+              let content = formValues[ReviewField.content] as? String
+              else { return }
+        comicRepository.writeReview(for: comicId, content: content, ratePoint: Int(ratePoint), user: user) { [weak self] (error) in
+            self?.handleWriteApi(error)
+        }
+    }
+    
+    private func handleWriteApi(_ error: Error?) {
+        if error == nil {
+            self.showAlert(title: "Success", message: "Thanks for your review!") {
+                self.dismiss(animated: true) { [weak self] in
+                    self?.onSuccess?()
+                }
+            }
+        } else {
+            self.showAlert(title: "Error", message: error?.localizedDescription)
+        }
     }
     
     @objc private func cancel() {
@@ -105,6 +127,7 @@ extension WriteReviewViewController: UITableViewDelegate, UITableViewDataSource 
             guard let cell = RatingReviewTBViewCell.loadCell(tableView) as? RatingReviewTBViewCell else { return BaseTBCell() }
             cell.onUpdateValue = onUpdateValue
             cell.initData(title: ReviewField.ratePoint, initialRating: initialRating)
+
             return cell
         case ReviewField.contentIndex:
             guard let cell = TextViewFormCell.loadCell(tableView) as? TextViewFormCell else { return BaseTBCell() }

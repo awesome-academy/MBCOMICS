@@ -87,6 +87,33 @@ struct ComicRepository: ComicRepositoryType {
         }
     }
     
+    func getReviewInfo(of comicId: Int, completion: @escaping (ComicRateInfo?) -> Void) {
+        let ref = Database.database().reference().child("Comics")
+        ref.child("\(comicId)").observeSingleEvent(of: .value) { (snapshot) in
+            completion(ComicRateInfo(snapshot))
+        }
+    }
+    
+    private func updateReviews(of comicId: Int) {
+        let ref = Database.database().reference().child("Reviews")
+        let refRate = Database.database().reference().child("Comics")
+
+        ref.queryOrdered(byChild: "comic_id").queryEqual(toValue: comicId)
+           .observeSingleEvent(of: .value) { snapshot in
+                var reviews = [ReviewComic]()
+                snapshot.children.forEach {
+                    guard let snap = $0 as? DataSnapshot,
+                          let review = ReviewComic(snap) else { return }
+                    reviews.append(review)
+                }
+                let ratePoint = reviews.isEmpty ? 0.0 : Double(reviews.reduce(0, { $0 + $1.ratePoint })) / Double(reviews.count)
+            let info = ComicRateInfo(comicId,
+                                     ratePoint,
+                                     reviews.count)
+            refRate.child("\(comicId)").updateChildValues(info.representation)
+        }
+    }
+    
     func writeReview(for comicId: Int, content: String, ratePoint: Int, user: UserInfo, completion: @escaping (Error?) -> Void) {
         let review = ReviewComic(comicId: comicId,
                                  content: content,
@@ -94,6 +121,7 @@ struct ComicRepository: ComicRepositoryType {
                                  user: user)
         let ref = Database.database().reference(withPath: "Reviews")
         ref.child(review.reviewId).updateChildValues(review.representation) { (error, _) in
+            self.updateReviews(of: comicId)
             completion(error)
         }
     }

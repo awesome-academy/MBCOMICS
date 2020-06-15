@@ -18,6 +18,7 @@ struct SearchComic: Comic {
     var status: ComicStatus
     var poster: String
     var numberIssues: Int
+    var ratingInfo: ComicRateInfo
     
     init(_ json: JSON) {
         authors = json["author"].arrayObject as? [String] ?? []
@@ -29,5 +30,6 @@ struct SearchComic: Comic {
         title = json["title"].stringValue
         status = ComicStatus(rawValue: json["status"].stringValue) ?? .onGoing
         year = json["year"].stringValue
+        ratingInfo = ComicRateInfo(id, 0, 0)
     }
 }

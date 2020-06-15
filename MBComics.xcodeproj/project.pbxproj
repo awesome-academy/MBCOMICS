@@ -12,6 +12,7 @@
 		4004191B2495B04800AA49B5 /* ReviewStatsTBViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4004191A2495B04800AA49B5 /* ReviewStatsTBViewCell.swift */; };
 		4004191E2495B4FE00AA49B5 /* TextViewFormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4004191C2495B4FE00AA49B5 /* TextViewFormCell.swift */; };
 		4004191F2495B4FE00AA49B5 /* RatingReviewTBViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4004191D2495B4FE00AA49B5 /* RatingReviewTBViewCell.swift */; };
+		400419212495CD7C00AA49B5 /* ComicRateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400419202495CD7C00AA49B5 /* ComicRateInfo.swift */; };
 		4008126D249502F2004B2514 /* StarBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4008126C249502F2004B2514 /* StarBarView.swift */; };
 		4008126F2495270B004B2514 /* ReviewStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4008126E2495270B004B2514 /* ReviewStatsView.swift */; };
 		402D951E24931BB9002E686B /* LineInfoComic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D951D24931BB9002E686B /* LineInfoComic.swift */; };
@@ -87,6 +88,7 @@
 		4004191A2495B04800AA49B5 /* ReviewStatsTBViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewStatsTBViewCell.swift; sourceTree = "<group>"; };
 		4004191C2495B4FE00AA49B5 /* TextViewFormCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewFormCell.swift; sourceTree = "<group>"; };
 		4004191D2495B4FE00AA49B5 /* RatingReviewTBViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingReviewTBViewCell.swift; sourceTree = "<group>"; };
+		400419202495CD7C00AA49B5 /* ComicRateInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicRateInfo.swift; sourceTree = "<group>"; };
 		4008126C249502F2004B2514 /* StarBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarBarView.swift; sourceTree = "<group>"; };
 		4008126E2495270B004B2514 /* ReviewStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewStatsView.swift; sourceTree = "<group>"; };
 		402D951D24931BB9002E686B /* LineInfoComic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineInfoComic.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				40AC024924809E0B00AF3DEF /* FavoriteComic.swift */,
 				40AC024D2480A93400AF3DEF /* UserInfo.swift */,
 				402D951D24931BB9002E686B /* LineInfoComic.swift */,
+				400419202495CD7C00AA49B5 /* ComicRateInfo.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -644,6 +647,7 @@
 				4043DFA52488833A007A407F /* HomeTBViewCell.swift in Sources */,
 				40AC023E248099E100AF3DEF /* HomeComic.swift in Sources */,
 				402D951E24931BB9002E686B /* LineInfoComic.swift in Sources */,
+				400419212495CD7C00AA49B5 /* ComicRateInfo.swift in Sources */,
 				408FD5AC2490D9E000511C5D /* ReviewCLViewCell.swift in Sources */,
 				40568F59247B5C1600304422 /* UIViewController+.swift in Sources */,
 				40568F54247B5C1600304422 /* BaseCustomNibView.swift in Sources */,

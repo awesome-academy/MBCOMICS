@@ -13,4 +13,5 @@ protocol Comic {
     var title: String { get set }
     var poster: String { get set }
     var numberIssues: Int { get set }
+    var ratingInfo: ComicRateInfo { get set }
 }

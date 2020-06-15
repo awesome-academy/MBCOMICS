@@ -13,12 +13,14 @@ struct FavoriteComic: Comic {
     var title: String
     var poster: String
     var numberIssues: Int = 0
+    var ratingInfo: ComicRateInfo
     
     init(id: Int, title: String, poster: String, numberIssues: Int = 0) {
         self.id = id
         self.title = title
         self.poster = poster
         self.numberIssues = numberIssues
+        ratingInfo = ComicRateInfo(id, 0, 0)
     }
     
     init?(_ snapshot: DataSnapshot) {
@@ -34,6 +36,7 @@ struct FavoriteComic: Comic {
         self.poster = poster
         self.title = title
         self.numberIssues = numberIssues
+        ratingInfo = ComicRateInfo(id, 0, 0)
     }
 }
 
@@ -51,6 +54,7 @@ extension FavoriteComic: Codable {
         numberIssues = try values.decode(Int.self, forKey: .numberIssues)
         poster = try values.decode(String.self, forKey: .poster)
         title = try values.decode(String.self, forKey: .title)
+        ratingInfo = ComicRateInfo(id, 0, 0)
     }
     
     func encode(to encoder: Encoder) throws {

@@ -20,7 +20,7 @@ class HomeTBViewCell: BaseTBCell {
     private var collectionViewLayout = UICollectionViewFlowLayout().then {
         $0.scrollDirection = .horizontal
     }
-    lazy var collectionView = UICollectionView(frame: .zero,
+    private lazy var collectionView = UICollectionView(frame: .zero,
                                                collectionViewLayout: collectionViewLayout).then {
         $0.backgroundColor = .clear
         $0.showsHorizontalScrollIndicator = false
@@ -31,28 +31,28 @@ class HomeTBViewCell: BaseTBCell {
         HomeCLViewCell.registerCellByClass($0)
     }
     
-    lazy var seeAllLabel = UILabel().then {
+    private lazy var seeAllLabel = UILabel().then {
         $0.textColor = .systemBlue
         $0.font = .systemFont(ofSize: 14)
         $0.text = "See All"
         $0.addTapGesture(target: self, action: #selector(tapSeeAll))
     }
     
-    var titleLabel = UILabel().then {
+    private var titleLabel = UILabel().then {
         $0.font = .boldSystemFont(ofSize: 20)
     }
     
     // MARK: - Values
     weak var delegate: HomeTBCellDelegate?
-    var cellIndexPath = 0
-    var imgHeight = 0
-    var comics = [Comic]() {
+    private var cellIndexPath = 0
+    private var imgHeight = 0
+    private var comics = [Comic]() {
         didSet {
             seeAllLabel.isHidden = comics.count <= numberCells
             collectionView.reloadData()
         }
     }
-    var numberCells: Int {
+    private var numberCells: Int {
         return min(comics.count, 5)
     }
     
@@ -76,14 +76,14 @@ class HomeTBViewCell: BaseTBCell {
         setUpConstraints()
     }
     
-    func setUpViews() {
+    private func setUpViews() {
         selectionStyle = .none
         contentView.addSubview(titleLabel)
         contentView.addSubview(collectionView)
         contentView.addSubview(seeAllLabel)
     }
     
-    func setUpConstraints() {
+    private func setUpConstraints() {
         titleLabel.snp.makeConstraints { make in
             make.left.top.equalTo(20)
         }
@@ -103,7 +103,7 @@ class HomeTBViewCell: BaseTBCell {
     }
     
     // MARK: - Actions
-    func addGesture() {
+    private func addGesture() {
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeRight))
         swipeRight.direction = UISwipeGestureRecognizer.Direction.right
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeLeft))
@@ -112,7 +112,7 @@ class HomeTBViewCell: BaseTBCell {
         collectionView.addGestureRecognizer(swipeRight)
     }
     
-    @objc func swipeLeft() {
+    @objc private func swipeLeft() {
         if cellIndexPath < numberCells - 1 {
             cellIndexPath += 1
             collectionView.scrollToItem(at: IndexPath(item: cellIndexPath,
@@ -123,7 +123,7 @@ class HomeTBViewCell: BaseTBCell {
         
     }
     
-    @objc func swipeRight() {
+    @objc private func swipeRight() {
          if cellIndexPath > 0 {
             cellIndexPath -= 1
             collectionView.scrollToItem(at: IndexPath(item: cellIndexPath,
@@ -133,7 +133,7 @@ class HomeTBViewCell: BaseTBCell {
         }
     }
     
-    @objc func tapSeeAll() {
+    @objc private func tapSeeAll() {
         delegate?.pushVCToAllComic(title: titleLabel.text, comics: comics)
     }
 }

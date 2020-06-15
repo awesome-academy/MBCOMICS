@@ -141,6 +141,10 @@ class ReviewTBViewCell: BaseTBCell {
             statsView.isHidden = true
             hideRateStats()
         } else {
+            if let user = AppInfo.currentUser,
+               let review = (reviews.filter { $0.user.uid == user.uid }).first {
+                rating.rating = Double(review.ratePoint)
+            }
             statsView.isHidden = false
             showRateStats()
             statsView.initData(reviews: reviews,
