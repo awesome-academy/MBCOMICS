@@ -11,11 +11,10 @@ import UIKit
 class ListIssuesViewController: UIViewController {
 
     // MARK: - Outlets
-    lazy var tableView = UITableView().then {
+    private lazy var tableView = UITableView().then {
         $0.estimatedRowHeight = UITableView.automaticDimension
         $0.delegate = self
         $0.dataSource = self
-        $0.separatorStyle = .none
         $0.tableFooterView = UIView(frame: .zero)
         $0.showsVerticalScrollIndicator = false
         
@@ -23,7 +22,7 @@ class ListIssuesViewController: UIViewController {
     }
     
     // MARK: - Values
-    var issues = [Issue]() {
+    private var issues = [Issue]() {
         didSet {
             tableView.reloadData()
         }
@@ -44,13 +43,13 @@ class ListIssuesViewController: UIViewController {
     }
     
     // MARK: - Layouts
-    func setUpViews() {
+    private func setUpViews() {
         view.backgroundColor = .white
         
         view.addSubview(tableView)
     }
     
-    func setUpConstraints() {
+    private func setUpConstraints() {
         tableView.snp.makeConstraints {
             $0.edges.equalTo(view.safeAreaLayoutGuide.snp.margins)
         }

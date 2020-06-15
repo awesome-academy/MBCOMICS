@@ -79,6 +79,10 @@ extension String {
         return ceil(boundingBox.width)
     }
     
+    func size(of font: UIFont) -> CGSize {
+        return (self as NSString).size(withAttributes: [NSAttributedString.Key.font: font])
+    }
+    
     func addingPercentEncodingForURLQueryValue() -> String? {
         let allowedCharacters = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~")
         

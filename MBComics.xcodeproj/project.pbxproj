@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		165E4901A06CA2F453E0D92F /* Pods_MBComics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20A9D9AB5BA8FA0713CF26E8 /* Pods_MBComics.framework */; };
+		400419192495A74D00AA49B5 /* AllReviewTBViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400419182495A74D00AA49B5 /* AllReviewTBViewCell.swift */; };
+		4004191B2495B04800AA49B5 /* ReviewStatsTBViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4004191A2495B04800AA49B5 /* ReviewStatsTBViewCell.swift */; };
+		4004191E2495B4FE00AA49B5 /* TextViewFormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4004191C2495B4FE00AA49B5 /* TextViewFormCell.swift */; };
+		4004191F2495B4FE00AA49B5 /* RatingReviewTBViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4004191D2495B4FE00AA49B5 /* RatingReviewTBViewCell.swift */; };
+		4008126D249502F2004B2514 /* StarBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4008126C249502F2004B2514 /* StarBarView.swift */; };
+		4008126F2495270B004B2514 /* ReviewStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4008126E2495270B004B2514 /* ReviewStatsView.swift */; };
 		402D951E24931BB9002E686B /* LineInfoComic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D951D24931BB9002E686B /* LineInfoComic.swift */; };
 		404075B3248FD1C300060AE0 /* UIImage+Letter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404075B2248FD1C300060AE0 /* UIImage+Letter.swift */; };
 		40420616247E53B9001BA2F8 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40420615247E53B9001BA2F8 /* APIService.swift */; };
@@ -77,6 +83,12 @@
 /* Begin PBXFileReference section */
 		0137C9950E9ADF0BB4450F5C /* Pods-MBComics.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MBComics.debug.xcconfig"; path = "Target Support Files/Pods-MBComics/Pods-MBComics.debug.xcconfig"; sourceTree = "<group>"; };
 		20A9D9AB5BA8FA0713CF26E8 /* Pods_MBComics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MBComics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		400419182495A74D00AA49B5 /* AllReviewTBViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllReviewTBViewCell.swift; sourceTree = "<group>"; };
+		4004191A2495B04800AA49B5 /* ReviewStatsTBViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewStatsTBViewCell.swift; sourceTree = "<group>"; };
+		4004191C2495B4FE00AA49B5 /* TextViewFormCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewFormCell.swift; sourceTree = "<group>"; };
+		4004191D2495B4FE00AA49B5 /* RatingReviewTBViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingReviewTBViewCell.swift; sourceTree = "<group>"; };
+		4008126C249502F2004B2514 /* StarBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarBarView.swift; sourceTree = "<group>"; };
+		4008126E2495270B004B2514 /* ReviewStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewStatsView.swift; sourceTree = "<group>"; };
 		402D951D24931BB9002E686B /* LineInfoComic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineInfoComic.swift; sourceTree = "<group>"; };
 		404075B2248FD1C300060AE0 /* UIImage+Letter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Letter.swift"; sourceTree = "<group>"; };
 		40420615247E53B9001BA2F8 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -229,6 +241,12 @@
 				408FD5A82490D9E000511C5D /* ReviewCLViewCell.swift */,
 				408FD5A62490D9E000511C5D /* ReviewContentCell.swift */,
 				408FD5A72490D9E000511C5D /* ReviewTBViewCell.swift */,
+				4008126C249502F2004B2514 /* StarBarView.swift */,
+				4008126E2495270B004B2514 /* ReviewStatsView.swift */,
+				400419182495A74D00AA49B5 /* AllReviewTBViewCell.swift */,
+				4004191A2495B04800AA49B5 /* ReviewStatsTBViewCell.swift */,
+				4004191D2495B4FE00AA49B5 /* RatingReviewTBViewCell.swift */,
+				4004191C2495B4FE00AA49B5 /* TextViewFormCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -598,6 +616,7 @@
 				40AC024024809A5600AF3DEF /* SearchComic.swift in Sources */,
 				408FD5A12490C0C700511C5D /* SumaryComicTBViewCell.swift in Sources */,
 				40C3EA0A248E38EE002C94DE /* UserInfoTBViewCell.swift in Sources */,
+				4004191F2495B4FE00AA49B5 /* RatingReviewTBViewCell.swift in Sources */,
 				40AC024624809DBE00AF3DEF /* RelatedComic.swift in Sources */,
 				40AC024824809DD200AF3DEF /* ReviewComic.swift in Sources */,
 				40AC024224809D2E00AF3DEF /* DetailComic.swift in Sources */,
@@ -605,6 +624,7 @@
 				408FD5AD2490D9E000511C5D /* EmptyReviewCLViewCell.swift in Sources */,
 				40AC02552480B45D00AF3DEF /* Comic.swift in Sources */,
 				4043DFAB24888AA3007A407F /* CellComicView.swift in Sources */,
+				4008126F2495270B004B2514 /* ReviewStatsView.swift in Sources */,
 				40C3EA0C248E3FEE002C94DE /* Urls.swift in Sources */,
 				40568F4D247B5C1600304422 /* BaseViewController.swift in Sources */,
 				4043DFAF24889934007A407F /* AllComicViewController.swift in Sources */,
@@ -640,15 +660,19 @@
 				4043DFB12488B0BC007A407F /* ComicDetailViewController.swift in Sources */,
 				404075B3248FD1C300060AE0 /* UIImage+Letter.swift in Sources */,
 				40568F4B247B5C1600304422 /* ApiBase.swift in Sources */,
+				400419192495A74D00AA49B5 /* AllReviewTBViewCell.swift in Sources */,
 				40C3EA08248E2D46002C94DE /* ComicRepository.swift in Sources */,
 				40420618247E57B7001BA2F8 /* ErrorResponse.swift in Sources */,
 				40D3874E2494CBD900421CFC /* ListReviewsViewController.swift in Sources */,
+				4004191B2495B04800AA49B5 /* ReviewStatsTBViewCell.swift in Sources */,
 				40AC024A24809E0B00AF3DEF /* FavoriteComic.swift in Sources */,
 				40D3874C2494CA2100421CFC /* WriteReviewViewController.swift in Sources */,
 				408FD5A52490C80600511C5D /* LineInfoComicTBViewCell.swift in Sources */,
 				407A600D2484883C0090D90C /* LoginViewController.swift in Sources */,
+				4008126D249502F2004B2514 /* StarBarView.swift in Sources */,
 				40568F5A247B5C1600304422 /* UITextField+.swift in Sources */,
 				408FD59D24909C3C00511C5D /* HeaderComicTBViewCell.swift in Sources */,
+				4004191E2495B4FE00AA49B5 /* TextViewFormCell.swift in Sources */,
 				40AC024E2480A93400AF3DEF /* UserInfo.swift in Sources */,
 				407122D7247E3793000F8F2D /* UserViewController.swift in Sources */,
 				4043DFA724888565007A407F /* Constants.swift in Sources */,

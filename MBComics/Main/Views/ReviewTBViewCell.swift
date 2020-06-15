@@ -8,25 +8,30 @@
 
 import UIKit
 import Cosmos
+import SnapKit
 import FontAwesome_swift
 
 protocol ReviewTBCellDelegate: class {
     func pushVCToListReview()
-    func pushVCToWriteReView()
+    func pushVCToWriteReView(initialRating: Int)
 }
 
 class ReviewTBViewCell: BaseTBCell {
     
     // MARK: - Outlets
-    var titleLabel = UILabel().then {
+    private let titleLabel = UILabel().then {
         $0.font = .boldSystemFont(ofSize: 20)
     }
     
-    private var collectionViewLayout = UICollectionViewFlowLayout().then {
+    private let statsView = ReviewStatsView().then {
+        $0.clipsToBounds = true
+    }
+    
+    private let collectionViewLayout = UICollectionViewFlowLayout().then {
         $0.scrollDirection = .horizontal
     }
     
-    lazy var collectionView = UICollectionView(frame: .zero,
+    private lazy var collectionView = UICollectionView(frame: .zero,
                                                collectionViewLayout: collectionViewLayout).then {
         $0.backgroundColor = .clear
         $0.showsHorizontalScrollIndicator = false
@@ -38,14 +43,14 @@ class ReviewTBViewCell: BaseTBCell {
         EmptyReviewCLViewCell.registerCellByClass($0)
     }
     
-    lazy var seeAllLabel = UILabel().then {
+    private lazy var seeAllLabel = UILabel().then {
         $0.textColor = .systemBlue
         $0.font = .systemFont(ofSize: 14)
         $0.text = "See All"
         $0.addTapGesture(target: self, action: #selector(tapSeeAll))
     }
     
-    lazy var rating = CosmosView().then {
+    private lazy var rating = CosmosView().then {
         var options = CosmosSettings()
         options.updateOnTouch = true
         options.starSize = 30
@@ -58,17 +63,17 @@ class ReviewTBViewCell: BaseTBCell {
         $0.settings = options
         $0.rating = 0
         $0.didFinishTouchingCosmos = { [weak self] (ratingPoint) in
-            self?.delegate?.pushVCToWriteReView()
+            self?.delegate?.pushVCToWriteReView(initialRating: Int(ratingPoint))
         }
     }
     
-    lazy var tapToRateLabel = UILabel().then {
+    private lazy var tapToRateLabel = UILabel().then {
         $0.textColor = .systemGray
         $0.text = "Tap to Rate:"
-        $0.font = .systemFont(ofSize: 14)
+        $0.font = .systemFont(ofSize: 16)
     }
     
-    lazy var writeReviewLabel = UILabel().then {
+    private lazy var writeReviewLabel = UILabel().then {
         let icon = NSTextAttachment()
         icon.image = UIImage.fontAwesomeIcon(name: .commentDots,
                                              style: .regular,
@@ -88,13 +93,14 @@ class ReviewTBViewCell: BaseTBCell {
         $0.addTapGesture(target: self, action: #selector(tapReview))
     }
     
+    var statsViewHeightConstraint: Constraint?
     // MARK: - Values
     weak var delegate: ReviewTBCellDelegate?
     
-    var cellIndexPath = 0
-    var isInRecently = false
-    var cellHeight = 0
-    var reviews = [ReviewComic]() {
+    private var cellIndexPath = 0
+    private var isInRecently = false
+    private var cellHeight = 0
+    private var reviews = [ReviewComic]() {
         didSet {
             collectionView.reloadData()
         }
@@ -107,6 +113,7 @@ class ReviewTBViewCell: BaseTBCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         contentView.addSubviews([titleLabel,
+                                 statsView,
                                  collectionView,
                                  seeAllLabel,
                                  tapToRateLabel,
@@ -129,10 +136,21 @@ class ReviewTBViewCell: BaseTBCell {
         
         initLayout()
         updateView()
+        let ratePoint = reviews.reduce(0.0, { $0 + Double($1.ratePoint) })
+        if reviews.isEmpty {
+            statsView.isHidden = true
+            hideRateStats()
+        } else {
+            statsView.isHidden = false
+            showRateStats()
+            statsView.initData(reviews: reviews,
+                               ratePoint: ratePoint/Double(reviews.count),
+                               rateCount: reviews.count)
+        }
     }
     
     // MARK: - Actions
-    func addGesture() {
+    private func addGesture() {
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeRight))
         swipeRight.direction = UISwipeGestureRecognizer.Direction.right
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeLeft))
@@ -142,7 +160,7 @@ class ReviewTBViewCell: BaseTBCell {
         collectionView.addGestureRecognizer(swipeRight)
     }
     
-    @objc func swipeLeft() {
+    @objc private func swipeLeft() {
         if cellIndexPath < reviews.count - 1 {
             cellIndexPath += 1
             collectionView.scrollToItem(at: IndexPath(item: cellIndexPath,
@@ -152,7 +170,7 @@ class ReviewTBViewCell: BaseTBCell {
         }
         
     }
-    @objc func swipeRight() {
+    @objc private func swipeRight() {
         if cellIndexPath > 0 {
             cellIndexPath -= 1
             collectionView.scrollToItem(at: IndexPath(item: self.cellIndexPath,
@@ -161,28 +179,40 @@ class ReviewTBViewCell: BaseTBCell {
                                         animated: true)
         }
     }
-    func updateView() {
+    private func updateView() {
         rating.isHidden = !isInRecently
         tapToRateLabel.isHidden = !isInRecently
         writeReviewLabel.isHidden = !isInRecently
     }
     
-    @objc func tapSeeAll() {
+    @objc private func tapSeeAll() {
         delegate?.pushVCToListReview()
     }
     
-    @objc func tapReview() {
-        delegate?.pushVCToWriteReView()
+    @objc private func tapReview() {
+        delegate?.pushVCToWriteReView(initialRating: 0)
     }
 
     // MARK: - setLayout
-    func initLayout() {
+    private func initLayout() {
         titleLabel.snp.makeConstraints { make in
             make.left.top.equalTo(20)
         }
         
+        statsView.addLineToView(position: .bottom)
+        
+        tapToRateLabel.snp.makeConstraints { make in
+            make.left.equalTo(20)
+            make.centerY.equalTo(rating)
+        }
+        
+        rating.snp.makeConstraints { make in
+            make.right.equalTo(-20)
+            make.top.equalTo(statsView.snp.bottom).offset(20)
+        }
+        
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(rating.snp.bottom).offset(5)
+            make.top.equalTo(rating.snp.bottom).offset(10)
             make.right.equalTo(0)
             make.left.equalTo(0)
             make.height.equalTo(cellHeight)
@@ -193,20 +223,25 @@ class ReviewTBViewCell: BaseTBCell {
             make.centerY.equalTo(writeReviewLabel)
         }
         
-        tapToRateLabel.snp.makeConstraints { make in
-            make.left.equalTo(20)
-            make.centerY.equalTo(rating)
-        }
-        
-        rating.snp.makeConstraints { make in
-            make.right.equalTo(-20)
-            make.top.equalTo(titleLabel.snp.bottom).offset(0)
-        }
-        
         writeReviewLabel.snp.makeConstraints { make in
             make.left.equalTo(20)
             make.top.equalTo(collectionView.snp.bottom).offset(5)
             make.bottom.equalTo(-20)
+        }
+    }
+    
+    private func showRateStats() {
+        statsView.snp.remakeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom)
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
+        }
+    }
+    
+    private func hideRateStats() {
+        statsView.snp.remakeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom)
+            make.height.equalTo(0)
         }
     }
 }

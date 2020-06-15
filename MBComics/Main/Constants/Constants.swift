@@ -68,3 +68,19 @@ enum ComicInfo {
     static let contactUs = "Contact Us"
     static let email = "hoapq.4398@gmail.com"
 }
+
+// Review
+enum ReviewField {
+    static let ratePoint = "rate_point"
+    static let content = "content"
+    static let contentPlaceholder = "Write your review"
+    static let ratePointIndex = 0
+    static let contentIndex = 1
+    static let totalFields = 2
+}
+
+enum ListReview {
+    static let totalSections = 2
+    static let statsSection = 0
+    static let reviewsSection = 1
+}
