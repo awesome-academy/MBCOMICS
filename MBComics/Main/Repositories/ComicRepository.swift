@@ -14,6 +14,7 @@ protocol ComicRepositoryType {
     func getDetailComic(comicId: Int, completion: @escaping (ErrorResponse?, DetailComic?) -> Void)
     func getReviews(of comicId: Int, completion: @escaping (Error?, [ReviewComic]) -> Void)
     func writeReview(for comicId: Int, content: String, ratePoint: Int, user: UserInfo, completion: @escaping (Error?) -> Void)
+    func searchByName(of query: String, completion: @escaping (ErrorResponse?, [SearchComic]) -> Void)
 }
 
 struct ComicRepository: ComicRepositoryType {
@@ -94,6 +95,26 @@ struct ComicRepository: ComicRepositoryType {
         }
     }
     
+    func getReviewInfo(of comics: [Comic], completion: @escaping ([Comic]) -> Void) {
+        let group = DispatchGroup()
+        var results = [Comic]()
+        comics.forEach {
+            var comic = $0
+            group.enter()
+            getReviewInfo(of: comic.id) { (info) in
+                if let info = info {
+                    comic.ratingInfo = info
+                }
+                results.append(comic)
+                group.leave()
+            }
+        }
+        
+        group.notify(queue: .main) {
+            completion(results)
+        }
+    }
+    
     private func updateReviews(of comicId: Int) {
         let ref = Database.database().reference().child("Reviews")
         let refRate = Database.database().reference().child("Comics")
@@ -123,6 +144,21 @@ struct ComicRepository: ComicRepositoryType {
         ref.child(review.reviewId).updateChildValues(review.representation) { (error, _) in
             self.updateReviews(of: comicId)
             completion(error)
+        }
+    }
+    
+    func searchByName(of query: String, completion: @escaping (ErrorResponse?, [SearchComic]) -> Void) {
+        api.request(urlString: AppUrl.searchUrl,
+                    httpMethod: .get,
+                    header: nil,
+                    param: ["q": query],
+                    body: nil) { (_, error, json) in
+            if let json = json {
+                let comics = json.arrayValue.map { SearchComic($0) }
+                completion(nil, comics)
+            } else {
+                completion(error, [])
+            }
         }
     }
 }

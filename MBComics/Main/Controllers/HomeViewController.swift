@@ -115,32 +115,21 @@ class HomeViewController: UIViewController {
     
     private func getRatingInfos(completion: @escaping () -> Void) {
         let group = DispatchGroup()
-        let tmpPopular = popularComics
-        popularComics.removeAll()
-        tmpPopular.forEach {
-            var comic = $0
-            group.enter()
-            comicsRepository.getReviewInfo(of: comic.id) { [weak self] (info) in
-                if let info = info {
-                    comic.ratingInfo = info
-                }
-                self?.popularComics.append(comic)
-                group.leave()
+        
+        group.enter()
+        comicsRepository.getReviewInfo(of: popularComics) { [weak self] (results) in
+            if let results = results as? [HomeComic] {
+                self?.popularComics = results
             }
+            group.leave()
         }
         
-        let tmpNewsest = newestComics
-        newestComics.removeAll()
-        tmpNewsest.forEach {
-            var comic = $0
-            group.enter()
-            comicsRepository.getReviewInfo(of: comic.id) { (info) in
-                if let info = info {
-                    comic.ratingInfo = info
-                }
-                self.newestComics.append(comic)
-                group.leave()
+        group.enter()
+        comicsRepository.getReviewInfo(of: newestComics) { [weak self] (results) in
+            if let results = results as? [HomeComic] {
+                self?.newestComics = results
             }
+            group.leave()
         }
         
         group.notify(queue: .main) {
