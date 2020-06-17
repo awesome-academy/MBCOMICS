@@ -36,8 +36,8 @@ class BaseCustomNibView: UIView {
     
     override func updateConstraints() {
         super.updateConstraints()
-        self.contentView.snp.remakeConstraints { make in
-            make.edges.equalToSuperview()
+        self.contentView.snp.remakeConstraints {
+           $0.edges.equalToSuperview()
         }
     }
 }

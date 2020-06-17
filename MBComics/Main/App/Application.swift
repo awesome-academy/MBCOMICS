@@ -16,6 +16,8 @@ final class Application {
         
     }
     
+    var changeRootViewController: (() -> Void)?
+    
     func initApplication(with window: UIWindow?) {
         guard let window = window else { return }
         window.makeKeyAndVisible()
@@ -26,7 +28,7 @@ final class Application {
         }
     }
     
-    func createTabbar() -> UITabBarController {
+    private func createTabbar() -> UITabBarController {
         let tabbar = UITabBarController()
         
         let createNav = { (viewController: UIViewController) in

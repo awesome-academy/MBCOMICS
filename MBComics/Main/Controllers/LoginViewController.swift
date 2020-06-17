@@ -16,28 +16,28 @@ import Then
 class LoginViewController: UIViewController {
     
     // MARK: - Outlets
-    lazy var logoImageView = UIImageView().then {
+    private lazy var logoImageView = UIImageView().then {
         $0.image = #imageLiteral(resourceName: "ic_app")
         $0.contentMode = .scaleAspectFill
     }
     
-    lazy var backgroundView = UIImageView().then {
+    private lazy var backgroundView = UIImageView().then {
         $0.image = #imageLiteral(resourceName: "background")
         $0.contentMode = .scaleAspectFill
     }
     
-    lazy var blurView = UIVisualEffectView().then {
+    private lazy var blurView = UIVisualEffectView().then {
         $0.effect = UIBlurEffect(style: .light)
         $0.alpha = 0.9
     }
     
-    lazy var facebookButton = FBLoginButton().then {
+    private lazy var facebookButton = FBLoginButton().then {
         if let facebookButtonHeightConstraint = $0.constraints.first(where: { $0.firstAttribute == .height }) {
             $0.removeConstraint(facebookButtonHeightConstraint)
         }
     }
     
-    lazy var googleButton = GIDSignInButton().then {
+    private lazy var googleButton = GIDSignInButton().then {
         $0.style = .wide
     }
     
@@ -54,7 +54,7 @@ class LoginViewController: UIViewController {
     }
     
     // MARK: - Layouts
-    func setUpViews() {
+    private func setUpViews() {
         self.navigationController?.isNavigationBarHidden = true
         
         view.do {
@@ -72,33 +72,33 @@ class LoginViewController: UIViewController {
         facebookButton.delegate = self
     }
     
-    func setUpConstraints() {
-        backgroundView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+    private func setUpConstraints() {
+        backgroundView.snp.makeConstraints {
+           $0.edges.equalToSuperview()
         }
         
-        blurView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        blurView.snp.makeConstraints {
+           $0.edges.equalToSuperview()
         }
         
-        logoImageView.snp.makeConstraints { make in
-            make.width.equalTo(logoImageView.snp.height)
-            make.centerX.equalToSuperview()
+        logoImageView.snp.makeConstraints {
+           $0.width.equalTo(logoImageView.snp.height)
+           $0.centerX.equalToSuperview()
             let width = min(view.width*0.3, 150)
-            make.width.equalTo(width)
-            make.centerY.equalToSuperview().offset(-view.height/4)
+           $0.width.equalTo(width)
+           $0.centerY.equalToSuperview().offset(-view.height/4)
         }
         logoImageView.applyCornerRadius(radius: 24)
         
-        googleButton.snp.makeConstraints { make in
-            make.centerY.equalToSuperview().offset(view.height/8)
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(facebookButton.snp.top).offset(-16)
+        googleButton.snp.makeConstraints {
+           $0.centerY.equalToSuperview().offset(view.height/8)
+           $0.centerX.equalToSuperview()
+           $0.bottom.equalTo(facebookButton.snp.top).offset(-16)
         }
         
-        facebookButton.snp.makeConstraints { make in
-            make.width.height.equalTo(googleButton).inset(3)
-            make.centerX.equalToSuperview()
+        facebookButton.snp.makeConstraints {
+           $0.width.height.equalTo(googleButton).inset(3)
+           $0.centerX.equalToSuperview()
         }
     }
 }
@@ -110,9 +110,8 @@ extension LoginViewController: GIDSignInDelegate, LoginButtonDelegate {
             showAlert(title: "Error", message: error.localizedDescription)
         } else {
             userRepository.setUpCurrentUser()
-            showAlert(title: "Success", message: "Login Successful.") { [weak self] in
-                let tabbarController = Application.shared.createTabbar()
-                self?.navigationController?.changeRootViewController(tabbarController)
+            showAlert(title: "Success", message: "Login Successful.") {
+                Application.shared.changeRootViewController?()
             }
         }
     }
@@ -148,6 +147,6 @@ extension LoginViewController: GIDSignInDelegate, LoginButtonDelegate {
     }
     
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
-        // TODO
+        
     }
 }

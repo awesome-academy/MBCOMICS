@@ -76,8 +76,8 @@ class ComicDetailViewController: BaseViewController {
     }
     
     private func setUpConstraints() {
-        tableView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide.snp.margins)
+        tableView.snp.makeConstraints {
+           $0.edges.equalTo(view.safeAreaLayoutGuide.snp.margins)
         }
     }
     
@@ -147,7 +147,7 @@ extension ComicDetailViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let comic = comic, let user = AppInfo.currentUser else { return BaseTBCell() }
+        guard let comic = comic else { return BaseTBCell() }
         
         switch DetailCellIndex(rawValue: indexPath.item) ?? .headerIndex {
         case .headerIndex:

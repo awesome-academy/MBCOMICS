@@ -199,53 +199,53 @@ class ReviewTBViewCell: BaseTBCell {
 
     // MARK: - setLayout
     private func initLayout() {
-        titleLabel.snp.makeConstraints { make in
-            make.left.top.equalTo(20)
+        titleLabel.snp.makeConstraints {
+           $0.left.top.equalTo(20)
         }
         
         statsView.addLineToView(position: .bottom)
         
-        tapToRateLabel.snp.makeConstraints { make in
-            make.left.equalTo(20)
-            make.centerY.equalTo(rating)
+        tapToRateLabel.snp.makeConstraints {
+           $0.left.equalTo(20)
+           $0.centerY.equalTo(rating)
         }
         
-        rating.snp.makeConstraints { make in
-            make.right.equalTo(-20)
-            make.top.equalTo(statsView.snp.bottom).offset(20)
+        rating.snp.makeConstraints {
+           $0.right.equalTo(-20)
+           $0.top.equalTo(statsView.snp.bottom).offset(20)
         }
         
-        collectionView.snp.makeConstraints { make in
-            make.top.equalTo(rating.snp.bottom).offset(10)
-            make.right.equalTo(0)
-            make.left.equalTo(0)
-            make.height.equalTo(cellHeight)
+        collectionView.snp.makeConstraints {
+           $0.top.equalTo(rating.snp.bottom).offset(10)
+           $0.right.equalTo(0)
+           $0.left.equalTo(0)
+           $0.height.equalTo(cellHeight)
         }
         
-        seeAllLabel.snp.makeConstraints { make in
-            make.right.equalTo(-20)
-            make.centerY.equalTo(writeReviewLabel)
+        seeAllLabel.snp.makeConstraints {
+           $0.right.equalTo(-20)
+           $0.centerY.equalTo(writeReviewLabel)
         }
         
-        writeReviewLabel.snp.makeConstraints { make in
-            make.left.equalTo(20)
-            make.top.equalTo(collectionView.snp.bottom).offset(5)
-            make.bottom.equalTo(-20)
+        writeReviewLabel.snp.makeConstraints {
+           $0.left.equalTo(20)
+           $0.top.equalTo(collectionView.snp.bottom).offset(10)
+           $0.bottom.equalTo(-20)
         }
     }
     
     private func showRateStats() {
-        statsView.snp.remakeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+        statsView.snp.remakeConstraints {
+           $0.top.equalTo(titleLabel.snp.bottom)
+           $0.left.equalToSuperview().offset(20)
+           $0.right.equalToSuperview().offset(-20)
         }
     }
     
     private func hideRateStats() {
-        statsView.snp.remakeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom)
-            make.height.equalTo(0)
+        statsView.snp.remakeConstraints {
+           $0.top.equalTo(titleLabel.snp.bottom)
+           $0.height.equalTo(0)
         }
     }
 }

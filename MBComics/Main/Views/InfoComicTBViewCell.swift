@@ -54,14 +54,14 @@ class InfoComicTBViewCell: BaseTBCell {
     }
     
     func initLayout() {
-        self.titleLabel.snp.makeConstraints { make in
-            make.top.left.equalTo(20)
+        self.titleLabel.snp.makeConstraints {
+           $0.top.left.equalTo(20)
         }
-        self.stackView.snp.makeConstraints { make in
-            make.left.equalTo(20)
-            make.right.equalTo(-20)
-            make.top.equalTo(titleLabel.snp.bottom).offset(10)
-            make.bottom.equalTo(-20)
+        self.stackView.snp.makeConstraints {
+           $0.left.equalTo(20)
+           $0.right.equalTo(-20)
+           $0.top.equalTo(titleLabel.snp.bottom).offset(10)
+           $0.bottom.equalTo(-20)
         }
     }
 }

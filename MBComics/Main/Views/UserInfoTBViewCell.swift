@@ -68,21 +68,21 @@ class UserInfoTBViewCell: BaseTBCell {
     }
     
     func setUpConstraints() {
-        avatarView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(20)
-            make.centerX.equalToSuperview()
-            make.width.height.equalTo(imgHeight)
+        avatarView.snp.makeConstraints {
+           $0.top.equalToSuperview().offset(20)
+           $0.centerX.equalToSuperview()
+           $0.width.height.equalTo(imgHeight)
         }
         
-        titleLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(avatarView.snp.bottom).offset(20)
+        titleLabel.snp.makeConstraints {
+           $0.centerX.equalToSuperview()
+           $0.top.equalTo(avatarView.snp.bottom).offset(20)
         }
         
-        subTitleLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(titleLabel.snp.bottom)
-            make.bottom.equalToSuperview().offset(-30)
+        subTitleLabel.snp.makeConstraints {
+           $0.centerX.equalToSuperview()
+           $0.top.equalTo(titleLabel.snp.bottom)
+           $0.bottom.equalToSuperview().offset(-30)
         }
     }
 }

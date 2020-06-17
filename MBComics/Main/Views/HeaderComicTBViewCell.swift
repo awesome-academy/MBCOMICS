@@ -176,74 +176,74 @@ class HeaderComicTBViewCell: BaseTBCell {
     
     // MARK: - set Sub-Layout
     private func setImgLayout(imgHeight: Int) {
-        posterView.snp.makeConstraints { make in
-            make.left.equalTo(20)
-            make.top.equalTo(20)
-            make.width.equalTo(imgHeight*3/4)
-            make.height.equalTo(imgHeight)
+        posterView.snp.makeConstraints {
+           $0.left.equalTo(20)
+           $0.top.equalTo(20)
+           $0.width.equalTo(imgHeight*3/4)
+           $0.height.equalTo(imgHeight)
         }
     }
     
     private func setTitleLayout() {
-        titleLabel.snp.makeConstraints { make in
-            make.left.equalTo(posterView.snp.right).offset(15)
-            make.right.equalTo(-20)
-            make.top.equalTo(posterView.snp.top)
+        titleLabel.snp.makeConstraints {
+           $0.left.equalTo(posterView.snp.right).offset(15)
+           $0.right.equalTo(-20)
+           $0.top.equalTo(posterView.snp.top)
         }
     }
     
     private func setSubTitleLayout() {
-        subTitleLabel.snp.makeConstraints { make in
-            make.left.equalTo(posterView.snp.right).offset(15)
-            make.right.equalTo(self)
-            make.top.equalTo(titleLabel.snp.bottom).offset(1)
+        subTitleLabel.snp.makeConstraints {
+           $0.left.equalTo(posterView.snp.right).offset(15)
+           $0.right.equalTo(self)
+           $0.top.equalTo(titleLabel.snp.bottom).offset(1)
         }
     }
     
     private func setReadButtonLayout() {
-        readButton.snp.makeConstraints { make in
-            make.left.equalTo(posterView.snp.right).offset(15)
-            make.bottom.equalTo(posterView.snp.bottom)
-            make.width.equalTo(80)
-            make.height.equalTo(30)
+        readButton.snp.makeConstraints {
+           $0.left.equalTo(posterView.snp.right).offset(15)
+           $0.bottom.equalTo(posterView.snp.bottom)
+           $0.width.equalTo(80)
+           $0.height.equalTo(30)
         }
     }
     
     private func setFvrBtnLayout() {
-        favoriteButton.snp.makeConstraints { make in
-            make.right.equalTo(-20)
-            make.bottom.equalTo(posterView.snp.bottom)
-            make.height.equalTo(30)
+        favoriteButton.snp.makeConstraints {
+           $0.right.equalTo(-20)
+           $0.bottom.equalTo(posterView.snp.bottom)
+           $0.height.equalTo(30)
         }
     }
     
     private func setRatingPointLayout() {
-        ratingPointLabel.snp.makeConstraints { make in
-            make.left.equalTo(20)
-            make.centerY.equalTo(ratingView)
-            make.top.equalTo(posterView.snp.bottom).offset(15)
+        ratingPointLabel.snp.makeConstraints {
+           $0.left.equalTo(20)
+           $0.centerY.equalTo(ratingView)
+           $0.top.equalTo(posterView.snp.bottom).offset(15)
         }
     }
     
     private func setRatingLayout() {
-        ratingView.snp.makeConstraints { make in
-            make.left.equalTo(ratingPointLabel.snp.right).offset(2)
-//            make.top.equalTo(img.snp.bottom).offset(2)
+        ratingView.snp.makeConstraints {
+           $0.left.equalTo(ratingPointLabel.snp.right).offset(2)
+//           $0.top.equalTo(img.snp.bottom).offset(2)
         }
     }
     
     private func setRatingCountLayout() {
-        ratingCountLabel.snp.makeConstraints { make in
-            make.left.equalTo(ratingPointLabel.snp.left)
-            make.top.equalTo(ratingView.snp.bottom)
-            make.bottom.equalTo(-20)
+        ratingCountLabel.snp.makeConstraints {
+           $0.left.equalTo(ratingPointLabel.snp.left)
+           $0.top.equalTo(ratingView.snp.bottom)
+           $0.bottom.equalTo(-20)
         }
     }
     
     private func setYearLabelLayout() {
-        yearLabel.snp.makeConstraints { make in
-            make.right.equalTo(-20)
-            make.top.equalTo(ratingPointLabel.snp.top)
+        yearLabel.snp.makeConstraints {
+           $0.right.equalTo(-20)
+           $0.top.equalTo(ratingPointLabel.snp.top)
         }
     }
     

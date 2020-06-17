@@ -31,8 +31,8 @@ class EmptyReviewCLViewCell: BaseCLCell {
   
     // MARK: - Layouts
     func initLayout() {
-        self.descriptionLabel.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
+        self.descriptionLabel.snp.makeConstraints {
+           $0.centerX.centerY.equalToSuperview()
         }
     }
 }

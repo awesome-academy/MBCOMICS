@@ -17,6 +17,7 @@ class ReadingViewController: UIViewController {
         $0.pageIndicator = LabelPageIndicator()
         $0.zoomEnabled = true
         $0.circular = false
+        $0.activityIndicator = DefaultActivityIndicator()
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(tap))
         singleTap.numberOfTapsRequired = 1
         $0.addGestureRecognizer(singleTap)

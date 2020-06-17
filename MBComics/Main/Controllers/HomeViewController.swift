@@ -17,7 +17,7 @@ class HomeViewController: UIViewController {
         $0.attributedTitle = NSAttributedString(string: "Pull to refresh")
     }
     
-    lazy var tableView = TableView().then {
+    private lazy var tableView = TableView().then {
         $0.estimatedRowHeight = UITableView.automaticDimension
         $0.delegate = self
         $0.dataSource = self
@@ -32,8 +32,8 @@ class HomeViewController: UIViewController {
     private let userRepository = UserRepository(api: APIService.shared)
     private let comicsRepository = ComicRepository(api: APIService.shared)
     
-    var newestComics = [HomeComic]()
-    var popularComics = [HomeComic]()
+    private var newestComics = [HomeComic]()
+    private var popularComics = [HomeComic]()
 
     // MARK: - LifeCycles
     override func viewDidLoad() {
@@ -57,7 +57,7 @@ class HomeViewController: UIViewController {
     }
 
     // MARK: - Layouts
-    func setUpViews() {
+    private func setUpViews() {
         view.backgroundColor = .white
         title = "MBComics"
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -66,18 +66,18 @@ class HomeViewController: UIViewController {
         view.addSubview(tableView)
     }
     
-    func setUpConstraints() {
-        tableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+    private func setUpConstraints() {
+        tableView.snp.makeConstraints {
+           $0.edges.equalToSuperview()
         }
     }
     
     // MARK: - Actions
-    @objc func refreshData() {
+    @objc private func refreshData() {
         getData(type: .refresh)
     }
     
-    func getData(type: APIType = .normal) {
+    private func getData(type: APIType = .normal) {
         if type == .normal {
             tableView.isHidden = true
             showPopupLoading()
@@ -85,6 +85,7 @@ class HomeViewController: UIViewController {
         comicsRepository.getHomeComics { [weak self] (error, popular, newest) in
             DispatchQueue.main.async {
                 self?.hidePopupLoading()
+                self?.tableView.isHidden = false
                 self?.handleHomeApi(error: error,
                                     popularComics: popular,
                                     newestComics: newest)
@@ -92,9 +93,9 @@ class HomeViewController: UIViewController {
         }
     }
     
-    func handleHomeApi(error: ErrorResponse?,
-                       popularComics: [HomeComic],
-                       newestComics: [HomeComic]) {
+    private func handleHomeApi(error: ErrorResponse?,
+                               popularComics: [HomeComic],
+                               newestComics: [HomeComic]) {
         if let error = error {
             let message = NSAttributedString(string: error.message)
             if error.type == .noInternet {
@@ -107,7 +108,7 @@ class HomeViewController: UIViewController {
         } else {
             self.newestComics = newestComics
             self.popularComics = popularComics
-            self.getRatingInfos { [weak self] in
+            getRatingInfos { [weak self] in
                 self?.updateData()
             }
         }
@@ -138,7 +139,6 @@ class HomeViewController: UIViewController {
     }
     
     private func updateData() {
-        tableView.isHidden = false
         refreshControl.endRefreshing()
         tableView.setState(.dataAvailable(viewController: self))
         tableView.reloadData()

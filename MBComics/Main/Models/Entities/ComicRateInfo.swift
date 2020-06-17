@@ -34,7 +34,7 @@ struct ComicRateInfo {
 }
 
 extension ComicRateInfo: DatabaseRepresentable {
-    var representation: [String : Any] {
+    var representation: [String: Any] {
         return ["rate_point": ratePoint.roundToPlaces(1),
                 "rate_count": rateCount]
     }

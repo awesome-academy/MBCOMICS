@@ -12,7 +12,7 @@ import FirebaseAuth
 class UserViewController: BaseViewController {
     
     // MARK: - Outlets
-    lazy var tableView = UITableView().then {
+    private lazy var tableView = UITableView().then {
         $0.estimatedRowHeight = UITableView.automaticDimension
         $0.delegate = self
         $0.dataSource = self
@@ -24,7 +24,7 @@ class UserViewController: BaseViewController {
         $0.alwaysBounceVertical = false
     }
     
-    lazy var logOutLabel = UILabel().then {
+    private lazy var logOutLabel = UILabel().then {
         $0.textAlignment = .center
         $0.layer.masksToBounds = true
         $0.layer.cornerRadius = 15
@@ -56,7 +56,7 @@ class UserViewController: BaseViewController {
     }
     
     // MARK: - Layouts
-    func setUpViews() {
+    private func setUpViews() {
         isNavigationBarHidden = true
         view.backgroundColor = .white
         title = "User"
@@ -67,23 +67,23 @@ class UserViewController: BaseViewController {
         logOutLabel.addTapGesture(target: self, action: #selector(signOut))
     }
     
-    func setUpConstraints() {
-        tableView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.topMargin)
-            make.left.right.equalToSuperview()
+    private func setUpConstraints() {
+        tableView.snp.makeConstraints {
+           $0.top.equalTo(view.safeAreaLayoutGuide.snp.topMargin)
+           $0.left.right.equalToSuperview()
         }
         
-        logOutLabel.snp.makeConstraints { make in
-            make.top.equalTo(tableView.snp.bottom)
-            make.left.equalTo(20)
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottomMargin).offset(-20)
-            make.height.equalTo(55)
+        logOutLabel.snp.makeConstraints {
+           $0.top.equalTo(tableView.snp.bottom)
+           $0.left.equalTo(20)
+           $0.centerX.equalToSuperview()
+           $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottomMargin).offset(-20)
+           $0.height.equalTo(55)
         }
     }
     
     // MARK: - Actions
-    @objc func signOut() {
+    @objc private func signOut() {
         showAlertConfirm(title: "Sign Out",
                          message: "Good bye! Are you sure want to sign out?",
                          confirmHandler: { [weak self] in
@@ -91,7 +91,7 @@ class UserViewController: BaseViewController {
         })
     }
     
-    func onSignOutConfirm() {
+    private func onSignOutConfirm() {
         showPopupLoading()
         userRepository.signOut { [weak self] (error) in
             DispatchQueue.main.async {
@@ -99,8 +99,7 @@ class UserViewController: BaseViewController {
                 if let error = error {
                     self?.showAlert(title: "Error", message: error.localizedDescription)
                 } else {
-                    let loginVC = LoginViewController()
-                    self?.tabBarController?.navigationController?.changeRootViewController(loginVC)
+                    Application.shared.changeRootViewController?()
                 }
             }
         }

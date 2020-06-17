@@ -65,20 +65,20 @@ class ReviewContentCell: UIView {
     
     // MARK: - Layouts
     func initLayout() {
-        infoReviewLabel.snp.makeConstraints { make in
-            make.top.equalTo(10)
-            make.right.equalTo(-10)
-            make.centerY.equalTo(ratingView)
+        infoReviewLabel.snp.makeConstraints {
+           $0.top.equalTo(10)
+           $0.right.equalTo(-10)
+           $0.centerY.equalTo(ratingView)
         }
         
-        ratingView.snp.makeConstraints { make in
-            make.left.equalTo(10)
+        ratingView.snp.makeConstraints {
+           $0.left.equalTo(10)
         }
         
-        commentLabel.snp.makeConstraints { make in
-            make.left.equalTo(ratingView.snp.left)
-            make.right.equalTo(infoReviewLabel.snp.right)
-            make.top.equalTo(infoReviewLabel.snp.bottom).offset(10)
+        commentLabel.snp.makeConstraints {
+           $0.left.equalTo(ratingView.snp.left)
+           $0.right.equalTo(infoReviewLabel.snp.right)
+           $0.top.equalTo(infoReviewLabel.snp.bottom).offset(10)
         }
     }
 }
