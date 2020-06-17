@@ -15,6 +15,12 @@
 		400419212495CD7C00AA49B5 /* ComicRateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400419202495CD7C00AA49B5 /* ComicRateInfo.swift */; };
 		4008126D249502F2004B2514 /* StarBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4008126C249502F2004B2514 /* StarBarView.swift */; };
 		4008126F2495270B004B2514 /* ReviewStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4008126E2495270B004B2514 /* ReviewStatsView.swift */; };
+		401A21D92499AC5A008F2E7F /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401A21D82499AC5A008F2E7F /* BaseRequest.swift */; };
+		401A21DB2499AFA7008F2E7F /* HomeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401A21DA2499AFA7008F2E7F /* HomeRequest.swift */; };
+		401A21DD2499AFF8008F2E7F /* SearchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401A21DC2499AFF8008F2E7F /* SearchRequest.swift */; };
+		401A21DF2499B0B2008F2E7F /* DetailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401A21DE2499B0B2008F2E7F /* DetailRequest.swift */; };
+		401A21E12499B29E008F2E7F /* DetailIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401A21E02499B29E008F2E7F /* DetailIssue.swift */; };
+		401A21E32499B38C008F2E7F /* IssueRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401A21E22499B38C008F2E7F /* IssueRequest.swift */; };
 		402D951E24931BB9002E686B /* LineInfoComic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402D951D24931BB9002E686B /* LineInfoComic.swift */; };
 		404075B3248FD1C300060AE0 /* UIImage+Letter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404075B2248FD1C300060AE0 /* UIImage+Letter.swift */; };
 		40420616247E53B9001BA2F8 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40420615247E53B9001BA2F8 /* APIService.swift */; };
@@ -91,6 +97,12 @@
 		400419202495CD7C00AA49B5 /* ComicRateInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicRateInfo.swift; sourceTree = "<group>"; };
 		4008126C249502F2004B2514 /* StarBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarBarView.swift; sourceTree = "<group>"; };
 		4008126E2495270B004B2514 /* ReviewStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewStatsView.swift; sourceTree = "<group>"; };
+		401A21D82499AC5A008F2E7F /* BaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequest.swift; sourceTree = "<group>"; };
+		401A21DA2499AFA7008F2E7F /* HomeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRequest.swift; sourceTree = "<group>"; };
+		401A21DC2499AFF8008F2E7F /* SearchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRequest.swift; sourceTree = "<group>"; };
+		401A21DE2499B0B2008F2E7F /* DetailRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRequest.swift; sourceTree = "<group>"; };
+		401A21E02499B29E008F2E7F /* DetailIssue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailIssue.swift; sourceTree = "<group>"; };
+		401A21E22499B38C008F2E7F /* IssueRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueRequest.swift; sourceTree = "<group>"; };
 		402D951D24931BB9002E686B /* LineInfoComic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineInfoComic.swift; sourceTree = "<group>"; };
 		404075B2248FD1C300060AE0 /* UIImage+Letter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Letter.swift"; sourceTree = "<group>"; };
 		40420615247E53B9001BA2F8 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -172,6 +184,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		401A21D72499AC46008F2E7F /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				401A21D82499AC5A008F2E7F /* BaseRequest.swift */,
+				401A21DA2499AFA7008F2E7F /* HomeRequest.swift */,
+				401A21DC2499AFF8008F2E7F /* SearchRequest.swift */,
+				401A21DE2499B0B2008F2E7F /* DetailRequest.swift */,
+				401A21E22499B38C008F2E7F /* IssueRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
 		404075B1248FD1B400060AE0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +216,7 @@
 		40420611247E5339001BA2F8 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				401A21D72499AC46008F2E7F /* Request */,
 				40420615247E53B9001BA2F8 /* APIService.swift */,
 				40420617247E57B7001BA2F8 /* ErrorResponse.swift */,
 			);
@@ -214,6 +239,7 @@
 				40AC024D2480A93400AF3DEF /* UserInfo.swift */,
 				402D951D24931BB9002E686B /* LineInfoComic.swift */,
 				400419202495CD7C00AA49B5 /* ComicRateInfo.swift */,
+				401A21E02499B29E008F2E7F /* DetailIssue.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -620,8 +646,12 @@
 				408FD5A12490C0C700511C5D /* SumaryComicTBViewCell.swift in Sources */,
 				40C3EA0A248E38EE002C94DE /* UserInfoTBViewCell.swift in Sources */,
 				4004191F2495B4FE00AA49B5 /* RatingReviewTBViewCell.swift in Sources */,
+				401A21DD2499AFF8008F2E7F /* SearchRequest.swift in Sources */,
+				401A21DB2499AFA7008F2E7F /* HomeRequest.swift in Sources */,
 				40AC024624809DBE00AF3DEF /* RelatedComic.swift in Sources */,
+				401A21E32499B38C008F2E7F /* IssueRequest.swift in Sources */,
 				40AC024824809DD200AF3DEF /* ReviewComic.swift in Sources */,
+				401A21DF2499B0B2008F2E7F /* DetailRequest.swift in Sources */,
 				40AC024224809D2E00AF3DEF /* DetailComic.swift in Sources */,
 				40568F0B247B51D600304422 /* HomeViewController.swift in Sources */,
 				408FD5AD2490D9E000511C5D /* EmptyReviewCLViewCell.swift in Sources */,
@@ -637,12 +667,14 @@
 				40568F56247B5C1600304422 /* UIView+.swift in Sources */,
 				408FD5AB2490D9E000511C5D /* ReviewTBViewCell.swift in Sources */,
 				40420616247E53B9001BA2F8 /* APIService.swift in Sources */,
+				401A21D92499AC5A008F2E7F /* BaseRequest.swift in Sources */,
 				40568F50247B5C1600304422 /* BaseTBCell.swift in Sources */,
 				40568F4C247B5C1600304422 /* DLog.swift in Sources */,
 				40AC024C24809E9A00AF3DEF /* ComicStatus.swift in Sources */,
 				40AC02532480AF3600AF3DEF /* Date+.swift in Sources */,
 				4043DFAD24889862007A407F /* AllComicTBViewCell.swift in Sources */,
 				408FD5A32490C36400511C5D /* InfoComicTBViewCell.swift in Sources */,
+				401A21E12499B29E008F2E7F /* DetailIssue.swift in Sources */,
 				40568F51247B5C1600304422 /* BaseCLCell.swift in Sources */,
 				4043DFA52488833A007A407F /* HomeTBViewCell.swift in Sources */,
 				40AC023E248099E100AF3DEF /* HomeComic.swift in Sources */,

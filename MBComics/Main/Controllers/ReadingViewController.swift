@@ -16,6 +16,7 @@ class ReadingViewController: UIViewController {
     private lazy var slideshow = ImageSlideshow().then {
         $0.pageIndicator = LabelPageIndicator()
         $0.zoomEnabled = true
+        $0.circular = false
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(tap))
         singleTap.numberOfTapsRequired = 1
         $0.addGestureRecognizer(singleTap)
@@ -28,8 +29,11 @@ class ReadingViewController: UIViewController {
     }
 
     // MARK: - Values
-    private let imageUrls = [String]()
+    private let comicRepository = ComicRepository(api: APIService.shared)
+    
     private var isBarHidden = false
+    private var issueId = ""
+    private var issueDetail: DetailIssue?
 
     // MARK: - Life Cycles
     override func viewDidLoad() {
@@ -38,6 +42,10 @@ class ReadingViewController: UIViewController {
         // Do any additional setup after loading the view.
         setUpViews()
         setUpConstraints()
+    }
+    
+    func initData(issueId: String) {
+        self.issueId = issueId
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -52,6 +60,7 @@ class ReadingViewController: UIViewController {
         view.backgroundColor = .white
 
         view.addSubview(slideshow)
+        slideshow.isHidden = true
     }
 
     private func setUpConstraints() {
@@ -62,15 +71,37 @@ class ReadingViewController: UIViewController {
 
     // MARK: - Actions
     private func getData() {
-        // TODO: Add API
-        slideshow.setImageInputs(imageUrls.map {
-            guard let url = $0.url else { return ImageSource(image: kErrorPlaceHolderImage) }
-            return KingfisherSource(url: url, options: [.requestModifier(kKfModifier)])
-        })
+        showPopupLoading()
+        comicRepository.getIssueDetail(of: issueId) { [weak self] (error, issue) in
+            DispatchQueue.main.async {
+                self?.hidePopupLoading()
+                self?.handleIssueApi(error: error, issue: issue)
+            }
+        }
+    }
+    
+    private func handleIssueApi(error: ErrorResponse?, issue: DetailIssue?) {
+        slideshow.isHidden = false
+        if let error = error {
+            showAlert(title: error.name, message: error.message)
+            slideshow.setImageInputs([ImageSource(image: kErrorPlaceHolderImage)])
+        } else {
+            issueDetail = issue
+            guard let imageUrls = issueDetail?.images else { return }
+            slideshow.setImageInputs(imageUrls.map {
+                guard let url = $0.url else { return ImageSource(image: kErrorPlaceHolderImage) }
+                return KingfisherSource(url: url,
+                                        options: [.requestModifier(kKfModifier)])
+            })
+        }
     }
 
     @objc private func tap() {
-        isBarHidden = !isBarHidden
-        navigationController?.setNavigationBarHidden(isBarHidden, animated: true)
+        if issueDetail != nil {
+            isBarHidden = !isBarHidden
+            navigationController?.setNavigationBarHidden(isBarHidden, animated: true)
+        } else {
+            getData()
+        }
     }
 }

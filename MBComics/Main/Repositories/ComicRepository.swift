@@ -15,17 +15,15 @@ protocol ComicRepositoryType {
     func getReviews(of comicId: Int, completion: @escaping (Error?, [ReviewComic]) -> Void)
     func writeReview(for comicId: Int, content: String, ratePoint: Int, user: UserInfo, completion: @escaping (Error?) -> Void)
     func searchByName(of query: String, completion: @escaping (ErrorResponse?, [SearchComic]) -> Void)
+    func getIssueDetail(of issueId: String, completion: @escaping (ErrorResponse?, DetailIssue?) -> Void)
 }
 
 struct ComicRepository: ComicRepositoryType {
     let api: APIService
     
     func getHomeComics(completion: @escaping (ErrorResponse?, [HomeComic], [HomeComic]) -> Void) {
-        api.request(urlString: AppUrl.homeUrl,
-                    httpMethod: .get,
-                    header: nil,
-                    param: nil,
-                    body: nil) { (_, error, json) in
+        let input = HomeRequest()
+        api.request(input: input) { (error, json) in
             if let json = json {
                 let popularComics = json["popular"].arrayValue.map { HomeComic($0) }
                 let newestComics = json["newest"].arrayValue.map { HomeComic($0) }
@@ -59,11 +57,8 @@ struct ComicRepository: ComicRepositoryType {
     }
     
     func getDetailComic(comicId: Int, completion: @escaping (ErrorResponse?, DetailComic?) -> Void) {
-        api.request(urlString: AppUrl.comicUrl,
-                    httpMethod: .get,
-                    header: nil,
-                    param: ["id": comicId],
-                    body: nil) { (_, error, json) in
+        let input = DetailRequest(comicId: comicId)
+        api.request(input: input) { (error, json) in
             if let json = json {
                 let detailComic = DetailComic(json)
                 completion(nil, detailComic)
@@ -148,16 +143,25 @@ struct ComicRepository: ComicRepositoryType {
     }
     
     func searchByName(of query: String, completion: @escaping (ErrorResponse?, [SearchComic]) -> Void) {
-        api.request(urlString: AppUrl.searchUrl,
-                    httpMethod: .get,
-                    header: nil,
-                    param: ["q": query],
-                    body: nil) { (_, error, json) in
+        let input = SearchRequest(query: query)
+        api.request(input: input) { (error, json) in
             if let json = json {
                 let comics = json.arrayValue.map { SearchComic($0) }
                 completion(nil, comics)
             } else {
                 completion(error, [])
+            }
+        }
+    }
+    
+    func getIssueDetail(of issueId: String, completion: @escaping (ErrorResponse?, DetailIssue?) -> Void) {
+        let input = IssueRequest(issueId: issueId)
+        api.request(input: input) { (error, json) in
+            if let json = json {
+                let issue = DetailIssue(json)
+                completion(nil, issue)
+            } else {
+                completion(error, nil)
             }
         }
     }
