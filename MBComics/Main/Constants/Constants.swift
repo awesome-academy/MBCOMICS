@@ -84,3 +84,9 @@ enum ListReview {
     static let statsSection = 0
     static let reviewsSection = 1
 }
+
+// Reading screen
+let kErrorPlaceHolderImage = UIImage.fontAwesomeIcon(name: .exclamationTriangle,
+                                                     style: .regular,
+                                                     textColor: .darkGray,
+                                                     size: CGSize(width: 500, height: 500))

@@ -107,6 +107,12 @@ PODS:
   - GTMSessionFetcher/Core (1.4.0)
   - GTMSessionFetcher/Full (1.4.0):
     - GTMSessionFetcher/Core (= 1.4.0)
+  - ImageSlideshow (1.8.3):
+    - ImageSlideshow/Core (= 1.8.3)
+  - ImageSlideshow/Core (1.8.3)
+  - ImageSlideshow/Kingfisher (1.8.3):
+    - ImageSlideshow/Core
+    - Kingfisher (> 3.0)
   - Kingfisher (5.13.1):
     - Kingfisher/Core (= 5.13.1)
   - Kingfisher/Core (5.13.1)
@@ -132,6 +138,8 @@ DEPENDENCIES:
   - Firebase/Database
   - FontAwesome.swift
   - GoogleSignIn
+  - ImageSlideshow
+  - ImageSlideshow/Kingfisher
   - Kingfisher
   - MBProgressHUD
   - SnapKit
@@ -163,6 +171,7 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMAppAuth
     - GTMSessionFetcher
+    - ImageSlideshow
     - Kingfisher
     - leveldb-library
     - MBProgressHUD
@@ -196,6 +205,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
+  ImageSlideshow: 4694d7d699a1549582e7cc631fb392d8f91630f3
   Kingfisher: f33a848445e33c543620812158dc5d47f6bf90df
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
@@ -207,6 +217,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   Then: 90cd104fd951cec1980a03f57704ad8f784d4d79
 
-PODFILE CHECKSUM: 9cbb9e3f190f638b8a2e462e9c4eac042b01e5a8
+PODFILE CHECKSUM: 57720816e229a7200c6e26dc823cf596c2a8174f
 
 COCOAPODS: 1.9.0
