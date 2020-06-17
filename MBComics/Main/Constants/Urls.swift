@@ -11,4 +11,5 @@ enum AppUrl {
     static let homeUrl = "comics/home"
     static let comicUrl = "comics"
     static let searchUrl = "comics/search"
+    static let issueUrl = "comics/issue"
 }

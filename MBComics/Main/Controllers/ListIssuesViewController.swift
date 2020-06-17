@@ -69,8 +69,10 @@ extension ListIssuesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let readingVC = ReadingViewController()
-        
+        let readingVC = ReadingViewController().then {
+            $0.initData(issueId: issues[indexPath.row].id)
+            $0.hidesBottomBarWhenPushed = true
+        }
         navigationController?.pushViewController(readingVC, animated: true)
     }
 }

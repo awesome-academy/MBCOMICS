@@ -8,7 +8,7 @@
 
 import SwiftyJSON
 
-typealias FullCompletion = (_ status: Bool, _ error: ErrorResponse?, _ json: JSON?) -> Void
+typealias FullCompletion = (_ error: ErrorResponse?, _ json: JSON?) -> Void
 
 enum APIType {
     case normal, loadMore, refresh
@@ -22,17 +22,12 @@ struct APIService {
         ApiBase.config(config)
     }
     
-    func request(urlString: String? = nil,
-                 httpMethod: HTTPMethod,
-                 header: [String: String]? = nil,
-                 param: [String: Any]? = nil,
-                 body: [String: Any]? = nil,
-                 completion: FullCompletion?) {
-        ApiBase.shared.request(urlString: urlString,
-                               httpMethod: httpMethod,
-                               header: header,
-                               param: param,
-                               body: body) { (status, _, json) in
+    func request(input: BaseRequest, completion: FullCompletion?) {
+        ApiBase.shared.request(urlString: input.url,
+                               httpMethod: input.requestType,
+                               header: input.header,
+                               param: input.body,
+                               body: nil) { (status, _, json) in
             var error: ErrorResponse?
             if !status {
                 if let json = json {
@@ -43,9 +38,9 @@ struct APIService {
                                           type: .noInternet)
                 }
                 
-                completion?(status, error, json)
+                completion?(error, nil)
             } else {
-                completion?(status, nil, json)
+                completion?(nil, json)
             }
         }
     }
