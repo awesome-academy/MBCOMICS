@@ -36,8 +36,12 @@ class SearchViewController: UIViewController {
             } else {
                 tableView.setState(.dataAvailable(viewController: self))
             }
+            tableView.reloadData()
         }
     }
+    
+    private let comicRepository = ComicRepository(api: APIService.shared)
+    private let userRepository = UserRepository(api: APIService.shared)
     
     // MARK: - LifeCycles
     override func viewDidLoad() {
@@ -68,11 +72,53 @@ class SearchViewController: UIViewController {
     // MARK: - Actions
     private func getData(title: String?) {
         guard let text = title else { return }
-        // TODO: API
+        showPopupLoading()
+        comicRepository.searchByName(of: text) { [weak self] (error, comics) in
+            DispatchQueue.main.async {
+                self?.handleSearchApi(error: error, comics: comics)
+            }
+        }
+    }
+    
+    private func handleSearchApi(error: ErrorResponse?, comics: [SearchComic]) {
+        hidePopupLoading()
+        if let error = error {
+            let message = NSAttributedString(string: error.message)
+            if error.type == .noInternet {
+                tableView.setState(.checkInternetAvaibility(noInternetImg: nil,
+                                                            noInternetLabelTitle: nil))
+            } else {
+                tableView.setState(.noDataAvailable(noDataImg: nil,
+                                                    noDataLabelTitle: message))
+            }
+        } else {
+            self.getRatingInfos(for: comics)
+        }
+    }
+    
+    private func getRatingInfos(for comics: [SearchComic]) {
+        if comics.isEmpty {
+            searchResults = comics
+            return
+        }
+        comicRepository.getReviewInfo(of: comics) { [weak self] (results) in
+            if let results = results as? [SearchComic] {
+                self?.searchResults = results
+            }
+        }
     }
     
     private func tapFavoriteComic(comicId: Int, state: Bool) {
-        // TODO: API
+        if let comic = (searchResults.filter { $0.id == comicId }).first {
+            let favoriteComic = FavoriteComic(id: comic.id,
+                                              title: comic.title,
+                                              poster: comic.poster)
+            if state {
+                userRepository.addFavoriteComic(comic: favoriteComic)
+            } else {
+                userRepository.removeFavoriteComic(comic: favoriteComic)
+            }
+        }
     }
 }
 
