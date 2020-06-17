@@ -40,20 +40,20 @@ class LineInfoComicTBViewCell: UIView {
     }
     
     func initLayout() {
-        titleLabel.snp.makeConstraints { make in
-            make.left.top.equalTo(7)
-            make.width.equalToSuperview().multipliedBy(0.3)
-            make.height.equalTo(detailLabel.snp.height)
+        titleLabel.snp.makeConstraints {
+           $0.left.top.equalTo(7)
+           $0.width.equalToSuperview().multipliedBy(0.3)
+           $0.height.equalTo(detailLabel.snp.height)
         }
         
-        detailLabel.snp.makeConstraints { make in
-            make.right.bottom.equalToSuperview().offset(-7)
-            make.centerY.equalTo(titleLabel.snp.centerY)
-            make.width.equalToSuperview().multipliedBy(0.7)
+        detailLabel.snp.makeConstraints {
+           $0.right.bottom.equalToSuperview().offset(-7)
+           $0.centerY.equalTo(titleLabel.snp.centerY)
+           $0.width.equalToSuperview().multipliedBy(0.7)
         }
         
-        snp.makeConstraints { make in
-            make.height.greaterThanOrEqualTo(44)
+        snp.makeConstraints {
+           $0.height.greaterThanOrEqualTo(44)
         }
     }
 }

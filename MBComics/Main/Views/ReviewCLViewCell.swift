@@ -32,8 +32,8 @@ class ReviewCLViewCell: BaseCLCell {
 
     // MARK: - Layouts
     func initLayout() {
-        reviewContentCell.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        reviewContentCell.snp.makeConstraints {
+           $0.edges.equalToSuperview()
         }
     }
 }

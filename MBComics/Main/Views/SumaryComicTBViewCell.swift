@@ -43,14 +43,14 @@ class SummaryComicTBViewCell: BaseTBCell {
     }
 
     func initLayout() {
-        titleLabel.snp.makeConstraints { make in
-            make.left.top.equalTo(20)
+        titleLabel.snp.makeConstraints {
+           $0.left.top.equalTo(20)
         }
         
-        summaryLabel.snp.makeConstraints { make in
-            make.left.equalTo(20)
-            make.right.bottom.equalTo(-20)
-            make.top.equalTo(titleLabel.snp.bottom).offset(5)
+        summaryLabel.snp.makeConstraints {
+           $0.left.equalTo(20)
+           $0.right.bottom.equalTo(-20)
+           $0.top.equalTo(titleLabel.snp.bottom).offset(5)
         }
     }
     

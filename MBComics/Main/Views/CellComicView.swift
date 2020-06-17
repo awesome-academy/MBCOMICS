@@ -22,17 +22,17 @@ class CellComicView: UIView {
         $0.font = UIFont.boldSystemFont(ofSize: 20)
     }
     
-    private var subTitleLabel = UILabel().then {
+    private let subTitleLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.textColor = .darkGray
     }
     
-    private var ratingPoint = UILabel().then {
+    private let ratingPoint = UILabel().then {
         $0.textColor = .darkGray
         $0.font = UIFont.boldSystemFont(ofSize: 20)
     }
     
-    private var rating = CosmosView().then {
+    private let rating = CosmosView().then {
         var options = CosmosSettings()
         options.updateOnTouch = false
         options.starSize = 20
@@ -45,12 +45,12 @@ class CellComicView: UIView {
         $0.settings = options
     }
     
-    private var ratingCount = UILabel().then {
+    private let ratingCount = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.textColor = .darkGray
     }
     
-    private var favoriteBtn = UILabel().then {
+    private let favoriteBtn = UILabel().then {
         $0.textAlignment = .center
         $0.layer.masksToBounds = true
         $0.layer.cornerRadius = 15
@@ -143,59 +143,59 @@ class CellComicView: UIView {
     
     // MARK: set Sub-Layout
     private func setImgLayout() {
-        img.snp.makeConstraints { make in
-            make.left.equalTo(self)
-            make.top.equalTo(self)
-            make.bottom.equalTo(self)
-            make.width.equalTo(imgHeight*3/4)
-            make.height.equalTo(imgHeight)
+        img.snp.makeConstraints {
+           $0.left.equalTo(self)
+           $0.top.equalTo(self)
+           $0.bottom.equalTo(self)
+           $0.width.equalTo(imgHeight*3/4)
+           $0.height.equalTo(imgHeight)
         }
     }
     
     private func setTitleLayout() {
-        titleLabel.snp.makeConstraints { make in
-            make.left.equalTo(img.snp.right).offset(10)
-            make.right.equalTo(self)
-            make.top.equalTo(self)
+        titleLabel.snp.makeConstraints {
+           $0.left.equalTo(img.snp.right).offset(10)
+           $0.right.equalTo(self)
+           $0.top.equalTo(self)
         }
     }
     
     private func setSubTitleLayout() {
-        subTitleLabel.snp.makeConstraints { make in
-            make.left.equalTo(img.snp.right).offset(10)
-            make.right.equalTo(self)
-            make.top.equalTo(titleLabel.snp.bottom).offset(1)
+        subTitleLabel.snp.makeConstraints {
+           $0.left.equalTo(img.snp.right).offset(10)
+           $0.right.equalTo(self)
+           $0.top.equalTo(titleLabel.snp.bottom).offset(1)
         }
     }
     
     private func setRatingPointLayout() {
-        ratingPoint.snp.makeConstraints { make in
-            make.left.equalTo(img.snp.right).offset(10)
+        ratingPoint.snp.makeConstraints {
+           $0.left.equalTo(img.snp.right).offset(10)
         }
     }
     
     private func setRatingCountLayout() {
-        ratingCount.snp.makeConstraints { make in
-            make.left.equalTo(img.snp.right).offset(10)
-            make.top.equalTo(rating.snp.bottom).offset(1)
+        ratingCount.snp.makeConstraints {
+           $0.left.equalTo(img.snp.right).offset(10)
+           $0.top.equalTo(rating.snp.bottom).offset(1)
         }
     }
     
     private func setFavoriteBtnLayout() {
-        favoriteBtn.snp.makeConstraints { make in
-            make.left.equalTo(img.snp.right).offset(10)
-            make.bottom.equalTo(img.snp.bottom)
-            make.top.lessThanOrEqualTo(ratingCount.snp.bottom).offset(30)
-            make.width.equalTo(80)
-            make.height.equalTo(30)
+        favoriteBtn.snp.makeConstraints {
+           $0.left.equalTo(img.snp.right).offset(10)
+           $0.bottom.equalTo(img.snp.bottom)
+           $0.top.lessThanOrEqualTo(ratingCount.snp.bottom).offset(30)
+           $0.width.equalTo(80)
+           $0.height.equalTo(30)
         }
     }
     
     private func setRatingLayout() {
-        rating.snp.makeConstraints { make in
-            make.left.equalTo(ratingPoint.snp.right).offset(1)
-            make.centerY.equalTo(ratingPoint).offset(1)
-            make.top.greaterThanOrEqualTo(titleLabel.snp.bottom).offset(5)
+        rating.snp.makeConstraints {
+           $0.left.equalTo(ratingPoint.snp.right).offset(1)
+           $0.centerY.equalTo(ratingPoint).offset(1)
+           $0.top.greaterThanOrEqualTo(titleLabel.snp.bottom).offset(5)
         }
     }
     

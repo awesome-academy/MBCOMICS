@@ -44,14 +44,14 @@ class TextViewFormCell: BaseTBCell, FormCellType {
     }
     
     private func initLayout() {
-        self.textView.snp.makeConstraints { (make) in
-            make.top.left.equalToSuperview().offset(20)
-            make.right.bottom.equalToSuperview().inset(20)
-            make.height.greaterThanOrEqualTo(kScreenHeight - 210)
+        self.textView.snp.makeConstraints {
+           $0.top.left.equalToSuperview().offset(20)
+           $0.right.bottom.equalToSuperview().inset(20)
+           $0.height.greaterThanOrEqualTo(kScreenHeight - 210)
         }
-        self.placeHolderLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(textView).offset(2)
-            make.top.equalTo(textView).offset(8)
+        self.placeHolderLabel.snp.makeConstraints {
+           $0.left.equalTo(textView).offset(2)
+           $0.top.equalTo(textView).offset(8)
         }
     }
     

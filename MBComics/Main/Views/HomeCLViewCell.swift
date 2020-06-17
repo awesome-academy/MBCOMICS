@@ -11,7 +11,7 @@ import UIKit
 class HomeCLViewCell: BaseCLCell {
     
     // MARK: - Outlets
-    var cellComicView = CellComicView()
+    private let cellComicView = CellComicView()
     
     // MARK: - Life Cycles
     override init(frame: CGRect) {
@@ -31,9 +31,9 @@ class HomeCLViewCell: BaseCLCell {
         setUpConstraints()
     }
     
-    func setUpConstraints() {
-        cellComicView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+    private func setUpConstraints() {
+        cellComicView.snp.makeConstraints {
+           $0.edges.equalToSuperview()
         }
     }
 }

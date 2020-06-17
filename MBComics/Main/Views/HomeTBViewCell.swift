@@ -17,7 +17,7 @@ protocol HomeTBCellDelegate: class {
 class HomeTBViewCell: BaseTBCell {
     
     // MARK: - Outlets
-    private var collectionViewLayout = UICollectionViewFlowLayout().then {
+    private let collectionViewLayout = UICollectionViewFlowLayout().then {
         $0.scrollDirection = .horizontal
     }
     private lazy var collectionView = UICollectionView(frame: .zero,
@@ -38,7 +38,7 @@ class HomeTBViewCell: BaseTBCell {
         $0.addTapGesture(target: self, action: #selector(tapSeeAll))
     }
     
-    private var titleLabel = UILabel().then {
+    private let titleLabel = UILabel().then {
         $0.font = .boldSystemFont(ofSize: 20)
     }
     
@@ -84,21 +84,21 @@ class HomeTBViewCell: BaseTBCell {
     }
     
     private func setUpConstraints() {
-        titleLabel.snp.makeConstraints { make in
-            make.left.top.equalTo(20)
+        titleLabel.snp.makeConstraints {
+           $0.left.top.equalTo(20)
         }
         
-        collectionView.snp.makeConstraints { make in
-            make.left.equalTo(0)
-            make.top.equalTo(titleLabel.snp.bottom).offset(20)
-            make.right.equalTo(0)
-            make.bottom.equalTo(-20)
-            make.height.equalTo(imgHeight)
+        collectionView.snp.makeConstraints {
+           $0.left.equalTo(0)
+           $0.top.equalTo(titleLabel.snp.bottom).offset(20)
+           $0.right.equalTo(0)
+           $0.bottom.equalTo(-20)
+           $0.height.equalTo(imgHeight)
         }
         
-        seeAllLabel.snp.makeConstraints { make in
-            make.right.equalTo(-20)
-            make.centerY.equalTo(titleLabel)
+        seeAllLabel.snp.makeConstraints {
+           $0.right.equalTo(-20)
+           $0.centerY.equalTo(titleLabel)
         }
     }
     

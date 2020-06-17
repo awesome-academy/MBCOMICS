@@ -30,10 +30,10 @@ class AllReviewTBViewCell: BaseTBCell {
     }
 
     private func setUpConstraints() {
-        reviewContentView.snp.makeConstraints { make in
-            make.left.top.equalTo(20)
-            make.right.bottom.equalTo(-20)
-            make.height.greaterThanOrEqualTo(100)
+        reviewContentView.snp.makeConstraints {
+           $0.left.top.equalTo(20)
+           $0.right.bottom.equalTo(-20)
+           $0.height.greaterThanOrEqualTo(100)
         }
     }
 }

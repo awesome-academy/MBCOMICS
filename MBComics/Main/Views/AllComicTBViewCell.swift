@@ -31,9 +31,9 @@ class AllComicTBViewCell: BaseTBCell {
     }
 
     func setUpConstraints() {
-        cellComicView.snp.makeConstraints { make in
-            make.left.top.equalTo(20)
-            make.right.bottom.equalTo(-20)
+        cellComicView.snp.makeConstraints {
+           $0.left.top.equalTo(20)
+           $0.right.bottom.equalTo(-20)
         }
     }
 }

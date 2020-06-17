@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow()
         Application.shared.initApplication(with: window)
+        Application.shared.changeRootViewController = changeRootViewController
         
         return true
     }
@@ -37,5 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                              sourceApplication: options[.sourceApplication] as? String,
                                                              annotation: options[.annotation])
         return handled || GIDSignIn.sharedInstance().handle(url)
+    }
+    
+    private func changeRootViewController() {
+        Application.shared.initApplication(with: window)
     }
 }

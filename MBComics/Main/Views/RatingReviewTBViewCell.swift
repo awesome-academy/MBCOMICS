@@ -61,14 +61,14 @@ class RatingReviewTBViewCell: BaseTBCell, FormCellType {
     }
     
     private func initLayout() {
-        self.tapToRateLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(20)
-            make.centerY.equalTo(rating)
+        tapToRateLabel.snp.makeConstraints {
+           $0.left.equalTo(20)
+           $0.centerY.equalTo(rating)
         }
-        self.rating.snp.makeConstraints { (make) in
-            make.right.equalTo(-20)
-            make.top.equalTo(20)
-            make.bottom.equalTo(-20)
+        rating.snp.makeConstraints {
+           $0.right.equalTo(-20)
+           $0.top.equalTo(20)
+           $0.bottom.equalTo(-20)
         }
     }
     

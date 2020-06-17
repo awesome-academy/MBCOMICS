@@ -9,13 +9,9 @@
 import UIKit
 
 class AllComicViewController: UIViewController {
-    var comics = [Comic]() {
-        didSet {
-            tableView.reloadData()
-        }
-    }
     
-    lazy var tableView = UITableView().then {
+    // MARK: - Outlets
+    private lazy var tableView = UITableView().then {
         $0.delegate = self
         $0.dataSource = self
         $0.estimatedRowHeight = UITableView.automaticDimension
@@ -25,11 +21,22 @@ class AllComicViewController: UIViewController {
         $0.showsVerticalScrollIndicator = false
     }
 
+    // MARK: - Values
+    private let userRepository = UserRepository(api: APIService.shared)
+    
+    private var comics = [Comic]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    // MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViews()
         setUpConstraints()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -41,21 +48,30 @@ class AllComicViewController: UIViewController {
         self.comics = comics
     }
     
-    func setUpViews() {
+    // MARK: - Layouts
+    private func setUpViews() {
         view.addSubview(tableView)
     }
     
-    func setUpConstraints() {
-        tableView.snp.makeConstraints { make in
-            make.left.equalTo(0)
-            make.right.equalTo(0)
-            make.top.equalTo(0)
-            make.bottom.equalTo(0)
+    private func setUpConstraints() {
+        tableView.snp.makeConstraints {
+           $0.left.equalTo(0)
+           $0.right.equalTo(0)
+           $0.top.equalTo(0)
+           $0.bottom.equalTo(0)
         }
     }
     
-    func tapFavoriteComic(comicId: Int, state: Bool) {
-        // TODO: Add API
+    private func tapFavoriteComic(comicId: Int, state: Bool) {
+        guard let comic = comics.first(where: { $0.id == comicId }) else { return }
+        let favoriteComic = FavoriteComic(id: comic.id,
+                                          title: comic.title,
+                                          poster: comic.poster)
+        if state {
+            userRepository.addFavoriteComic(comic: favoriteComic)
+        } else {
+            userRepository.removeFavoriteComic(comic: favoriteComic)
+        }
     }
 }
 
